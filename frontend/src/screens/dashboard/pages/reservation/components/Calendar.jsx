@@ -1,0 +1,102 @@
+"use client";
+import React, { useState, useMemo, useEffect } from "react";
+import moment from "moment";
+import { AnimatePresence } from "framer-motion";
+import BookingReservationModal from "@/components/modals/BookingReservationModal";
+import { Scheduler } from "@bitnoi.se/react-scheduler";
+import { useDispatch, useSelector } from "react-redux";
+import styled from "styled-components";
+
+const ReservationCalendar = () => {
+  const [filterButtonState, setFilterButtonState] = useState(0);
+  const [range, setRange] = useState({
+    startDate: Date.now(),
+    endDate: Date.now(),
+  });
+  const { reservations, getsingleReservationisLoading } = useSelector(
+    (store) => store.reservation
+  );
+  const [reservationtab, setReservationTab] = useState({
+    modal: false,
+    data: null,
+  });
+
+  // Format the reservation data
+  const newFormattedData = useMemo(() => {
+    return (reservations || []).map((booking) => {
+      return {
+        id: booking?.id,
+        booking: booking,
+        label: {
+          icon: booking?.images && booking?.images[0],
+          title: booking?.title,
+        },
+        data: (booking?.reservations || []).map((data, index) => {
+          const formattedStartDate = moment(data?.startDate);
+          const formattedEndDate = moment(data?.endDate);
+          const duration = formattedEndDate.diff(formattedStartDate, "hours");
+          return {
+            startDate: new Date(data?.startDate),
+            endDate: new Date(data?.endDate),
+            id: data?.id,
+            occupancy: `${duration}`,
+            roomprice: `${booking?.price}`,
+            bgColor: data.status === 'PENDING' ? "#f9d955" : data?.status === "CONFIRMED" ? "#0e7b10" : "#000",
+            subtitle: `${data?.user?.name || "Unknown user"} has booked it`,
+            title: `${booking?.title}`,
+            ...data,
+          };
+        }),
+      };
+    });
+  }, [reservations, range?.startDate, range?.endDate]);
+  useEffect(() => {
+    const today = new Date();
+    setRange({ startDate: today, endDate: today });
+  }, []);
+
+  return (
+    <>
+      <AnimatePresence mode="wait">
+        {reservationtab?.modal && (
+          <BookingReservationModal
+            modal={reservationtab?.modal}
+            setModal={setReservationTab}
+            room={reservationtab?.data}
+          />
+        )}
+      </AnimatePresence>
+      <ReservationCalendarStyle className="relative p4 bg-white overflow-hidden shadow-lg border border-[rgba(0,0,0,.2)] rounded-[10px] min-h-[500px]">
+
+        <Scheduler
+          data={newFormattedData}
+          isLoading={getsingleReservationisLoading}
+          onRangeChange={(newRange) => setRange(newRange)}
+          onTileClick={(item) =>
+            setReservationTab({
+              modal: true,
+              data: item,
+            })
+          }
+          onFilterData={() => {
+            // Some filtering logic...
+            setFilterButtonState(1);
+          }}
+          onClearFilterData={() => {
+            // Some clearing filters logic...
+            setFilterButtonState(0);
+          }}
+          config={{
+            zoom:+0,
+            filterButtonState,
+            initialDate: range?.startDate, // Set the initial date to today's date
+          }}
+        />
+      </ReservationCalendarStyle>
+    </>
+  );
+};
+
+const ReservationCalendarStyle = styled.section``;
+
+export default ReservationCalendar;
