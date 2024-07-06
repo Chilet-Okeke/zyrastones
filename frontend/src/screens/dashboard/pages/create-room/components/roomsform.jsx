@@ -120,7 +120,7 @@ const RoomForms = ({
                 name="price"
                 value={price}
                 id="price"
-                type="text"
+                type="number"
                 onChange={(e) => setPrice(e.target.value)}
                 className="text-sm w-full input"
               />
@@ -134,7 +134,7 @@ const RoomForms = ({
                 name="cautionfee"
                 value={cautionfee}
                 id="cautionfee"
-                type="text"
+                type="number"
                 onChange={(e) => setCautionFee(e.target.value)}
                 className="text-sm w-full input"
               />

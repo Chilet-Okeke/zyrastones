@@ -44,13 +44,15 @@ const DashboardIndex = () => {
   useEffect(() => {
     if (room) {
       setTitle(room?.title);
-      setPrice(room?.price);
+      // setPrice(room?.price);
+      setPrice(room?.price ? parseInt(room?.price.replace(/,/g, "")) : 0);
       setCity(room?.city);
       setDescription(room?.description);
       setImages(room?.images);
       setBathRooms(room?.bathroom);
       setRooms(room?.bedroom);
-      setCautionFee(room?.cautionfee)
+      // setCautionFee(room?.cautionfee)
+      setCautionFee(room?.cautionfee ? parseInt(room?.cautionfee.replace(/,/g, "")) : 0);
       // dispatch(getSingleRooms(room));
     } else {
       setTitle("");

@@ -65,7 +65,7 @@ const RoomDetail = ({
                 style={{ letterSpacing: "2px" }}
                 className="text-xs font-booking_font_bold flex items-center text-dark "
               >
-                Cuation Fee:{" "}
+                Caution Fee:{" "}
                 <span className="text-lg font-booking_font4">₦{Number(cautionfee).toLocaleString()}</span>
               </h4>
               <h4
