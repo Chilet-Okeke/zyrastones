@@ -85,10 +85,10 @@ export default function BookingReservationModal({ setModal, room }) {
           </h3>
           <div className="flex items-center justify-between gap-2">
             <div className="flex items-center gap-2">
-              <span className="p-2 px-4 font-booking_font rounded-[4px] text-center bg-[#f5f5f5] text-xs font-bold">
+              <span className="p-2 px-4 font-booking_font_bold rounded-[4px] text-center bg-[#f5f5f5] text-xs font-bold">
                 {room?.title}
               </span>
-              <span className="p-2 px-4 capitalize font-booking_font rounded-[4px] text-center bg-[#B7FF0A] text-[#000] text-xs font-bold">
+              <span className="p-2 px-4 capitalize font-booking_font_bold rounded-[4px] text-center bg-[#B7FF0A] text-[#000] text-xs font-bold">
                 {room?.status === "PENDING" ? "Pending" : "Paid"}
               </span>
             </div>
