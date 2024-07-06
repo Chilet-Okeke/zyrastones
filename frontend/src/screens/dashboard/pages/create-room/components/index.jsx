@@ -28,10 +28,7 @@ const DashboardIndex = () => {
 
   const dispatch = useDispatch();
   const {
-    creatingRoomisLoading,
-    updateRoomisSuccess,
     creatingRoomisSuccess,
-    updateRoomisLoading,
     room,
   } = useSelector((store) => store.room);
   // get the room id
