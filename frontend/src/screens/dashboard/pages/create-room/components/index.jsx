@@ -113,9 +113,8 @@ const DashboardIndex = () => {
           <h3 className="text-3xl lg:text-4xl font-booking_font4">
             {room ? "Update Your room" : "Add Your Room"}
             <span className="block font-normal text-dark pt-2 text-base font-booking_font">
-              The most important idea about this section is that it gives u
-              ability to add your rooms. When adding your room product idea do
-              not forget to fill out the forms else errors are bound to occur
+              Create, edit and modify your rooms.
+              Complete the forms below and click update room.
             </span>
           </h3>
         </div>
