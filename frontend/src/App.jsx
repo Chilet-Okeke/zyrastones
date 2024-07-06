@@ -7,7 +7,7 @@ import DashboardLayout from "./screens/DashboardLayout";
 import {
   Statistics,
   Rooms,
-  Customers,
+  Customers,  
   CreateRoom,
   Reservation,
   Orders,
