@@ -57,7 +57,7 @@ const RoomDetail = ({
                 className="text-xs font-booking_font_bold flex items-center text-dark "
               >
                 Price:{" "}
-                <span className="text-lg font-booking_font4">₦{price}</span>
+                <span className="text-lg font-booking_font4">₦{Number(price).toLocaleString()}</span>
               </h4>
               <h4
                 style={{ letterSpacing: "2px" }}
