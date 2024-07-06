@@ -15,6 +15,7 @@ const DashboardIndex = () => {
   const navigate = useNavigate();
   const [title, setTitle] = useState("");
   const [price, setPrice] = useState(0);
+  const [cautionfee, setCautionFee] = useState(0);
   const [city, setCity] = useState("");
   const [images, setImages] = useState([]);
 
@@ -37,7 +38,7 @@ const DashboardIndex = () => {
   const { id } = useParams();
 
   useEffect(() => {
-     dispatch(handleClearRoomAlert());
+    dispatch(handleClearRoomAlert());
     if (id) {
       dispatch(getSingleRooms(id));
     }
@@ -52,15 +53,17 @@ const DashboardIndex = () => {
       setImages(room?.images);
       setBathRooms(room?.bathroom);
       setRooms(room?.bedroom);
+      setCautionFee(room?.cautionfee)
       // dispatch(getSingleRooms(room));
     } else {
-       setTitle("");
-       setPrice("");
-       setCity("");
-       setDescription("");
-       setImages([]);
-       setBathRooms("");
-       setRooms("");
+      setTitle("");
+      setPrice("");
+      setCity("");
+      setDescription("");
+      setImages([]);
+      setBathRooms("");
+      setRooms("");
+      setCautionFee(0)
     }
   }, [
     room,
@@ -70,8 +73,8 @@ const DashboardIndex = () => {
     setDescription,
     setImages,
     setBathRooms,
+    setCautionFee
   ]);
-  //  const [bookingdata, setBookingData] = useState(null);
   const roomData = {
     title: title,
     price: price.toString(),
@@ -81,6 +84,7 @@ const DashboardIndex = () => {
     bedroom: rooms,
     bathroom: bathrooms,
     description: description,
+    cautionfee: cautionfee
   };
   // console.log(roomData);
   const handleRoomCreation = () => {
@@ -96,7 +100,7 @@ const DashboardIndex = () => {
   };
 
   useEffect(() => {
-   
+
     if (creatingRoomisSuccess) {
       const timeout = setTimeout(() => {
         navigate(`/dashboard/rooms`);
@@ -129,6 +133,8 @@ const DashboardIndex = () => {
             setPrice={setPrice}
             price={price}
             rooms={rooms}
+            setCautionFee={setCautionFee}
+            cautionfee={cautionfee}
             setRooms={setRooms}
             setBathRooms={setBathRooms}
             bathrooms={bathrooms}
@@ -147,6 +153,7 @@ const DashboardIndex = () => {
               title={title}
               price={price}
               rooms={rooms}
+              cautionfee={cautionfee}
               bathrooms={bathrooms}
               shortdescription={shortdescription}
               handleRoomCreation={handleRoomCreation}

@@ -14,6 +14,7 @@ const RoomDetail = ({
   price,
   images,
   rooms,
+  cautionfee,
   handleRoomCreation
 }) => {
   const dispatch = useDispatch();
@@ -46,18 +47,26 @@ const RoomDetail = ({
             </>
           )}
 
-          <div className="w-full flex flex-col gap-2">
+          <div className="w-full flex flex-col gap-4">
             <h3 className="text-sm font-booking_font_bold text-text_dark_1 ">
               Title:{" "}
               <span className="font-booking_font4 text-2xl"> {title}</span>
             </h3>
-            <div className="w-full flex flex-col gap-2">
+            <div className="w-full flex flex-col ">
               <h4
                 style={{ letterSpacing: "2px" }}
                 className="text-xs font-booking_font_bold flex items-center text-dark "
               >
                 Price:{" "}
                 <span className="text-lg font-booking_font4">₦{Number(price).toLocaleString()}</span>
+              </h4>
+              {/* cautionfee */}
+              <h4
+                style={{ letterSpacing: "2px" }}
+                className="text-xs font-booking_font_bold flex items-center text-dark "
+              >
+                Cuation Fee:{" "}
+                <span className="text-lg font-booking_font4">₦{Number(cautionfee).toLocaleString()}</span>
               </h4>
               <h4
                 style={{ letterSpacing: "2px" }}

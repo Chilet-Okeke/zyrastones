@@ -1,6 +1,6 @@
 "use client";
 import React, { useState } from "react";
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import ImageUpload from "./imageUpload";
@@ -26,7 +26,9 @@ const RoomForms = ({
   setAddress,
   city,
   setCity,
-  address
+  address,
+  cautionfee,
+  setCautionFee
 }) => {
   const handleFeatureSelection = (data) => {
     if (features.includes(data)) {
@@ -37,7 +39,7 @@ const RoomForms = ({
     }
   };
   const module = {
-    toolbar:[["bold", "italic"], ['link']]
+    toolbar: [["bold", "italic"], ['link']]
   }
   return (
     <div className="w-full flex flex-col gap-8">
@@ -110,7 +112,7 @@ const RoomForms = ({
           </div>
           <div className="pt-2 w-full flex flex-col gap-4">
             <label
-              htmlFor="titlprice"
+              htmlFor="price"
               className="text-sm  flex flex-col gap-2 font-booking_font4"
             >
               Room Amount
@@ -120,6 +122,20 @@ const RoomForms = ({
                 id="price"
                 type="text"
                 onChange={(e) => setPrice(e.target.value)}
+                className="text-sm w-full input"
+              />
+            </label>
+            <label
+              htmlFor="cautionfee"
+              className="text-sm  flex flex-col gap-2 font-booking_font4"
+            >
+              Room Caution Fee
+              <input
+                name="cautionfee"
+                value={cautionfee}
+                id="cautionfee"
+                type="text"
+                onChange={(e) => setCautionFee(e.target.value)}
                 className="text-sm w-full input"
               />
             </label>
