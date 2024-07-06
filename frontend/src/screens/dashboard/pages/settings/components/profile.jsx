@@ -203,7 +203,26 @@ const Profile = () => {
                     </label>
                   );
                 })}
-               
+                <div className="flex flex-col gap-3">
+                  <span className="text-dark text-base font-normal">
+                    User Role
+                  </span>
+                  <div className="p-6 px-4 border w-full rounded-lg flex items-center justify-between">
+                    <div className="flex flex-col gap-1">
+                      <span className="text-base font-bold font-booking_font_bold">
+                        User Priviledge
+                      </span>
+
+                      <span className="text-sm font-normal font-booking_font">
+                        Modify the users priviledge from normal user to admin
+                      </span>
+                    </div>
+                    <Switch
+                      checked={role}
+                      onCheckedChange={handleSwitchChange("role")}
+                    />
+                  </div>
+                </div>
                 <div className="flex mt-8">
                   <div
                     onClick={handleUpdateUser}
