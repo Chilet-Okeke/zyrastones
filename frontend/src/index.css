@@ -347,7 +347,7 @@ html.lenis body {
   border-radius: 40px !important;
   border: 2px solid #fff !important;
 }
-.sc-csKIKE.bnXJxV {
+.sc-csKIKE.bnXJxV, .sc-csKIKE.eDuCga {
   padding: 10px 15px !important;
   border-radius: 40px !important;
   font-size: 15px !important;
@@ -355,7 +355,7 @@ html.lenis body {
   gap: 6px !important;
   color: var(--gold-1);
 }
-.sc-csKIKE.bnXJxV:hover {
+.sc-csKIKE.bnXJxV:hover, .sc-csKIKE.eDuCga:hover {
   background-color: var(--green-1) !important;
   color: #fff;
 }
