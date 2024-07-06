@@ -147,7 +147,7 @@ const DashboardHeader = () => {
                   </NavLink>
                   <NavLink
                     end
-                    to={"/dashboard/settings"}
+                    to={`/dashboard/profile/${currentUser?.id}`}
                     className="flex items-center font-booking_font_bold text-xs p-8 h-[45px] px-2 family1 w-full profile_list text-dark"
                   >
                     Profile
