@@ -34,7 +34,12 @@ const FlutterPaymentButton = () => {
       logo: "https://www.hopper.com/assets/treasure-D-5S8iOp.svg",
     },
   };
-
+  console.log({
+    reservationid: reservation?.id,
+    amount: reservation?.totalPrice,
+    currency: "NGN",
+    guests: reservation?.guests
+  })
   const handleFlutterwavePayment = useFlutterwave(config);
   const handleCreateOrderPayment = () => {
     dispatch(
@@ -42,6 +47,7 @@ const FlutterPaymentButton = () => {
         reservationid: reservation?.id,
         amount: reservation?.totalPrice,
         currency: "NGN",
+        guests: reservation?.guests
       })
     );
   };

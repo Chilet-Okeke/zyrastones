@@ -83,7 +83,7 @@ const DashboardIndex = () => {
     bedroom: rooms,
     bathroom: bathrooms,
     description: description,
-    cautionfee: cautionfee
+    cautionfee: cautionfee?.toString()
   };
   // console.log(roomData);
   const handleRoomCreation = () => {

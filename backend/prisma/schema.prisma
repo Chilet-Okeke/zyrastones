@@ -90,6 +90,7 @@ model Reservations {
 model Payment {
   id            String        @id @default(auto()) @map("_id") @db.ObjectId
   amount        Int?
+    guests     Int?
   currency      String
   status        PaymentStatus @default(PENDING)
   userid        String        @db.ObjectId

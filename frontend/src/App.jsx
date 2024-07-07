@@ -14,6 +14,7 @@ import {
   Settings,
 } from "./screens/dashboard";
 import { ProtectRoute } from "./lib/ProtectRoute";
+import Preloader from "./components/common/Preloader";
 const HomeWrapper = lazy(() => import("./screens/Home"));
 const SearchWrapper = lazy(() => import("./screens/Search"));
 const ProfileWrapper = lazy(() => import("./screens/Profile"));
@@ -28,6 +29,7 @@ export default function App() {
 
   return (
     <div className="based" style={{ height }}>
+      {/* <Preloader/> */}
       <Routes>
         <Route path={"/"} element={<Layout />}>
           <Route

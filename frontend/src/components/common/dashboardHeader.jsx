@@ -251,7 +251,7 @@ export const HeaderStyles = styled.div`
     visibility: visible;
   }
   .profile_dropdown {
-    width: 130px;
+    width: 170px;
     opacity: 0;
     transform: scale(0.8);
     transition: all 0.3s;
