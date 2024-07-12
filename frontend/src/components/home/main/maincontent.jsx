@@ -464,7 +464,7 @@ const Collections = () => {
         ref={collection_ref_1}
         className="w-[90%] mx-auto gap-4 max-w-custom_1 grid md:grid-cols-2 lg:grid-cols-3"
       >
-        {rooms?.map((apartment, index) => {
+        {rooms?.slice(0, 6)?.map((apartment, index) => {
           return (
             <RoomCard
               index={index}
@@ -988,9 +988,8 @@ const RoomsPrice = () => {
                 custom={index}
                 initial="initial"
                 animate={inView2 ? "animate" : "exit"}
-                className={`w-full ${
-                  index === 1 ? "bg-[#101727] text-white" : "bg-white"
-                } flex items-center shadow-2xl justify-center rounded-[20px] flex-col gap-8`}
+                className={`w-full ${index === 1 ? "bg-[#101727] text-white" : "bg-white"
+                  } flex items-center shadow-2xl justify-center rounded-[20px] flex-col gap-8`}
               >
                 <div className="w-full flex flex-col gap-3 px-8">
                   <h3
@@ -1016,11 +1015,10 @@ const RoomsPrice = () => {
                   </div>
                 </div>
                 <div
-                  className={`w-full ${
-                    index === 1
+                  className={`w-full ${index === 1
                       ? "border-[rgba(255,255,255,.2)]"
                       : "border-[rgba(0,0,0,.2)]"
-                  } pt-6 border-t px-8 flex flex-col gap-12`}
+                    } pt-6 border-t px-8 flex flex-col gap-12`}
                 >
                   <div className="w-full flex flex-col gap-8">
                     <h3

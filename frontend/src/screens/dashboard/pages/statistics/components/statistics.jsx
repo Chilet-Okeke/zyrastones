@@ -105,7 +105,7 @@ const SalesStat = () => {
             style={{ textDecoration: "underline" }}
             className="text-sm text-[var(--dark-1)] font-booking_font_bold"
             to={"/dashboard/orders"}
-          >
+          >j    
             View All
           </Link>
         </div>
@@ -122,12 +122,12 @@ const SalesStat = () => {
                   </div>
                   <span className="text-base">
                     {data?.user?.name}
-                    <div className="block font-booking_font text-xs text-grey">
+                    <div className="block font-booking_font text-sm text-grey">
                       {data?.user?.email}
                     </div>
                   </span>
                 </div>
-                <span>+#{Number(data?.amount).toLocaleString()}</span>
+                <span>+₦{Number(data?.amount).toLocaleString()}</span>
               </li>
             );
           })}

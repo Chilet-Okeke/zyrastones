@@ -6,44 +6,6 @@ import TableCard from "@/components/common/TableCard";
 import { useDispatch, useSelector } from "react-redux";
 import { GetAllReservations } from "@/features/reservation/reservationReducer";
 
-const reservation = [
-  {
-    user: "Villa Borghese Luxury",
-    venue: "Lavana 4",
-    type: "reservation",
-    status: "booked",
-    price: 44.8,
-    endDate: "8/24/2024",
-    startDate: "4/24/2024",
-  },
-  {
-    user: "Villa Borghese Luxury",
-    venue: "Lavana 2",
-    type: "reservation",
-    status: "canceled",
-    price: 44.8,
-    endDate: "8/24/2024",
-    startDate: "4/24/2024",
-  },
-  {
-    user: "Villa Borghese Luxury",
-    venue: "Lavana 4",
-    type: "reservation",
-    status: "booked",
-    price: 44.8,
-    endDate: "8/24/2024",
-    startDate: "4/24/2024",
-  },
-  {
-    user: "Villa Borghese Luxury",
-    venue: "Lavana 2",
-    type: "reservation",
-    status: "canceled",
-    price: 44.8,
-    endDate: "8/24/2024",
-    startDate: "4/24/2024",
-  },
-];
 
 const ReservationList = () => {
   //   const [roommodal, setRoomModal] = useState(false);
@@ -71,7 +33,7 @@ const ReservationList = () => {
               </tr>
             </thead>
             <tbody>
-              {reservations?.map((x, index) => {
+              {reservations?.slice(0,6)?.map((x, index) => {
                 return <TableCard x={x} type={"Reservation"} key={x?._id} />;
               })}
             </tbody>
