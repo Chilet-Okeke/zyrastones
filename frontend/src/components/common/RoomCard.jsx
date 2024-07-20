@@ -45,12 +45,22 @@ const RoomCard = ({ type, apartment, inView, index }) => {
     const startDate = moment(apartment?.startDate).format("MMMM Do");
 
     const endDate = moment(apartment?.endDate).format("MMMM Do");
+    const pathway = apartment?.status === 'CONFIRMED' ? `/payment-success/${apartment?.payment[0]?.id}?reservationid=${apartment?.id}` : `/reservation/payment/${apartment?.id}`
     return (
       <Link
-        to={`/reservation/payment/${apartment?.id}`}
+        // to={`{apartmwnt.status === ''?}`}
+        to={`${pathway}`}
         className="w-full flex flex-col"
       >
-        <div className="h-[240px] group w-full relative">
+        <div className="h-[240px] group overflow-hidden w-full relative">
+          <div style={{ letterSpacing: "3px" }} className={`absolute flex text-xs items-center justify-center
+           z-[400] w-[300px] -rotate-45 text-white ${apartment.status === 'PENDING' ?
+              "bg-[#ae4c25]" : apartment?.status === "CONFIRMED" ? "bg-[#0e7b10]" : "bg-[#000]"} h-14 -left-[25%] top-[5%]`}>
+            {
+              apartment?.status
+            }
+          </div>
+
           <Link
             to={"#"}
             style={{ transition: "all .4s" }}
@@ -71,13 +81,13 @@ const RoomCard = ({ type, apartment, inView, index }) => {
             className="w-full h-[240px] z-20 absolute object-cover hover:grayscale-[1] grayscale-0"
           />
         </div>
-        <div className="w-full flex flex-col py-3 bg-white gap-2">
-          <h4
+        <div className="w-full pt-4 flex flex-col py-3 bg-white gap-2">
+          {/* <h4
             style={{ letterSpacing: "3px" }}
             className="text-xs text-grey uppercase font-booking_font_bold font-bold"
           >
             for settling in castle
-          </h4>
+          </h4> */}
           <h3 className="text-2xl font-booking_font4 font-normal text-text_dark_1 ">
             {apartment?.rooms?.title}
           </h3>
@@ -178,9 +188,8 @@ const RoomCard = ({ type, apartment, inView, index }) => {
                   return (
                     <span
                       key={index}
-                      className={`w-[7px] ${
-                        active ? "bg-[#fff]" : "bg-[#7b797972]"
-                      }  h-[7px] cursor-pointer hover:scale-[1.09] rounded-full`}
+                      className={`w-[7px] ${active ? "bg-[#fff]" : "bg-[#7b797972]"
+                        }  h-[7px] cursor-pointer hover:scale-[1.09] rounded-full`}
                     ></span>
                   );
                 })}
@@ -189,14 +198,14 @@ const RoomCard = ({ type, apartment, inView, index }) => {
           {/* <img src= alt="" /> */}
         </div>
 
-        <div className="w-full flex flex-col bg-white gap-2">
-          <h4
+        <div className="w-full pt-2 flex flex-col bg-white gap-2">
+          {/* <h4
             style={{ letterSpacing: "3px" }}
             con
             className="text-[10px] text-grey uppercase font-booking_font_bold font-bold"
           >
             for settling in castle
-          </h4>
+          </h4> */}
           <h3 className="text-3xl font-booking_font4 font-normal text-text_dark_1 ">
             {apartment?.title}
           </h3>
@@ -311,9 +320,8 @@ const RoomCard = ({ type, apartment, inView, index }) => {
                   return (
                     <span
                       key={index}
-                      className={`w-[7px] ${
-                        active ? "bg-[#fff]" : "bg-[#7b797972]"
-                      }  h-[7px] cursor-pointer hover:scale-[1.09] rounded-full`}
+                      className={`w-[7px] ${active ? "bg-[#fff]" : "bg-[#7b797972]"
+                        }  h-[7px] cursor-pointer hover:scale-[1.09] rounded-full`}
                     ></span>
                   );
                 })}

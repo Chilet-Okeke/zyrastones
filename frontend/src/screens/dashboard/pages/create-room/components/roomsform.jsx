@@ -99,6 +99,7 @@ const RoomForms = ({
           </div>
         </div>
       </div>
+      <ImageUpload images={images} setImages={setImages} />
       {/* price */}
       <div className="w-full bg-[#fff] border p-6 px-2 rounded-[10px]">
         <div className="w-[95%] md:w-[90%] mx-auto flex flex-col gap-8">
@@ -220,7 +221,7 @@ const RoomForms = ({
       </div>
 
       {/* images */}
-      <ImageUpload images={images} setImages={setImages} />
+   
 
       {/* Room Attributes and Features */}
       <Roomfeatures

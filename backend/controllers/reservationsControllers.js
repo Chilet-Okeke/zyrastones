@@ -9,6 +9,7 @@ const GetUserReservation = asyncHandler(async (req, res) => {
     include: {
       user: true,
       rooms: true,
+      payment: true
     },
     orderBy: {
       createdAt: "desc",

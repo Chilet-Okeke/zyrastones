@@ -5,6 +5,7 @@ import { apartmentDataList } from "../../../data/apartmentData";
 import RoomCard from "../../common/RoomCard";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import Skeleton from "react-loading-skeleton";
 const MainContent = () => {
   return (
     <div className="w-full relative min-h-[100vh] flex flex-col">
@@ -82,7 +83,7 @@ const Hero = () => {
 };
 
 const RoomLists = () => {
-  const { reservations } = useSelector((store) => store.reservation);
+  const { reservations, getsingleReservationisLoading } = useSelector((store) => store.reservation);
   return (
     <div
       className="w-full relative py-24 flex items-center justify-center
@@ -92,28 +93,52 @@ const RoomLists = () => {
         className="w-[90%] relative mx-auto max-w-custom_1 z-40 grid md:grid-cols-1 items-start justify-center flex-col
        gap-12"
       >
-        <div className="w-full">
-          {reservations?.length === 0 ? (
-            <h1 className="text-dark text-start leading-[1.3] text-4xl font-booking_font4">
-              You have an empty Trips
-              <Link
-                to={"/search"}
-                style={{ letterSpacing: "4px" }}
-                className="text-[9px] md:text-xs font-normal pb-1 pt-3 w-[300px] border-b border-[rgba(0,0,0,.5)] uppercase flex items-center gap-4 font-booking_font"
-              >
-                Visit our rooms collections
-              </Link>
-            </h1>
-          ) : (
-            <div className=" gap-8 w-full grid md:grid-cols-2 lg:grid-cols-3">
-              {reservations?.map((apartment, index) => {
-                return (
-                  <RoomCard type={"trips"} key={index} apartment={apartment} />
-                );
-              })}
+        {
+          getsingleReservationisLoading ?
+            <div className="w-full grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+              {
+                Array(8).fill("").map((x, index) => {
+                  return <div className="w-full flex flex-col gap-3">
+                    <Skeleton width={"100%"} height={240} />
+                    <div className="flex w-full gap-[2px] flex-col">
+                      <Skeleton width={"80%"} height={20} />
+                     <div className="flex w-full flex-col">
+                     <Skeleton width={"60%"} height={6} />
+                     <Skeleton width={"30%"} height={6} />
+                     </div>
+                      {/* <div className="flex w-full items-center justify-between">
+                        <Skeleton width={"60%"} height={10} />
+                        <Skeleton width={"30%"} height={10} />
+                      </div> */}
+
+                    </div>
+                  </div>
+                })
+              }
+            </div> : <div className="w-full">
+              {reservations?.length === 0 ? (
+                <h1 className="text-dark text-start leading-[1.3] text-4xl font-booking_font4">
+                  You have an empty Trips
+                  <Link
+                    to={"/search"}
+                    style={{ letterSpacing: "4px" }}
+                    className="text-[9px] md:text-xs font-normal pb-1 pt-3 w-[300px] border-b border-[rgba(0,0,0,.5)] uppercase flex items-center gap-4 font-booking_font"
+                  >
+                    Visit our rooms collections
+                  </Link>
+                </h1>
+              ) : (
+                <div className=" gap-8 w-full grid md:grid-cols-2 lg:grid-cols-3">
+                  {reservations?.map((apartment, index) => {
+                    return (
+                      <RoomCard type={"trips"} key={index} apartment={apartment} />
+                    );
+                  })}
+                </div>
+              )}
             </div>
-          )}
-        </div>
+        }
+
       </div>
     </div>
   );

@@ -17,7 +17,7 @@ import AnimateText from "@/animations/AnimateText";
 import { Link } from "react-router-dom";
 const MainContent = () => {
   return (
-    <div className="w-full overflow-hidden flex flex-col gap-2">
+    <div data-scroll-section className="w-full overflow-hidden flex flex-col gap-2">
       <Hero />
       <RoomFlex />
       {/* <About /> */}

@@ -34,7 +34,7 @@ export default function BookingReservationModal({ setModal, room }) {
     setStatus(stat);
     setStatusTab(tab);
   };
-  const handleDeleteRoom = useCallback(() => {}, []);
+  const handleDeleteRoom = useCallback(() => { }, []);
   useEffect(() => {
     // dispatch(handleClearRoomAl());
     setStatus(room?.status);
@@ -76,8 +76,8 @@ export default function BookingReservationModal({ setModal, room }) {
         <div className="cross" onClick={handleClearAlert}>
           <RxCross2 />
         </div>
-        <div className="deleteCardTop w-full sticky top-0 left-0 border-b p-8 pb-0 px-4 flex flex-col gap-4">
-          <h3 className="text-2xl md:text-3xl font-booking_font4">
+        <div className="deleteCardTop w-full sticky top-0 left-0 border-b p-4 pb-0 px-4 flex flex-col gap-1">
+          <h3 className="text-2xl md:text-2xl font-booking_font_bold">
             {room?.title}
             <span className="block font-booking_font font-normal text-base">
               %#{room?.id}
@@ -88,7 +88,8 @@ export default function BookingReservationModal({ setModal, room }) {
               <span className="p-2 px-4 font-booking_font_bold rounded-[4px] text-center bg-[#f5f5f5] text-xs font-bold">
                 {room?.title}
               </span>
-              <span className="p-2 px-4 capitalize font-booking_font_bold rounded-[4px] text-center bg-[#B7FF0A] text-[#000] text-xs font-bold">
+              <span className={`p-2 px-4 capitalize font-booking_font_bold rounded-[4px] 
+              text-center ${room?.status === "PENDING" ? "bg-[#f9d955] text-[#000]" : "bg-[#0e7b10] text-[#fff]"}   text-xs font-bold`}>
                 {room?.status === "PENDING" ? "Pending" : "Paid"}
               </span>
             </div>
@@ -104,7 +105,7 @@ export default function BookingReservationModal({ setModal, room }) {
                 )
               }
               className="btn px-4 text-white py-2 rounded-[10px] family1 font-booking_font font-bold flex items-center justify-center text-sm"
-              // onClick={() => dispatch(AdminDeleteUserProfile({ Detailsdata: id }))}
+            // onClick={() => dispatch(AdminDeleteUserProfile({ Detailsdata: id }))}
             >
               {updateReservationisLoading ? (
                 <span className="flex items-center justify-center gap-2">
@@ -116,16 +117,16 @@ export default function BookingReservationModal({ setModal, room }) {
               )}
             </button>
           </div>
-          <div className="grid w-full gap-4 md:grid-cols-4">
-            <div className="w-full border-b-2 border-[#B7FF0A] text-[#000] pb-3 text-lg font-booking_font_bold font-bold">
+          <div className="grid pt-4 w-full gap-4 md:grid-cols-4">
+            <div className="w-full border-b-2 border-[#0e7b10] text-[#000] pb-3 text-base font-booking_font_bold font-bold">
               Booking Details
             </div>
           </div>
         </div>
 
-        <div className="p-4 h-[300px] md:h-[300px] overflow-auto  px-4 md:px-8 grid w-full gap-8 md:grid-cols-2">
+        <div className="p-4 h-[400px] md:h-[400px] overflow-auto  px-4 md:px-8 grid w-full gap-8 md:grid-cols-2">
           <div className="w-full flex flex-col gap-4">
-            <h3 className="text-base w-full pb-2 border-b font-booking_font4 family1">
+            <h3 className="text-base w-full pb-2 border-b font-booking_font_bold family1">
               Room Terms
             </h3>
             <div className="w-full flex flex-col gap-4">
@@ -188,42 +189,52 @@ export default function BookingReservationModal({ setModal, room }) {
               </div>
 
               <div className="w-full flex flex-col gap-4 pt-2">
-                <h3 className="text-base w-full pb-2 border-b font-booking_font4 family1">
+                <h3 className="text-base w-full pb-2 border-b font-booking_font_bold family1">
                   Booking Status
                 </h3>
                 <div className="w-full grid grid-cols-1">
                   <div
                     onClick={() => HandleStatus({ stat: "CONFIRMED", tab: 0 })}
-                    className={`text-sm py-2 px-4 ${
-                      status === "CONFIRMED" ? "bg-[#f5f5f5]" : ""
-                    } flex items-center gap-4 font-booking_font`}
+                    className={`text-sm py-2 px-4 ${status === "CONFIRMED" ? "bg-[#f5f5f5]" : ""
+                      } flex items-center gap-4 font-booking_font`}
                   >
-                    <div className="w-8 h-8 flex items-center justify-center rounded-full text-dark bg-[#B7FF0A] text-[#000] text-end text-sm font-booking_font">
+                    <div className="w-8 h-8 flex items-center justify-center rounded-full text-dark bg-[#0e7b10] text-[#000] text-end text-sm font-booking_font">
                       {status === "CONFIRMED" && <BiCheck />}
                     </div>
                     Fully Paid
                   </div>
                   <div
                     onClick={() => HandleStatus({ stat: "PENDING", tab: 1 })}
-                    className={`text-sm py-2 px-4 ${
-                      status === "PENDING" ? "bg-[#f5f5f5]" : ""
-                    } flex items-center gap-4 font-booking_font`}
+                    className={`text-sm py-2 px-4 ${status === "PENDING" ? "bg-[#f5f5f5]" : ""
+                      } flex items-center gap-4 font-booking_font`}
                   >
-                    <div className="w-8 h-8 flex items-center justify-center rounded-full text-dark bg-[#e4c590] text-[#000] text-end text-sm font-booking_font">
+                    <div className="w-8 h-8 flex items-center justify-center rounded-full text-dark bg-[#f9d955] text-[#000] text-end text-sm font-booking_font">
                       {status === "PENDING" && <BiCheck />}
                     </div>
-                    Lack of Payment
+                    Pending Payment
                   </div>
+
                   <div
-                    onClick={() => HandleStatus({ stat: "CANCELLED", tab: 2 })}
+                    onClick={() => HandleStatus({ stat: "UNAVAILABLE", tab: 1 })}
+                    className={`text-sm py-2 px-4 ${status === "UNAVAILABLE" ? "bg-[#f5f5f5]" : ""
+                      } flex items-center gap-4 font-booking_font`}
+                  >
+                    <div className="w-8 h-8 flex items-center justify-center rounded-full text-dark bg-[#CECECE] text-[#000] text-end text-sm font-booking_font">
+                      {status === "UNAVAILABLE" && <BiCheck />}
+                    </div>
+                    Unavailable
+                  </div>
+                  {/* #B691C1 */}
+                  <div
+                    onClick={() => HandleStatus({ stat: "PARTPAYMENT", tab: 2 })}
                     className={`text-sm py-2 px-4 ${
-                      status === "CANCELLED" ? "bg-[#f5f5f5]" : ""
+                      status === "PARTPAYMENT" ? "bg-[#f5f5f5]" : ""
                     } flex items-center gap-4 font-booking_font`}
                   >
-                    <div className="w-8 h-8 flex items-center justify-center rounded-full text-dark bg-[#f9d955] text-[#000] text-end text-base font-booking_font">
-                      {status === "CANCELLED" && <BiCheck />}
+                    <div className="w-8 h-8 flex items-center justify-center rounded-full text-dark bg-[#B691C1] text-[#000] text-end text-base font-booking_font">
+                      {status === "PARTPAYMENT" && <BiCheck />}
                     </div>
-                    Payment Cancelled
+                   Part Payment
                   </div>
                 </div>
               </div>
@@ -232,7 +243,7 @@ export default function BookingReservationModal({ setModal, room }) {
           {/* room price */}
           <div className="w-full flex flex-col gap-4">
             <div className="w-full flex flex-col gap-4">
-              <h3 className="text-base w-full pb-2 border-b font-booking_font4 family1">
+              <h3 className="text-base w-full pb-2 border-b font-booking_font_bold family1">
                 Room Price
               </h3>
               <div className="w-full flex flex-col gap-4">
@@ -256,13 +267,13 @@ export default function BookingReservationModal({ setModal, room }) {
               </div>
             </div>
             <div className="w-full flex flex-col gap-2 pt-2">
-              <h3 className="text-base w-full pb-2 border-b font-booking_font4 family1">
+              <h3 className="text-base w-full pb-2 border-b font-booking_font_bold family1">
                 Number of Guests
               </h3>
               <span className="block font-bold text-base">5 Guests</span>
             </div>
             <div className="w-full flex flex-col gap-4 pt-3">
-              <h3 className="text-base font-booking_font4 w-full pb-4 border-b family1">
+              <h3 className="text-base font-booking_font_bold w-full pb-4 border-b family1">
                 Client profile
               </h3>
               <div className="w-full pt-2 flex flex-col gap-3">
@@ -303,7 +314,7 @@ export default function BookingReservationModal({ setModal, room }) {
             disabled={deleteReservationisLoading}
             onClick={() => dispatch(DeleteReservation(room?.id))}
             className="deleteBtn family1 font-booking_font font-bold flex items-center justify-center text-sm"
-            // onClick={() => dispatch(AdminDeleteUserProfile({ Detailsdata: id }))}
+          // onClick={() => dispatch(AdminDeleteUserProfile({ Detailsdata: id }))}
           >
             {deleteReservationisLoading ? (
               <span className="flex items-center justify-center gap-2">
@@ -333,8 +344,8 @@ const ReservationModalStyles = styled(motion.div)`
   background: rgba(0, 0, 0, 0.4);
   padding: 2rem 0;
   .deleteCard {
-    max-width: 950px;
-    min-width: 850px;
+    max-width: 1250px;
+    min-width: 1250px;
     display: flex;
     align-items: center;
     justify-content: center;

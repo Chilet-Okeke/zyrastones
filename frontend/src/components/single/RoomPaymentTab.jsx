@@ -232,7 +232,7 @@ export default function RoomPaymentTab({
                 Caution Fees
               </span>
               <span>
-                <span className="text-lg">₦</span>  {Number(room?.cautionfee).toLocaleString()}
+                <span className="text-lg">₦</span>  {room?.cautionfee}
               </span>
             </div>
             {/* total */}
