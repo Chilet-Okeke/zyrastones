@@ -178,8 +178,8 @@ input {
 input::placeholder {
   font-size: inherit;
   font-weight: normal;
-  color: #000;
-  font-family: "Booking_Normal_Bold";
+  color: inherit;
+  font-family: inherit;
 }
 
 .input {

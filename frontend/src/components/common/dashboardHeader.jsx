@@ -87,8 +87,8 @@ const DashboardHeader = () => {
             </div>
             <input
               type="text"
-              placeholder="Search"
-              className="bg-transparent font-booking_font4 border-none outline-none text-base text-dark flex-1"
+              placeholder="Search dashboard"
+              className="bg-transparent font-booking_font_bold border-none outline-none text-base text-grey flex-1"
             />
           </label>
         </div>

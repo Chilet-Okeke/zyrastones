@@ -16,7 +16,7 @@ const AdminSidebarData = [
     tab: {
       title: "Dashboard",
       path: "",
-      icon: <TiHome fontSize={"18px"} />,
+      icon: <TiHome fontSize={"20px"} />,
     },
     list: [],
   },
@@ -62,7 +62,7 @@ const DashboardSidebar = () => {
   const { currentUser } = useSelector((store) => store.auth);
   const pathname = true;
   return (
-    <HeaderStyles className={`w-full hidden lg:flex column gap-2`}>
+    <HeaderStyles className={`w-[80px] overflow-hidden group hover:w-[300px] group-hover:px-0 px-2 hidden lg:flex  column gap-2`}>
       <div className="w-full h-full py-4 justify-between flex items-center flex-col gap-4">
         <div className="w-full h-[90%] flex flex-col gap-8">
           <div className="flex flex-col w-full items-start justify-between py-1">
@@ -70,19 +70,19 @@ const DashboardSidebar = () => {
             <div className=" w-[90%] mx-auto relative flex gap-4 items-center flex-col justify-between">
               <Link
                 to={"/"}
-                className="w-full flex items-center gap-1 justify-start"
+                className="w-full flex items-center gap-1 justify-center group-hover:justify-start"
               >
                 <img
                   loading="lazy"
                   src="https://www.hopper.com/assets/treasure-D-5S8iOp.svg"
                   className="w-14 h-14 rounded-full object-cover"
                 />
-                <h4 className="hidden md:flex flex-col text-sm font-booking_font4 text-[#fff]">
-                 
+                <h4 className="hidden md:hidden group-hover:flex flex-col text-sm font-booking_font4 text-[#fff]">
+
                   Zyra&Stones
                   <span className="block text-grey text-xs font-booking_font">
                     {" "}
-                 Home of Comfort
+                    Home of Comfort
                   </span>
                 </h4>
               </Link>
@@ -103,12 +103,12 @@ const DashboardSidebar = () => {
                       text-base w-[90%] mx-auto text-[#fff]`}
                     to={`/dashboard${x.tab.path}`}
                   >
-                    <div className="flex items-center">
+                    <div className="flex items-center justify-center group-hover:justify-start w-full">
                       <span className="w-12 h-12 text-base rounded-xl flex items-center text-blue justify-center">
                         {" "}
                         {x.tab.icon}
                       </span>
-                      {<span>{x.tab?.title}</span>}
+                      {<span className="group-hover:block hidden">{x.tab?.title}</span>}
                     </div>
                   </NavLink>
                 </div>
@@ -121,14 +121,15 @@ const DashboardSidebar = () => {
             <NavLink
               // activeClassName="active"
               end
-              className={`text-sm tab flex items-center gap-4 p-[12px] px-4 font-booking_font4 text-[#fff] family1`}
+              className={`text-sm tab flex justify-center group-hover:justify-start items-center gap-4 p-[12px] px-4 font-booking_font4 text-[#fff] family1`}
               to={`/dashboard/profile/${currentUser?.id}`}
             >
               <FiSettings fontSize={"24px"} />
-              Settings
+
+              {<span className="group-hover:block hidden">Settings</span>}
             </NavLink>
             <div className=" w-full relative px-2 flex gap-1 items-center justify-between">
-              <div className="flex flex-1 gap-2 items-center">
+              <div className="flex flex-1 gap-2 items-center justify-center group-hover:justify-start">
                 {currentUser?.image ? (
                   <img
                     src={currentUser?.image}
@@ -151,7 +152,7 @@ const DashboardSidebar = () => {
                     className="w-12 lg:w-12 h-12 lg:h-12 rounded-full"
                   />
                 )}
-                <h4 className="text-base text-[#fff] font-booking_font4">
+                <h4 className="text-base group-hover:block hidden text-[#fff] font-booking_font4">
                   {currentUser?.name}
                   <span className="block font-booking_font text-xs font-normal text-grey">
                     {currentUser?.email}
@@ -167,11 +168,15 @@ const DashboardSidebar = () => {
 };
 
 export const HeaderStyles = styled.div`
-  width: 350px;
-  position: sticky;
+  /* width: 100px; */
+  position: fixed;
   top: 0;
+  left: 0;
+  z-index: 3000000;
   height: 100vh;
   background: #151515;
+  transition: width 0.2s ease-in-out 0s;
+  user-select: none;
   /* border-right: 1px solid rgba(0, 0, 0, 0.1); */
 
   .dropdown {
@@ -193,7 +198,7 @@ export const HeaderStyles = styled.div`
     position: relative;
 
     &:hover {
-      background: #3a616a;
+      background: #3a616a5c;
       color: #fff;
       svg {
         color: #fff;

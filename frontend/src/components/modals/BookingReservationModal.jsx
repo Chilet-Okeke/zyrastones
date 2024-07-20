@@ -294,7 +294,7 @@ export default function BookingReservationModal({ setModal, room }) {
                   </span>
                 </div>
                 <div className="w-full flex items-center gap-4">
-                  <span className="text-sm  font-normal">App Id:</span>
+                  <span className="text-sm  font-normal">User Id:</span>
                   <span className="text-sm  font-bold">{room?.user?.id}</span>
                 </div>
               </div>
