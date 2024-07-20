@@ -135,11 +135,11 @@ const LoginModal = () => {
                 </button>
                 <div className="w-full flex items-center justify-start gap-2">
                   <span className="text-sm font-normal text-dark">
-                    Not yet a Member?{" "}
+                    <span className="text-grey">Not yet a Member?</span>{" "}
                     <span
                       onClick={handleLoginModal}
                       style={{ textDecoration: "underline" }}
-                      className="font-booking_font_bold cursor-pointer"
+                      className="font-booking_font_bold font-bold cursor-pointer"
                       // href={"#"}
                     >
                       Sign Up
@@ -148,7 +148,7 @@ const LoginModal = () => {
                 </div>
               </div>
 
-              <div className="option text-dark">Or sign in with Google</div>
+              <div className="option text-dark">Or </div>
 
               <div
                 // onClick={() => signIn("google")}

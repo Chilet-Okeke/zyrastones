@@ -7,7 +7,7 @@ import { motion, useInView, AnimatePresence } from "framer-motion";
 import ReservationRoomsModal from "@/components/modals/ReservationRoomsModal";
 import ReservationCalendar from "./Calendar";
 import Loader from "@/components/home/loader";
-import CreateReservationModal from "@/components/modals/CreateReservationModal";
+import CreateReservationModal from "@/components/modals/reservationmodal/CreateReservationModal";
 const DashboardIndex = () => {
   const [reservationmodal, setReservationModal] = useState(false);
   const [createreservationmodal, setCreateReservationModal] = useState(false);

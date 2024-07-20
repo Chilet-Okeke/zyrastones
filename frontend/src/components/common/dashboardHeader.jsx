@@ -63,7 +63,7 @@ const DashboardHeader = () => {
     window.location.reload();
   };
   return (
-    <HeaderStyles className="w-full z-[3000] bg-[#151515] border-b flex relative items-center justify-center">
+    <HeaderStyles className="w-full z-[10] bg-[#151515] border-b flex relative items-center justify-center">
       <div className="Header_wrapper w-[95%] mx-auto flex items-center justify-between">
         <div className="flex w-full items-center gap-3">
           <div

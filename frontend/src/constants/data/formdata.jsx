@@ -119,3 +119,68 @@ export const DashboardProfileInputData = [
   //   required: false,
   // },
 ];
+
+
+export const DashboardGuestsInputData = [
+  {
+    id: 1,
+    name: "newguestname",
+    type: "name",
+    text: " Name *",
+    label: " Surname first",
+    required:true
+  },
+  {
+    id: 2,
+    name: "newgueststreet",
+    type: "name",
+    text: " Address *",
+    label: " Address",
+    required:true
+  },
+  {
+    id: 3,
+    name: "newguesthousenumber",
+    type: "name",
+    text: " House Number",
+    label: " House Number",
+  },
+  {
+    id: 45,
+    name: "newguestapartmentnumber",
+    type: "name",
+    text: " Apartment Number",
+    label: " Apartment Number",
+  },
+  {
+    id: 13,
+    name: "newguestcity",
+    type: "name",
+    text: " City *",
+    label: " City",
+    required:true
+  },
+  {
+    id: 134,
+    name: "newguestpostcode",
+    type: "name",
+    text: " Postal Code",
+    label: " Postal Code",
+  },
+  {
+    id: 31,
+    name: "newguestphone",
+    type: "name",
+    text: " Phone *",
+    label: " Phone",
+    required:true
+  },
+  {
+    id: 31,
+    name: "newguestemail",
+    type: "email",
+    text: " Email *",
+    label: " Email",
+    required:true
+  },
+];

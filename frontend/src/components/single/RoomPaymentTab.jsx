@@ -17,12 +17,6 @@ import Loader from "../home/loader";
 import { onLoginModal } from "@/features/modals/modalSlice";
 import AnimateText from "@/animations/AnimateText";
 export default function RoomPaymentTab({
-  setDateModal,
-  dateRange,
-  adults,
-  childrens,
-  setGuestsModal,
-  setLoginModal,
   room,
 }) {
   // states of the reservation booking either loading or

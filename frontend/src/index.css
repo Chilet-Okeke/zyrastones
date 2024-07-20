@@ -157,13 +157,13 @@ input {
 input::placeholder {
   font-size: inherit;
   font-weight: normal;
-  color: inherit;
+  color: #777;
   font-family: inherit;
 }
 
 .input {
   border: 1px solid rgba(0, 0, 0, 0.2) !important;
-  height: 55px;
+  height: 45px;
   padding: 0 1rem;
   border-radius: 10px;
   font-family: "Work Sans";

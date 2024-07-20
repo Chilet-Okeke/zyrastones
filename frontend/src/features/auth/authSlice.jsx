@@ -72,7 +72,7 @@ export const authSlice = createSlice({
       state.loginisSuccess = true;
       state.currentUser = action.payload.user;
       state.token = action.payload.token;
-      toast.success("Login process sucessfully!!!!");
+      toast.success("Login sucessful!");
     });
     builder.addCase(LoginUser.rejected, (state, action) => {
       state.loginisSuccess = false;
@@ -86,7 +86,7 @@ export const authSlice = createSlice({
     builder.addCase(RegisterUser.fulfilled, (state, action) => {
       state.registerisLoading = false;
       state.registerisSuccess = true;
-      toast.success("registration process sucessfully!!!!");
+      toast.success("registration sucessful");
     });
     builder.addCase(RegisterUser.rejected, (state, action) => {
       state.registerisSuccess = false;
