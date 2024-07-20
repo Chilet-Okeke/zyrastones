@@ -81,31 +81,9 @@
   src: url("./assets/fonts/Bold.otf") format("truetype");
 }
 
-@font-face {
-  font-family: "Booking_Normal_Medium";
-  src: url("./assets/fonts/bookinf_font_medium.ttf") format("truetype");
-}
-
-@font-face {
-  font-family: "Booking_Normal_Bold";
-  src: url("./assets/fonts/booking_font_bold.ttf") format("truetype");
-}
-
-@font-face {
-  font-family: "Booking_Normal_Font";
-  src: url("./assets/fonts/booking_font_regular.ttf") format("truetype");
-}
 
 .ql-container {
-  font-family: "Booking_Normal_Medium", sans-serif !important;
-}
-
-@font-face {
-  font-display: swap;
-  font-family: "Montreal";
-  font-style: normal;
-  font-weight: 400 600 700;
-  src: url("./assets/fonts/booking_font_regular.ttf") format("truetype");
+  font-family: "Work Sans", sans-serif !important;
 }
 
 * {
@@ -156,6 +134,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
   background-color: #fff;
   line-height: 1;
+  font-family: "Work Sans";
 }
 
 .hide {
@@ -165,14 +144,14 @@ body {
 textarea {
   border: 1px solid rgba(0, 0, 0, 0.2) !important;
   padding: 0.6rem;
-  font-family: "Booking_Normal_Bold";
+  font-family: "Work Sans";
   border-radius: 10px;
 }
 
 input {
   border: none;
   outline: none;
-  font-family: "Booking_Normal_Bold";
+  font-family: "Work Sans";
 }
 
 input::placeholder {
@@ -187,7 +166,7 @@ input::placeholder {
   height: 55px;
   padding: 0 1rem;
   border-radius: 10px;
-  font-family: "Booking_Normal_Bold";
+  font-family: "Work Sans";
 }
 
 .btn {
@@ -247,12 +226,12 @@ html.lenis body {
 }
 
 .sc-gjLKRp.gqsWwT {
-  font-family: "Booking_Normal_Medium" !important;
+  font-family: "Work Sans" !important;
   font-size: 15px !important;
 }
 
 .sc-cCzKKE.bwVOYM {
-  font-family: "Booking_Normal_Medium" !important;
+  font-family: "Work Sans" !important;
   /* font-weight: normal !important; */
   font-size: 12px !important;
 }
@@ -269,7 +248,7 @@ html.lenis body {
 }
 
 .sc-gjLKRp.eAzhgx {
-  font-family: "Booking_Normal_Medium" !important;
+  font-family: "Work Sans" !important;
   font-size: 12px !important;
 }
 
@@ -317,7 +296,7 @@ html.lenis body {
 
 .sc-cCzKKE.bwVOYM {
   display: block !important;
-  font-family: "Booking_Normal_Medium" !important;
+  font-family: "Work Sans" !important;
 }
 
 .sc-cCzKKE.fOgBaC::after {
@@ -331,7 +310,7 @@ html.lenis body {
 
 .sc-cCzKKE.dxSqfu {
   display: block !important;
-  font-family: "Booking_Normal_Medium" !important;
+  font-family: "Work Sans" !important;
 }
 
 .sc-cCzKKE.dxSqfw::after {
