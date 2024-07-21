@@ -58,6 +58,7 @@ export default function RoomPaymentTab({
     startDate: moment(startdate).format("MMMM Do YYYY"),
     endDate: moment(enddate).format("MMMM Do YYYY"),
     guests: guests,
+    status: 'PENDING'
   };
 
   // console.log(reservationData);

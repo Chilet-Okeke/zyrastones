@@ -35,6 +35,7 @@ export default function CreateReservationModal({ setModal }) {
   // new guests data form
   const [newguest, setNewGuests] = useState({
     newguestname: "",
+    newguestusername: "",
     newgueststreet: "",
     newguesthousenumber: "",
     newguestapartmentnumber: "",
@@ -90,6 +91,22 @@ export default function CreateReservationModal({ setModal }) {
   const totalPrice = (room?.price - discountprice) < 0 ? 0 : room?.price - discountprice
   const totalBookingPrice = totalPrice * differenceInDays
 
+
+
+  const reservationData = {
+    patchguests: {
+      ...newguest
+    },
+    startDate: moment(startdate).format("MMMM Do YYYY"),
+    endDate: moment(enddate).format("MMMM Do YYYY"),
+    guests: guests,
+    totalPrice: totalBookingPrice,
+    status: status
+  }
+
+  console.log(reservationData)
+
+
   return (
     <ReservationModalStyles
       as={motion.div}
@@ -127,37 +144,18 @@ export default function CreateReservationModal({ setModal }) {
           <div className="flex items-center justify-between gap-2">
             <div className="flex items-center gap-2">
               <span className={`p-2 px-4 capitalize font-booking_font_bold rounded-[4px] 
-              text-center ${room?.status !== "PENDING" ? "bg-[#f9d955] text-[#000]" : "bg-[#0e7b10] text-[#fff]"}  
+              text-center ${status === "PENDING" ? "bg-[#f9d955] text-[#000]" :
+                  status === 'UNAVAILABLE' ? "bg-[#CECECE]" :
+                    status === 'PARTPAYMENT' ? "bg-[#B691C1]" : "bg-[#0e7b10] text-[#fff]"}  
                text-xs font-bold`}>
                 {/* {room?.status === "PENDING" ? "Pending Payment" : "Paid Payment"} */}
                 Pending Payment
               </span>
             </div>
 
-            <button
-              disabled={updateReservationisLoading}
-              onClick={() =>
-                dispatch(
-                  UpdateReservation({
-                    reservationId: room?.id,
-                    reservation: { status: status },
-                  })
-                )
-              }
-              className="btn px-4 text-white py-2 rounded-[10px] family1 font-booking_font font-bold flex items-center justify-center text-sm"
-            // onClick={() => dispatch(AdminDeleteUserProfile({ Detailsdata: id }))}
-            >
-              {updateReservationisLoading ? (
-                <span className="flex items-center justify-center gap-2">
-                  <Loader type="dots" />
-                  Update in progress
-                </span>
-              ) : (
-                <AnimateText children={`Save `} />
-              )}
-            </button>
+
           </div>
-          <div className="grid pt-4 w-full gap-4 md:grid-cols-4">
+          <div className="grid pt-4 w-full gap-4 grid-cols-2 z-[200000000] bg-[#fff] lg:grid-cols-4">
             <div onClick={() => setReservationTab(1)} className={`w-full cursor-pointer ${reservationtab === 1 ? "border-b-4 border-[#0e7b10]" : ""} text-[#000]
              pb-3 text-base font-booking_font_bold font-bold`}>
               Booking Details
@@ -181,6 +179,8 @@ export default function CreateReservationModal({ setModal }) {
             date={date}
             setDate={setDate}
             differenceInDays={differenceInDays}
+            status={status}
+            HandleStatus={HandleStatus}
           />
             : <CreateGuestTab
               handleUserSelection={handleUserSelection}
@@ -197,6 +197,31 @@ export default function CreateReservationModal({ setModal }) {
             onClick={handleClearAlert}
           >
             Cancel
+          </button>
+
+          <button
+            disabled={updateReservationisLoading}
+            onClick={() =>
+              dispatch(
+                UpdateReservation({
+                  reservationId: room?.id,
+                  reservation: { status: status },
+                })
+              )
+            }
+            className="btn px-4 text-[#fff] py-2 rounded-[10px] family1 font-booking_font font-bold flex items-center justify-center text-sm"
+          // onClick={() => dispatch(AdminDeleteUserProfile({ Detailsdata: id }))}
+          >
+            {updateReservationisLoading ? (
+              <span className="flex text-[#Fff] items-center justify-center gap-2">
+                <Loader type="dots" />
+                Update in progress
+              </span>
+            ) : (
+              <span className="text-white">
+                <AnimateText children={`Save `} />
+              </span>
+            )}
           </button>
         </div>
       </motion.div>

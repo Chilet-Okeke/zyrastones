@@ -123,13 +123,23 @@ export const DashboardProfileInputData = [
 
 export const DashboardGuestsInputData = [
   {
+    id: 124345,
+    name: "newguestusername",
+    type: "name",
+    text: " Username *",
+    label: "Username",
+    required:true
+  },
+  {
     id: 1,
     name: "newguestname",
     type: "name",
-    text: " Name *",
+    text: " Full Name *",
     label: " Surname first",
     required:true
   },
+ 
+  
   {
     id: 2,
     name: "newgueststreet",

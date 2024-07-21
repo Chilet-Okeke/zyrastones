@@ -18,11 +18,13 @@ export default function CreateRoomTab({
   setGuests,
   guests,
   date,
+  status,
   setDate,
-  differenceInDays
+  differenceInDays,
+  HandleStatus
 }) {
   return (
-    <div className="p-4 h-[450px] md:h-[450px] overflow-auto  px-4 md:px-8 grid w-full gap-8 md:grid-cols-2">
+    <div className="p-4 h-[300px] md:h-[450px] overflow-auto  px-4 md:px-8 grid w-full gap-8 lg:grid-cols-2">
       <div className="w-full flex flex-col gap-4">
         <h3 className="text-base w-full pb-2 border-b font-booking_font_bold font-bold family1">
           Room Terms
@@ -79,7 +81,7 @@ export default function CreateRoomTab({
             <div className="w-full grid grid-cols-1">
               <div
                 onClick={() => HandleStatus({ stat: "CONFIRMED", tab: 0 })}
-                className={`text-sm py-2 px-4 ${status === "CONFIRMED" ? "bg-[#f5f5f5]" : ""
+                className={`text-sm py-2 cursor-pointer px-4 ${status === "CONFIRMED" ? "bg-[#f5f5f5]" : ""
                   } flex items-center gap-4 font-booking_font`}
               >
                 <div className="w-8 h-8 flex items-center justify-center rounded-full text-dark bg-[#0e7b10] text-[#000] text-end text-sm font-booking_font">
@@ -89,7 +91,7 @@ export default function CreateRoomTab({
               </div>
               <div
                 onClick={() => HandleStatus({ stat: "PENDING", tab: 1 })}
-                className={`text-sm py-2 px-4 ${status === "PENDING" ? "bg-[#f5f5f5]" : ""
+                className={`text-sm py-2 cursor-pointer px-4 ${status === "PENDING" ? "bg-[#f5f5f5]" : ""
                   } flex items-center gap-4 font-booking_font`}
               >
                 <div className="w-8 h-8 flex items-center justify-center rounded-full text-dark bg-[#f9d955] text-[#000] text-end text-sm font-booking_font">
@@ -100,7 +102,7 @@ export default function CreateRoomTab({
 
               <div
                 onClick={() => HandleStatus({ stat: "UNAVAILABLE", tab: 1 })}
-                className={`text-sm py-2 px-4 ${status === "UNAVAILABLE" ? "bg-[#f5f5f5]" : ""
+                className={`text-sm py-2 cursor-pointer px-4 ${status === "UNAVAILABLE" ? "bg-[#f5f5f5]" : ""
                   } flex items-center gap-4 font-booking_font`}
               >
                 <div className="w-8 h-8 flex items-center justify-center rounded-full text-dark bg-[#CECECE] text-[#000] text-end text-sm font-booking_font">
@@ -111,7 +113,7 @@ export default function CreateRoomTab({
               {/* #B691C1 */}
               <div
                 onClick={() => HandleStatus({ stat: "PARTPAYMENT", tab: 2 })}
-                className={`text-sm py-2 px-4 ${status === "PARTPAYMENT" ? "bg-[#f5f5f5]" : ""
+                className={`text-sm py-2 cursor-pointer px-4 ${status === "PARTPAYMENT" ? "bg-[#f5f5f5]" : ""
                   } flex items-center gap-4 font-booking_font`}
               >
                 <div className="w-8 h-8 flex items-center justify-center rounded-full text-dark bg-[#B691C1] text-[#000] text-end text-base font-booking_font">
@@ -170,7 +172,9 @@ export default function CreateRoomTab({
             >
               <span className="font-semibold">Final Room Price:</span>
               <div className="p- text-lg flex items-center">
-                ₦{totalPrice}
+                {totalPrice ? <>
+                  ₦{totalPrice}
+                </> : <span className="text-sm">Room price has not been selected</span>}
               </div>
             </label>
 
