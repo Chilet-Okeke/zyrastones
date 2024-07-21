@@ -144,10 +144,10 @@ export default function CreateRoomTab({
             Room Pricing
           </h3>
           <div className="w-full flex flex-col gap-4">
-            <div className="w-full grid md:grid-cols-custom_4 gap-4">
+            <div className="w-full grid md:grid-cols-2 gap-4">
               <label
                 htmlFor="titleprice"
-                className="text-sm flex flex-col w-[160px] gap-4 font-booking_font"
+                className="text-sm flex flex-col gap-4 font-booking_font"
               >
                 <span className="font-semibold"> Room Price:</span>
                 <span className="block text-lg font-booking_font_bold">
@@ -159,13 +159,25 @@ export default function CreateRoomTab({
               </label>
               <label
                 htmlFor="titleprice"
-                className="text-sm flex flex-col gap-2 font-booking_font"
+                className="text-sm flex flex-col gap-4 font-booking_font"
               >
-                <span className="font-semibold">Discount Amount:</span>
-                <input type="number" onChange={(e) => setDiscountPrice(e.target.value)} className="input" placeholder="Input amount" />
+                <span className="font-semibold"> Room Caution Price:</span>
+                <span className="block text-lg font-booking_font_bold">
+                  {" "}
+                  {room?.cautionfee ? <>
+                    ₦{Number(room?.cautionfee).toLocaleString()}
+                  </> : <h5 className="text-sm">No Room cautionfee selected</h5>}
+                </span>
               </label>
-            </div>
 
+            </div>
+            <label
+              htmlFor="titleprice"
+              className="text-sm flex flex-col gap-2 font-booking_font"
+            >
+              <span className="font-semibold">Discount Amount:</span>
+              <input type="number" onChange={(e) => setDiscountPrice(e.target.value)} className="input" placeholder="Input amount" />
+            </label>
             <label
               htmlFor="titleprice"
               className="text-sm flex flex-col gap-2 font-booking_font"

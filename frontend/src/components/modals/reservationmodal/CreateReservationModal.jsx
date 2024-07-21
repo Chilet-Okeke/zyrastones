@@ -11,20 +11,21 @@ import { useDispatch, useSelector } from "react-redux";
 import AnimateText from "@/animations/AnimateText";
 import {
   DeleteReservation,
-  UpdateReservation,
+  CreateReservation,
 } from "@/features/reservation/reservationReducer";
 
 import RoomModalSelection from "./RoomModalSelection";
 import UserListSelection from "./UserListSelection";
 import CreateRoomTab from "./CreateRoomTab";
 import CreateGuestTab from "./CreateGuestTab";
+import toast from "react-hot-toast";
 export default function CreateReservationModal({ setModal }) {
   // const { deleteRoomisLoading, deleteRoomisSuccess } = useSelector(
   //   (store) => store.room
   // );
-  const { updateReservationisLoading, deleteReservationisLoading } =
+  const { createReservationisLoading, createReservationisSuccess } =
     useSelector((store) => store.reservation);
-  const [status, setStatus] = useState("");
+  const [status, setStatus] = useState("PENDING");
   const [price, setPrice] = useState(0);
   const [discountprice, setDiscountPrice] = useState(0);
   const [room, setRoom] = useState(null);
@@ -52,13 +53,9 @@ export default function CreateReservationModal({ setModal }) {
     to: addDays(today, 3),
   });
   const [statustab, setStatusTab] = useState(null);
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
   const handleClearAlert = () => {
-    // setStatus("");
-    // setStatusTab(null);
-    // setModal({
-    //   modal: false,
-    // });
+    setModal(false)
   };
   // const room = {}
   const HandleStatus = ({ stat, tab }) => {
@@ -88,23 +85,29 @@ export default function CreateReservationModal({ setModal }) {
     setUser(value)
   }
 
-  const totalPrice = (room?.price - discountprice) < 0 ? 0 : room?.price - discountprice
-  const totalBookingPrice = totalPrice * differenceInDays
+  const totalPrice = (room?.price - discountprice) < 0 ? 0 : (Number(room?.price)) - discountprice
+  const totalBookingPrice = Number(totalPrice * differenceInDays) + Number(room?.cautionfee)
 
 
 
   const reservationData = {
-    patchguests: {
-      ...newguest
-    },
+    patchguests: user ? user : newguest,
     startDate: moment(startdate).format("MMMM Do YYYY"),
     endDate: moment(enddate).format("MMMM Do YYYY"),
     guests: guests,
     totalPrice: totalBookingPrice,
-    status: status
+    status: status,
   }
+  const handleCreateReservation = () => {
+    dispatch(
+      CreateReservation({
+        roomid: room?.id,
+        reservation: reservationData,
+      })
+    )
 
-  console.log(reservationData)
+  }
+  // console.log(reservationData)
 
 
   return (
@@ -148,8 +151,8 @@ export default function CreateReservationModal({ setModal }) {
                   status === 'UNAVAILABLE' ? "bg-[#CECECE]" :
                     status === 'PARTPAYMENT' ? "bg-[#B691C1]" : "bg-[#0e7b10] text-[#fff]"}  
                text-xs font-bold`}>
-                {/* {room?.status === "PENDING" ? "Pending Payment" : "Paid Payment"} */}
-                Pending Payment
+                {status === "PENDING" ? "Pending Payment" : status === 'UNAVAILABLE' ? "Unavailable" : status === 'PARTPAYMENT' ? "Part Payment" : "Fully Paid"}
+                {/* Pending Payment */}
               </span>
             </div>
 
@@ -200,19 +203,12 @@ export default function CreateReservationModal({ setModal }) {
           </button>
 
           <button
-            disabled={updateReservationisLoading}
-            onClick={() =>
-              dispatch(
-                UpdateReservation({
-                  reservationId: room?.id,
-                  reservation: { status: status },
-                })
-              )
-            }
+            disabled={room === null || user === null || createReservationisLoading}
+            onClick={handleCreateReservation}
             className="btn px-4 text-[#fff] py-2 rounded-[10px] family1 font-booking_font font-bold flex items-center justify-center text-sm"
           // onClick={() => dispatch(AdminDeleteUserProfile({ Detailsdata: id }))}
           >
-            {updateReservationisLoading ? (
+            {createReservationisLoading ? (
               <span className="flex text-[#Fff] items-center justify-center gap-2">
                 <Loader type="dots" />
                 Update in progress
@@ -288,6 +284,9 @@ const ReservationModalStyles = styled(motion.div)`
         outline: none;
         border-radius: 10px;
         cursor: pointer;
+        &:disabled {
+          cursor: not-allowed;
+        }
         &:hover {
           background: #c4c4c4;
         }

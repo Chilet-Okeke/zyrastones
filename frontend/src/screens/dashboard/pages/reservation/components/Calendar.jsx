@@ -42,7 +42,9 @@ const ReservationCalendar = () => {
             id: data?.id,
             occupancy: `${duration}`,
             roomprice: `${booking?.price}`,
-            bgColor: data.status === 'PENDING' ? "#f9d955" : data?.status === "CONFIRMED" ? "#0e7b10" : "#000",
+            bgColor:`${data?.status === "PENDING" ? "#f9d955":
+              data?.status === 'UNAVAILABLE' ? "#CECECE" :
+                data?.status === 'PARTPAYMENT' ? "#B691C1" : "#0e7b10"}`,
             subtitle: `${data?.user?.name || "Unknown user"} has booked it`,
             title: `${booking?.title}`,
             ...data,

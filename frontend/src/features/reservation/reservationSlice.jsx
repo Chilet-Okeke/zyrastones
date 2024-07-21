@@ -7,6 +7,7 @@ import {
   GetAllRoomAndReservations,
   DeleteReservation,
   UpdateReservation,
+  CreateReservation
 } from "./reservationReducer";
 const initialState = {
   reservation: null,
@@ -29,6 +30,10 @@ const initialState = {
   updateReservationisLoading: false,
   updateReservationisSuccess: false,
   updateReservationisError: false,
+
+  createReservationisLoading: false,
+  createReservationisSuccess: false,
+  createReservationisError: false,
 };
 
 export const reservationSlice = createSlice({
@@ -121,6 +126,21 @@ export const reservationSlice = createSlice({
     builder.addCase(UpdateReservation.rejected, (state, action) => {
       state.updateReservationisSuccess = false;
       state.updateReservationisLoading = false;
+      toast.error(action.payload);
+    });
+
+    builder.addCase(CreateReservation.pending, (state, action) => {
+      state.updateReservationisLoading = true;
+    });
+    builder.addCase(CreateReservation.fulfilled, (state, action) => {
+      state.createReservationisSuccess = true;
+      state.createReservationisLoading = false;
+      state.reservation = action.payload;
+      toast.success("reservations has been created");
+    });
+    builder.addCase(CreateReservation.rejected, (state, action) => {
+      state.createReservationisSuccess = false;
+      state.createReservationisLoading = false;
       toast.error(action.payload);
     });
   },

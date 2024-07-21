@@ -30,6 +30,7 @@ const DashboardIndex = () => {
   const {
     creatingRoomisSuccess,
     room,
+    getsingleRoomisLoading
   } = useSelector((store) => store.room);
   // get the room id
   const { id } = useParams();
@@ -108,7 +109,9 @@ const DashboardIndex = () => {
       return () => clearTimeout(timeout);
     }
   }, [creatingRoomisSuccess, navigate]);
-
+  if (getsingleRoomisLoading) {
+    return <Loader />
+  }
   return (
     <div className="w-full relative">
       <div className="w-full relative pb-20 flex flex-col gap-12">
