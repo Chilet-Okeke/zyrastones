@@ -9,14 +9,24 @@ import { FaRegUser, FaHotel, FaMoneyBill } from "react-icons/fa";
 // import { NavLink } from "react-router-dom";
 import { Link, NavLink } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { BiChart } from "react-icons/bi";
 
 const AdminSidebarData = [
   {
+    id: 6,
+    tab: {
+      icon: <LuBedDouble fontSize={"16px"} />,
+      title: "Reservations",
+      path: "",
+    },
+    list: [],
+  },
+  {
     id: 1,
     tab: {
-      title: "Dashboard",
-      path: "",
-      icon: <TiHome fontSize={"20px"} />,
+      title: "Overview",
+      path: "/stat",
+      icon: <BiChart fontSize={"20px"} />,
     },
     list: [],
   },
@@ -38,15 +48,7 @@ const AdminSidebarData = [
     },
     list: [],
   },
-  {
-    id: 6,
-    tab: {
-      icon: <LuBedDouble fontSize={"16px"} />,
-      title: "Reservation",
-      path: "/reservation",
-    },
-    list: [],
-  },
+ 
   {
     id: 4,
     tab: {

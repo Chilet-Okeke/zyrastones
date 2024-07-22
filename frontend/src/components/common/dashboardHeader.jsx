@@ -2,13 +2,13 @@
 import styled from "styled-components";
 import { RxCross1 } from "react-icons/rx";
 import { HiBars3BottomLeft } from "react-icons/hi2";
-import { FaBars } from "react-icons/fa6";
-import { FaRegUser, FaHotel } from "react-icons/fa";
+import { FaBars, FaMoneyBill1 } from "react-icons/fa6";
+import { FaRegUser, FaHotel, FaMoneyBill } from "react-icons/fa";
 import { TiHome, TiMessage } from "react-icons/ti";
 // import { usePathname } from "next/navigation";
 import { RxTimer } from "react-icons/rx";
 import { LuBedDouble } from "react-icons/lu";
-import { BiSearch } from "react-icons/bi";
+import { BiChart, BiSearch } from "react-icons/bi";
 import { NavLink } from "react-router-dom";
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -17,11 +17,20 @@ import { Bell } from "lucide-react";
 import NotificationSidebar from "./NotificationSidebar";
 const AdminSidebarData = [
   {
+    id: 6,
+    tab: {
+      icon: <LuBedDouble fontSize={"16px"} />,
+      title: "Reservations",
+      path: "",
+    },
+    list: [],
+  },
+  {
     id: 1,
     tab: {
-      title: "Dashboard",
-      path: "",
-      icon: <TiHome fontSize={"18px"} />,
+      title: "Overview",
+      path: "/stat",
+      icon: <BiChart fontSize={"20px"} />,
     },
     list: [],
   },
@@ -37,12 +46,13 @@ const AdminSidebarData = [
   {
     id: 6,
     tab: {
-      icon: <LuBedDouble fontSize={"16px"} />,
-      title: "Reservation",
-      path: "/reservation",
+      icon: <FaMoneyBill1 fontSize={"16px"} />,
+      title: "Transactions",
+      path: "/orders",
     },
     list: [],
   },
+ 
   {
     id: 4,
     tab: {
@@ -53,35 +63,6 @@ const AdminSidebarData = [
     list: [],
   },
 ];
-
-const notificationList = [
-  {
-    image: "https://res.cloudinary.com/dl93zl9fn/image/upload/v1720214200/dauy0yzuetvaqhpa4jsq.png",
-    name: "Theo Fante",
-    actionType: "Booked A Room",
-    createdAt: "21st Feb 2024",
-    read: true
-  },
-  {
-    image: "https://res.cloudinary.com/dl93zl9fn/image/upload/v1720214200/dauy0yzuetvaqhpa4jsq.png",
-    name: "Theo Fante",
-    actionType: "Liked A Room",
-    createdAt: "21st Feb 2024",
-    read: false
-  }, {
-    image: "https://res.cloudinary.com/dl93zl9fn/image/upload/v1720214200/dauy0yzuetvaqhpa4jsq.png",
-    name: "Brown Fante",
-    actionType: "Payed for A Room",
-    createdAt: "21st Feb 2024",
-    read: true
-  }, {
-    image: "https://res.cloudinary.com/dl93zl9fn/image/upload/v1720214200/dauy0yzuetvaqhpa4jsq.png",
-    name: "Theo Fante",
-    actionType: "Registered as a User",
-    createdAt: "21st Feb 2024",
-    read: true
-  },
-]
 
 const DashboardHeader = () => {
   const { currentUser } = useSelector((store) => store.auth);
@@ -146,7 +127,7 @@ const DashboardHeader = () => {
                 className="w-10 rounded-full"
               />
               <h4 className="text-base text-dark font-booking_font4 family1">
-                {currentUser?.name}
+                {currentUser?.username}
                 <span className="block font-normal font-booking_font text-xs text-dark">
                   {currentUser?.email}
                 </span>
@@ -174,7 +155,7 @@ const DashboardHeader = () => {
                   />
                 )}
                 <h4 className="text-base text-dark font-booking_font4 family1">
-                  {currentUser?.name}
+                  {currentUser?.username}
                   <span className="block font-normal font-booking_font text-xs text-dark">
                     {currentUser?.email}
                   </span>
@@ -245,7 +226,7 @@ const DashboardHeader = () => {
                 ""
               )}
               <h4 className="text-base font-booking_font4 text-white">
-                {currentUser?.name}
+                {currentUser?.username}
                 <span className="block font-normal font-booking_font text-sm text-white">
                   {currentUser?.email}
                 </span>
@@ -348,7 +329,7 @@ export const HeaderStyles = styled.div`
 
     &:hover {
       background: #3a616a2c;
-      color: #fff;
+      color: #000;
 
       svg {
         color: #fff;

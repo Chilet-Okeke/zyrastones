@@ -111,7 +111,7 @@ export default function App() {
             index
             element={
               <Suspense fallback={<></>}>
-                <Statistics />
+                <Reservation />
               </Suspense>
             }
           />
@@ -145,10 +145,10 @@ export default function App() {
           {/* Settings */}
           <Route
             exact
-            path="reservation"
+            path="stat"
             element={
               <Suspense fallback={<Loader />}>
-                <Reservation />
+                <Statistics />
               </Suspense>
             }
           />
