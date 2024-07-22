@@ -1,7 +1,7 @@
 "use client";
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
-
+import { useDispatch } from "react-redux";
 export const GetSingleReservation = createAsyncThunk(
   "GetSingleReservation",
   async (reservationId, thunkAPI) => {
@@ -116,6 +116,7 @@ export const DeleteReservation = createAsyncThunk(
         `${import.meta.env.VITE_API_BASE_URLS}/reservation/${reservationId}`,
         config
       );
+      
       return reservationId;
     } catch (error) {
       return thunkAPI.rejectWithValue(

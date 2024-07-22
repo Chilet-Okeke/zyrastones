@@ -183,12 +183,13 @@ input::placeholder {
 .btn.btn_2 {
   transition: all 0.5s;
   border: 2px solid var(--green-1) !important;
-  background-color: transparent;
-  color: #fff;
+  background-color: transparent !important;
 }
 
 .btn.btn_2:hover {
   background: var(--green-1) !important;
+  opacity: 1;
+  color: #fff;
 }
 
 .hide {

@@ -13,6 +13,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { DeleteReservation } from "@/features/reservation/reservationReducer";
 import { onLoginModal } from "@/features/modals/modalSlice";
 import { addListToWish } from "@/features/auth/authReducer";
+import { CreateNotifications } from "@/features/notification/notificationReducer";
 
 const RoomCard = ({ type, apartment, inView, index }) => {
   const [tabindex, setTabIndex] = useState(0);
@@ -64,7 +65,13 @@ const RoomCard = ({ type, apartment, inView, index }) => {
           <Link
             to={"#"}
             style={{ transition: "all .4s" }}
-            onClick={() => dispatch(DeleteReservation(apartment?.id))}
+            onClick={() => {
+              dispatch(DeleteReservation(apartment?.id))
+              dispatch(CreateNotifications({
+                action: `has booked ${room?.title}`,
+
+              }))
+            }}
             className="absolute group-hover:scale-100 scale-0 top-5 right-5 rounded-full w-12 h-12 z-[50] bg-white shadow-lg flex
            items-center justify-center text-xl"
           >

@@ -19,6 +19,7 @@ import UserListSelection from "./UserListSelection";
 import CreateRoomTab from "./CreateRoomTab";
 import CreateGuestTab from "./CreateGuestTab";
 import toast from "react-hot-toast";
+import { CreateNotifications } from "@/features/notification/notificationReducer";
 export default function CreateReservationModal({ setModal }) {
   // const { deleteRoomisLoading, deleteRoomisSuccess } = useSelector(
   //   (store) => store.room
@@ -99,6 +100,10 @@ export default function CreateReservationModal({ setModal }) {
     status: status,
   }
   const handleCreateReservation = () => {
+    dispatch(CreateNotifications({
+      action: `has booked ${room?.title}`,
+
+    }))
     dispatch(
       CreateReservation({
         roomid: room?.id,
@@ -249,8 +254,8 @@ const ReservationModalStyles = styled(motion.div)`
     box-shadow: 0 2rem 3rem rgba(0, 0, 0, 0.4);
     position: relative;
     @media (max-width: 980px) {
-      max-width: 90%;
-      min-width: 90%;
+      max-width: 85%;
+      min-width: 85%;
     }
     .cross {
       position: absolute;

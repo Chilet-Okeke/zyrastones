@@ -16,6 +16,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Loader from "../home/loader";
 import { onLoginModal } from "@/features/modals/modalSlice";
 import AnimateText from "@/animations/AnimateText";
+import { CreateNotifications } from "@/features/notification/notificationReducer";
 export default function RoomPaymentTab({
   room,
 }) {
@@ -70,6 +71,7 @@ export default function RoomPaymentTab({
         toast.error("Minimum reservation is 2 nights");
       } else {
         // toast.success("Reservation date is fine");
+
         try {
           setBookingLoading(true);
           const config = {
@@ -82,6 +84,10 @@ export default function RoomPaymentTab({
             reservationData,
             config
           );
+          dispatch(CreateNotifications({
+            action: `has booked ${room?.title}`,
+
+          }))
           toast.success("Room has been succesfully booked!!");
           setBookingData(data);
         } catch (error) {
