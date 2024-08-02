@@ -15,8 +15,7 @@ import {
 router
   .route("/")
   .post(authMiddleware, CreateNotifications);
-router.route("/admin").get(authMiddleware, adminMiddleware, GetAllNotifications);
-router.route("/admin/:id").get(authMiddleware, adminMiddleware, DeleteNotification).
-  put(authMiddleware, adminMiddleware, UpdateNotification);
+router.route("/admin").get(authMiddleware, adminMiddleware, GetAllNotifications).delete(authMiddleware, adminMiddleware, DeleteNotification)
+  router.route("/admin/:id").put(authMiddleware, adminMiddleware, UpdateNotification);
 
 export default router;

@@ -12,9 +12,7 @@ import {
   UpdateReservation,
 } from "@/features/reservation/reservationReducer";
 export default function BookingReservationModal({ setModal, room }) {
-  const { deleteRoomisLoading, deleteRoomisSuccess } = useSelector(
-    (store) => store.room
-  );
+  // console.log(room)
   const { updateReservationisLoading, deleteReservationisLoading } =
     useSelector((store) => store.reservation);
   const [status, setStatus] = useState("");
@@ -89,8 +87,12 @@ export default function BookingReservationModal({ setModal, room }) {
                 {room?.title}
               </span>
               <span className={`p-2 px-4 capitalize font-booking_font_bold rounded-[4px] 
-              text-center ${room?.status === "PENDING" ? "bg-[#f9d955] text-[#000]" : "bg-[#0e7b10] text-[#fff]"}   text-xs font-bold`}>
-                {room?.status === "PENDING" ? "Pending" : "Paid"}
+              text-center ${room?.status === "PENDING" ? "bg-[#f9d955] text-[#000]" :
+                  room?.status === 'UNAVAILABLE' ? "bg-[#CECECE]" :
+                    room?.status === 'PARTPAYMENT' ? "bg-[#B691C1]" : "bg-[#0e7b10] text-[#fff]"}  
+               text-xs font-bold`}>
+                {room?.status === "PENDING" ? "Pending Payment" : room?.status === 'UNAVAILABLE' ? "Unavailable" : room?.status === 'PARTPAYMENT' ? "Part Payment" : "Fully Paid"}
+                {/* Pending Payment */}
               </span>
             </div>
 
@@ -227,14 +229,13 @@ export default function BookingReservationModal({ setModal, room }) {
                   {/* #B691C1 */}
                   <div
                     onClick={() => HandleStatus({ stat: "PARTPAYMENT", tab: 2 })}
-                    className={`text-sm py-2 px-4 ${
-                      status === "PARTPAYMENT" ? "bg-[#f5f5f5]" : ""
-                    } flex items-center gap-4 font-booking_font`}
+                    className={`text-sm py-2 px-4 ${status === "PARTPAYMENT" ? "bg-[#f5f5f5]" : ""
+                      } flex items-center gap-4 font-booking_font`}
                   >
                     <div className="w-8 h-8 flex items-center justify-center rounded-full text-dark bg-[#B691C1] text-[#000] text-end text-base font-booking_font">
                       {status === "PARTPAYMENT" && <BiCheck />}
                     </div>
-                   Part Payment
+                    Part Payment
                   </div>
                 </div>
               </div>
@@ -270,7 +271,7 @@ export default function BookingReservationModal({ setModal, room }) {
               <h3 className="text-base w-full pb-2 border-b font-booking_font_bold family1">
                 Number of Guests
               </h3>
-              <span className="block font-bold text-base">5 Guests</span>
+              <span className="block font-bold text-base">{room?.guests} Guests</span>
             </div>
             <div className="w-full flex flex-col gap-4 pt-3">
               <h3 className="text-base font-booking_font_bold w-full pb-4 border-b family1">

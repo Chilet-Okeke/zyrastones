@@ -130,12 +130,12 @@ export const reservationSlice = createSlice({
     });
 
     builder.addCase(CreateReservation.pending, (state, action) => {
-      state.updateReservationisLoading = true;
+      state.createReservationisLoading = true;
     });
     builder.addCase(CreateReservation.fulfilled, (state, action) => {
       state.createReservationisSuccess = true;
       state.createReservationisLoading = false;
-      state.reservation = action.payload;
+      state.reservations = [...state.reservations, action.payload];
       toast.success("reservations has been created");
     });
     builder.addCase(CreateReservation.rejected, (state, action) => {

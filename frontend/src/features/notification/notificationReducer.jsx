@@ -50,7 +50,7 @@ export const DeleteNotification = createAsyncThunk(
         },
       };
       const { data } = await axios.delete(
-        `${import.meta.env.VITE_API_BASE_URLS}/notification/admin/${notificationid}`,
+        `${import.meta.env.VITE_API_BASE_URLS}/notification/admin`,
         config
       );
 

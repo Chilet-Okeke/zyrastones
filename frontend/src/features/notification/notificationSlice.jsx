@@ -87,11 +87,12 @@ export const notificationSlice = createSlice({
     builder.addCase(DeleteNotification.fulfilled, (state, action) => {
       state.deleteNotificationisSuccess = true;
       state.deleteNotificationisLoading = false;
-      state.Notifications = state.Notifications.filter((Notification) => Notification.id !== action.payload);
+      state.Notifications = []
       toast.success("Notification has been deleted");
     });
     builder.addCase(DeleteNotification.rejected, (state, action) => {
       state.deleteNotificationisSuccess = false;
+      state.deleteNotificationisLoading = false;
       toast.error(action.payload);
     });
 

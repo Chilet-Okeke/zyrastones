@@ -51,10 +51,7 @@ const UpdateNotification = asyncHandler(async (req, res) => {
   res.status(200).json({ updateNotification });
 });
 const DeleteNotification = asyncHandler(async (req, res) => {
-  await prisma.notifications.delete({
-    where: {
-      read: true
-    }
+  await prisma.notifications.deleteMany({
   });
   res.setHeader("Content-Type", "text/html");
   res.setHeader("Cache-Control", "s-max-age=1, stale-while-revalidate");

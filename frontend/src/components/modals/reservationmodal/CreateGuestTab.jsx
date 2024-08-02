@@ -70,7 +70,7 @@ export default function CreateGuestTab({
                 </label>
               </div>
               <div className="w-full grid md:grid-cols-2 gap-8">
-                {DashboardGuestsInputData?.slice(2, 8)?.map((input, index) => {
+                {DashboardGuestsInputData?.slice(2, 10)?.map((input, index) => {
                   return (
                     <label
                       key={index}

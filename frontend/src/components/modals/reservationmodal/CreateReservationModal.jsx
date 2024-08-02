@@ -96,7 +96,7 @@ export default function CreateReservationModal({ setModal }) {
     startDate: moment(startdate).format("MMMM Do YYYY"),
     endDate: moment(enddate).format("MMMM Do YYYY"),
     guests: guests,
-    totalPrice: totalBookingPrice,
+    totalPrice: status === 'UNAVAILABLE' ? 0 : status === 'PENDING' ? 0 : totalBookingPrice,
     status: status,
   }
   const handleCreateReservation = () => {
@@ -128,6 +128,9 @@ export default function CreateReservationModal({ setModal }) {
         transition: { duration: 0.5, ease: [0.76, 0, 0.24, 1] },
       }}
     >
+      {
+        createReservationisLoading && <Loader />
+      }
       <motion.div
         initial={{
           y: "100vh",
@@ -216,7 +219,7 @@ export default function CreateReservationModal({ setModal }) {
             {createReservationisLoading ? (
               <span className="flex text-[#Fff] items-center justify-center gap-2">
                 <Loader type="dots" />
-                Update in progress
+                Creating in progress
               </span>
             ) : (
               <span className="text-white">

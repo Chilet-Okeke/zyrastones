@@ -10,8 +10,7 @@ import styled from "styled-components";
 const ReservationCalendar = () => {
   const [filterButtonState, setFilterButtonState] = useState(0);
   const [range, setRange] = useState({
-    startDate:undefined,
-
+    startDate:undefined,  
     endDate:undefined,
   });
   const { reservations, getsingleReservationisLoading } = useSelector(
@@ -55,7 +54,7 @@ const ReservationCalendar = () => {
   }, [reservations, range?.startDate, range?.endDate]);
   useEffect(() => {
     const today = new Date();
-    setRange({ startDate: undefined, endDate: undefined });
+    setRange({ startDate: undefined, endDate: today });
   }, [setRange]);
 
   return (
