@@ -21,7 +21,9 @@ export default function CreateRoomTab({
   status,
   setDate,
   differenceInDays,
-  HandleStatus
+  HandleStatus,
+  setPartPaymentPrice,
+  partpaymentprice
 }) {
   return (
     <div className="p-4 h-[300px] md:h-[450px] overflow-auto  px-4 md:px-8 grid w-full gap-8 lg:grid-cols-2">
@@ -171,24 +173,47 @@ export default function CreateRoomTab({
               </label>
 
             </div>
-            <label
-              htmlFor="titleprice"
-              className="text-sm flex flex-col gap-2 font-booking_font"
-            >
-              <span className="font-semibold">Discount Amount:</span>
-              <input type="number" onChange={(e) => setDiscountPrice(e.target.value)} className="input" placeholder="Input amount" />
-            </label>
-            <label
-              htmlFor="titleprice"
-              className="text-sm flex flex-col gap-2 font-booking_font"
-            >
-              <span className="font-semibold">Final Room Price:</span>
-              <div className="p- text-lg flex items-center">
-                {totalPrice ? <>
-                  ₦{Number(totalPrice).toLocaleString()}
-                </> : <span className="text-sm">Room price has not been selected</span>}
-              </div>
-            </label>
+            <div className="w-full grid grid-cols-2 gap-4">
+              <label
+                htmlFor="titleprice"
+                className="text-sm flex flex-col gap-2 font-booking_font"
+              >
+                <span className="font-semibold">Discount Amount:</span>
+                <input type="number" onChange={(e) => setDiscountPrice(e.target.value)} className="input" placeholder="Input amount" />
+              </label>
+              <label
+                htmlFor="titleprice"
+                className="text-sm flex flex-col gap-2 font-booking_font"
+              >
+                <span className="font-semibold">Part Payment Amount:</span>
+                <input type="number" onChange={(e) => setPartPaymentPrice(e.target.value)} className="input" placeholder="Input part payment amount" />
+              </label>
+            </div>
+            <div className="w-full grid grid-cols-2 gap-4">
+              <label
+                htmlFor="titleprice"
+                className="text-sm flex flex-col gap-2 font-booking_font"
+              >
+                <span className="font-semibold">Final Room Price:</span>
+                <div className="p- text-lg flex items-center">
+                  {totalPrice ? <>
+                    ₦{Number(totalPrice).toLocaleString()}
+                  </> : <span className="text-sm">Room price has not been selected</span>}
+                </div>
+              </label>
+              {/* partpaymentprice */}
+              <label
+                htmlFor="titleprice"
+                className="text-sm flex flex-col gap-2 font-booking_font"
+              >
+                <span className="font-semibold">PartPayment Price:</span>
+                <div className="p- text-lg flex items-center">
+                  {partpaymentprice ? <>
+                    ₦{Number(partpaymentprice).toLocaleString()}
+                  </> : <span className="text-sm">Room part price has not been selected</span>}
+                </div>
+              </label>
+            </div>
 
             <div className="text-sm flex flex-col gap-2 font-booking_font">
               <span className="font-semibold"> Booking total Price:</span>

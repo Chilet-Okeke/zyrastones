@@ -89,6 +89,7 @@ model Reservations {
   startDate  DateTime
   endDate    DateTime
   totalPrice Int?
+  partpaymentPrice Int?
   guests     Int?
   patchguests     Json?
   createdAt  DateTime          @default(now())

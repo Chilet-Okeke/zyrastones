@@ -29,6 +29,7 @@ export default function CreateReservationModal({ setModal }) {
     useSelector((store) => store.reservation);
   const [status, setStatus] = useState("PENDING");
   const [price, setPrice] = useState(0);
+  const [partpaymentprice, setPartPaymentPrice] = useState(0);
   const [discountprice, setDiscountPrice] = useState(0);
   const [room, setRoom] = useState(null);
   const [guests, setGuests] = useState(1);
@@ -84,7 +85,7 @@ export default function CreateReservationModal({ setModal }) {
     // console.log(value)
   }
   const roomValue = JSON.parse(localStorage.getItem('rooms'))
-  console.log(roomValue)
+  // console.log(roomValue)
   const handleUserSelection = (value) => {
     setUser(value)
   }
@@ -102,8 +103,10 @@ export default function CreateReservationModal({ setModal }) {
       //   password: '12345'
       // }))
       toast.success('Register User')
+    toast.success('Create Reservation for the User')
+
     } else {
-      toast.success('fILL IN Registration form for the User')
+      toast.success('Fill In Registration form for the User')
     }
 
   }
@@ -114,29 +117,40 @@ export default function CreateReservationModal({ setModal }) {
     guests: guests,
     totalPrice: status === 'UNAVAILABLE' ? 0 : status === 'PENDING' ? 0 : totalBookingPrice,
     status: status,
+    partpaymentPrice: Number(partpaymentprice)
   }
   const handleCreateReservation = () => {
-    // dispatch(CreateNotifications({
-    //   action: `has booked ${room?.title}`,
-    // }))
+
     toast.success('Create Notification for the User')
-    if (user === null) {
+    if (user?.name === 'Null Guest' || user === null) {
       RegisterNewGuest()
+
+      // toast.success('Register the user the User')
+
+    } else {
+      // dispatch(
+      //   CreateReservation({
+      //     roomid: room?.id,
+      //     reservation: reservationData,
+      //   })
+      // )
+    toast.success('Create Reservation for the User')
+
     }
-// 2K2N2MUCWW
+    // 2K2N2MUCWW
     // dispatch(
     //   CreateReservation({
     //     roomid: room?.id,
     //     reservation: reservationData,
     //   })
     // )
-    toast.success('Create Reservation for the User')
+    // toast.success('Create Reservation for the User')
 
   }
   const handleNextTab = () => {
     if (roomValue && status !== undefined) {
       if (reservationtab === 2) {
-        if (user && roomValue) {
+        if ((guests.newguestname && guests.newguestemail && guests.newguestusername) || roomValue) {
           handleCreateReservation()
           localStorage.removeItem('rooms')
         } else {
@@ -159,7 +173,7 @@ export default function CreateReservationModal({ setModal }) {
   }
 
   console.log(reservationData)
-
+  console.log(newguest)
 
   return (
     <ReservationModalStyles
@@ -238,6 +252,8 @@ export default function CreateReservationModal({ setModal }) {
             differenceInDays={differenceInDays}
             status={status}
             HandleStatus={HandleStatus}
+            setPartPaymentPrice={setPartPaymentPrice}
+            partpaymentprice={partpaymentprice}
           />
             : <CreateGuestTab
               handleUserSelection={handleUserSelection}

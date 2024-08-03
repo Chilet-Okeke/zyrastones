@@ -45,7 +45,7 @@ const GetSingleReservation = asyncHandler(async (req, res) => {
 });
 
 const CreateUserReservation = asyncHandler(async (req, res) => {
-  let { startDate, endDate,status, totalPrice, guests, patchguests } = req.body;
+  let { startDate, endDate, status, totalPrice, guests, patchguests, partpaymentPrice } = req.body;
   const id = req.params.id;
   startDate = formatISO(parse(startDate, "MMMM do yyyy", new Date()));
   endDate = formatISO(parse(endDate, "MMMM do yyyy", new Date()));
@@ -79,9 +79,10 @@ const CreateUserReservation = asyncHandler(async (req, res) => {
     totalPrice,
     userid: req.user.userId,
     roomid: id,
-    status:status,
+    status: status,
     guests: guests,
-    patchguests
+    patchguests,
+    partpaymentPrice: Number(partpaymentPrice)
   };
 
   const newReservation = await prisma.reservations.create({
