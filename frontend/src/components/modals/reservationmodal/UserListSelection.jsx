@@ -17,6 +17,13 @@ export default function UserListSelection({ handleUserSelection }) {
   useEffect(() => {
     dispatch(GetAllUsers())
   }, [])
+  const newUser = [
+    {
+      name: "Null Guest",
+    },
+    ...users
+  ]
+  //  console.log(newUser)
   return (
     <Select onValueChange={(e) => handleUserSelection(e)}>
       <SelectTrigger className="w-full">
@@ -24,7 +31,7 @@ export default function UserListSelection({ handleUserSelection }) {
       </SelectTrigger>
       <SelectContent>
         {
-          users?.map((user, index) => {
+          newUser?.map((user, index) => {
             return <SelectGroup>
               < SelectItem key={index} value={user}>{user?.name}
               </SelectItem>

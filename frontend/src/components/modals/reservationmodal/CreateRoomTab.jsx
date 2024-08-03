@@ -185,7 +185,7 @@ export default function CreateRoomTab({
               <span className="font-semibold">Final Room Price:</span>
               <div className="p- text-lg flex items-center">
                 {totalPrice ? <>
-                  ₦{totalPrice}
+                  ₦{Number(totalPrice).toLocaleString()}
                 </> : <span className="text-sm">Room price has not been selected</span>}
               </div>
             </label>

@@ -20,6 +20,7 @@ import CreateRoomTab from "./CreateRoomTab";
 import CreateGuestTab from "./CreateGuestTab";
 import toast from "react-hot-toast";
 import { CreateNotifications } from "@/features/notification/notificationReducer";
+import { RegisterUser } from "@/features/auth/authReducer";
 export default function CreateReservationModal({ setModal }) {
   // const { deleteRoomisLoading, deleteRoomisSuccess } = useSelector(
   //   (store) => store.room
@@ -79,20 +80,35 @@ export default function CreateReservationModal({ setModal }) {
 
   const handleRoomId = (value) => {
     setRoom(value)
+    localStorage.setItem('rooms', JSON.stringify(value))
     // console.log(value)
   }
-
+  const roomValue = JSON.parse(localStorage.getItem('rooms'))
+  console.log(roomValue)
   const handleUserSelection = (value) => {
     setUser(value)
   }
 
-  const totalPrice = (room?.price - discountprice) < 0 ? 0 : (Number(room?.price)) - discountprice
-  const totalBookingPrice = Number(totalPrice * differenceInDays) + Number(room?.cautionfee)
+  const totalPrice = (roomValue?.price - discountprice) < 0 ? 0 : (Number(roomValue?.price) - discountprice)
+  const totalBookingPrice = Number(totalPrice * differenceInDays) + Number(roomValue?.cautionfee)
 
 
+  const RegisterNewGuest = () => {
+    if (guests.newguestname && guests.newguestemail && guests.newguestusername) {
+      // dispatch(RegisterUser({
+      //   name: guests.newguestname,
+      //   username: guests.newguestusername,
+      //   email: guests.newguestemail,
+      //   password: '12345'
+      // }))
+      toast.success('Register User')
+    } else {
+      toast.success('fILL IN Registration form for the User')
+    }
 
+  }
   const reservationData = {
-    patchguests: user ? user : newguest,
+    patchguests: newguest.newguestname && newguest.newguestemail && newguest.newguestusername ? newguest : user,
     startDate: moment(startdate).format("MMMM Do YYYY"),
     endDate: moment(enddate).format("MMMM Do YYYY"),
     guests: guests,
@@ -100,19 +116,49 @@ export default function CreateReservationModal({ setModal }) {
     status: status,
   }
   const handleCreateReservation = () => {
-    dispatch(CreateNotifications({
-      action: `has booked ${room?.title}`,
-
-    }))
-    dispatch(
-      CreateReservation({
-        roomid: room?.id,
-        reservation: reservationData,
-      })
-    )
+    // dispatch(CreateNotifications({
+    //   action: `has booked ${room?.title}`,
+    // }))
+    toast.success('Create Notification for the User')
+    if (user === null) {
+      RegisterNewGuest()
+    }
+// 2K2N2MUCWW
+    // dispatch(
+    //   CreateReservation({
+    //     roomid: room?.id,
+    //     reservation: reservationData,
+    //   })
+    // )
+    toast.success('Create Reservation for the User')
 
   }
-  // console.log(reservationData)
+  const handleNextTab = () => {
+    if (roomValue && status !== undefined) {
+      if (reservationtab === 2) {
+        if (user && roomValue) {
+          handleCreateReservation()
+          localStorage.removeItem('rooms')
+        } else {
+          toast.error('Please complete all the required fields')
+        }
+
+      } else {
+        setReservationTab(2)
+      }
+
+    }
+    else {
+      if (status === undefined) {
+        toast.error('Please complete the status fields')
+      } else {
+        toast.error('Please select the room fields')
+      }
+
+    }
+  }
+
+  console.log(reservationData)
 
 
   return (
@@ -211,8 +257,8 @@ export default function CreateReservationModal({ setModal }) {
           </button>
 
           <button
-            disabled={room === null || user === null || createReservationisLoading}
-            onClick={handleCreateReservation}
+            // disabled={room === null || user === null || createReservationisLoading}
+            onClick={handleNextTab}
             className="btn px-4 text-[#fff] py-2 rounded-[10px] family1 font-booking_font font-bold flex items-center justify-center text-sm"
           // onClick={() => dispatch(AdminDeleteUserProfile({ Detailsdata: id }))}
           >
@@ -223,7 +269,7 @@ export default function CreateReservationModal({ setModal }) {
               </span>
             ) : (
               <span className="text-white">
-                <AnimateText children={`Save `} />
+                <AnimateText children={reservationtab === 2 ? "Save" : `Next `} />
               </span>
             )}
           </button>
