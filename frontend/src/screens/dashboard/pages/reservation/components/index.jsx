@@ -48,7 +48,7 @@ const DashboardIndex = () => {
         )}
       </AnimatePresence>
       <div className="w-full relative flex flex-col gap-8">
-        <div className="w-full grid lg:grid-cols-2 lg:items-center gap-4 justify-between">
+        <div className="w-full grid md:grid-cols-2 lg:items-center gap-4 justify-between">
           <h2 className="text-4xl font-booking_font4 font-normal">
             Dashboard
             <span className="text-sm block text-dark font-booking_font_bold font-semibold family1">
@@ -58,7 +58,7 @@ const DashboardIndex = () => {
               {currentUser?.name}
             </span>
           </h2>
-          <div className="flex items-center lg:justify-end gap-2">
+          <div className="flex items-center md:justify-end gap-2">
             <div
               onClick={() => setCreateReservationModal(true)}
               className="p-4 btn cursor-pointer text-sm
