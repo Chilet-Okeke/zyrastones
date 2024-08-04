@@ -15,6 +15,7 @@ const DashboardIndex = () => {
   const navigate = useNavigate();
   const [title, setTitle] = useState("");
   const [price, setPrice] = useState(0);
+  const [guests, setGuests] = useState(0);
   const [cautionfee, setCautionFee] = useState(0);
   const [city, setCity] = useState("");
   const [images, setImages] = useState([]);
@@ -52,6 +53,7 @@ const DashboardIndex = () => {
       setImages(room?.images);
       setBathRooms(room?.bathroom);
       setRooms(room?.bedroom);
+      setGuests(room?.guests)
       // setCautionFee(room?.cautionfee)
       setCautionFee(room?.cautionfee ? parseInt(room?.cautionfee.replace(/,/g, "")) : 0);
       // dispatch(getSingleRooms(room));
@@ -64,6 +66,7 @@ const DashboardIndex = () => {
       setBathRooms("");
       setRooms("");
       setCautionFee(0)
+      setGuests(0)
     }
   }, [
     room,
@@ -73,7 +76,8 @@ const DashboardIndex = () => {
     setDescription,
     setImages,
     setBathRooms,
-    setCautionFee
+    setCautionFee,
+    setGuests
   ]);
   const roomData = {
     title: title,
@@ -84,7 +88,8 @@ const DashboardIndex = () => {
     bedroom: rooms,
     bathroom: bathrooms,
     description: description,
-    cautionfee: cautionfee?.toString()
+    cautionfee: cautionfee?.toString(),
+    guests: guests
   };
   // console.log(roomData);
   const handleRoomCreation = () => {
@@ -148,6 +153,8 @@ const DashboardIndex = () => {
             amenities={amenities}
             city={city}
             setCity={setCity}
+            setGuests={setGuests}
+            guests={guests}
           />
           <div className="w-full md:w-[350px] relative lg:sticky top-[15%] left-0">
             <RoomDetail

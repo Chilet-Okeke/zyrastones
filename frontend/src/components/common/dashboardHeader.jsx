@@ -154,7 +154,7 @@ const DashboardHeader = () => {
                     className="w-12 lg:w-12 h-12 lg:h-12 border border-[rgba(0,0,0,.3)] rounded-full"
                   />
                 )}
-                <h4 className="text-base text-dark font-booking_font4 family1">
+                <h4 className="text-sm text-dark font-bold family1">
                   {currentUser?.username}
                   <span className="block font-normal font-booking_font text-xs text-dark">
                     {currentUser?.email}

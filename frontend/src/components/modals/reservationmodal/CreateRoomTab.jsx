@@ -23,15 +23,18 @@ export default function CreateRoomTab({
   differenceInDays,
   HandleStatus,
   setPartPaymentPrice,
-  partpaymentprice
+  partpaymentprice,
+  totalreservationprice,
+  reservation
 }) {
+  console.log(room  )
   return (
-    <div className="p-4 h-[300px] md:h-[450px] overflow-auto  px-4 md:px-8 grid w-full gap-8 lg:grid-cols-2">
+    <div className="p-4 h-[300px] md:h-[450px] overflow-auto  px-4 md:px-12 grid w-full gap-8 lg:grid-cols-2">
       <div className="w-full flex flex-col gap-4">
         <h3 className="text-base w-full pb-2 border-b font-booking_font_bold font-bold family1">
           Room Terms
         </h3>
-        <div className="w-full flex flex-col gap-4">
+        <div className="w-full flex flex-col gap-6">
           <Popover>
             <PopoverTrigger>
               <div className="w-full grid sm:grid-cols-2 gap-4">
@@ -131,12 +134,19 @@ export default function CreateRoomTab({
         </div>
       </div>
       {/* room price */}
-      <div className="w-full flex flex-col gap-4">
-        <div className="w-full flex flex-col gap-4 pt-2">
+      <div className="w-full flex flex-col gap-6">
+        <div className="w-full flex flex-col gap-3 pt-2">
           <h3 className="text-base w-full pb-2 border-b font-booking_font_bold font-bold family1">
             Rooms
           </h3>
-          <RoomModalSelection handleRoomId={handleRoomId} />
+          {
+            reservation ? <div className="w-full flex items-center text-base font-semibold">
+              {
+                reservation?.title
+              }
+            </div> : <RoomModalSelection handleRoomId={handleRoomId} />
+          }
+
           {/* rooms */}
 
         </div>
@@ -145,7 +155,7 @@ export default function CreateRoomTab({
           <h3 className="text-base w-full pb-2 border-b font-booking_font_bold font-bold family1">
             Room Pricing
           </h3>
-          <div className="w-full flex flex-col gap-4">
+          <div className="w-full flex flex-col gap-6">
             <div className="w-full grid md:grid-cols-2 gap-4">
               <label
                 htmlFor="titleprice"
@@ -154,8 +164,8 @@ export default function CreateRoomTab({
                 <span className="font-semibold"> Room Price:</span>
                 <span className="block text-lg font-booking_font_bold">
                   {" "}
-                  {room?.price ? <>
-                    ₦{Number(room?.price).toLocaleString()}
+                  {reservation?.roomprice || room?.price ? <>
+                    ₦{Number(reservation?.roomprice ? reservation?.roomprice : room?.price).toLocaleString()}
                   </> : <h5 className="text-sm">No Room price selected</h5>}
                 </span>
               </label>
@@ -166,8 +176,10 @@ export default function CreateRoomTab({
                 <span className="font-semibold"> Room Caution Price:</span>
                 <span className="block text-lg font-booking_font_bold">
                   {" "}
-                  {room?.cautionfee ? <>
-                    ₦{Number(room?.cautionfee).toLocaleString()}
+                  {/* roomcautionprice */}
+                  {reservation
+                    || room?.cautionfee ? <>
+                    ₦{Number(reservation?.roomcautionprice ? reservation?.roomcautionprice : room?.cautionfee).toLocaleString()}
                   </> : <h5 className="text-sm">No Room cautionfee selected</h5>}
                 </span>
               </label>
@@ -186,7 +198,7 @@ export default function CreateRoomTab({
                 className="text-sm flex flex-col gap-2 font-booking_font"
               >
                 <span className="font-semibold">Part Payment Amount:</span>
-                <input type="number" onChange={(e) => setPartPaymentPrice(e.target.value)} className="input" placeholder="Input part payment amount" />
+                <input type="number" name='partpaymentprice' value={partpaymentprice} onChange={(e) => setPartPaymentPrice(e.target.value)} className="input" placeholder="Input part payment amount" />
               </label>
             </div>
             <div className="w-full grid grid-cols-2 gap-4">
@@ -197,7 +209,7 @@ export default function CreateRoomTab({
                 <span className="font-semibold">Final Room Price:</span>
                 <div className="p- text-lg flex items-center">
                   {totalPrice ? <>
-                    ₦{Number(totalPrice).toLocaleString()}
+                    ₦{Number(totalPrice <= 0 ? 0 : totalPrice).toLocaleString()}
                   </> : <span className="text-sm">Room price has not been selected</span>}
                 </div>
               </label>
@@ -206,10 +218,10 @@ export default function CreateRoomTab({
                 htmlFor="titleprice"
                 className="text-sm flex flex-col gap-2 font-booking_font"
               >
-                <span className="font-semibold">PartPayment Price:</span>
+                <span className="font-semibold">Balance Due:</span>
                 <div className="p- text-lg flex items-center">
                   {partpaymentprice ? <>
-                    ₦{Number(partpaymentprice).toLocaleString()}
+                    ₦{Number(totalBookingPrice - partpaymentprice <= 0 ? 0 : totalBookingPrice - partpaymentprice).toLocaleString()}
                   </> : <span className="text-sm">Room part price has not been selected</span>}
                 </div>
               </label>
@@ -220,7 +232,7 @@ export default function CreateRoomTab({
               <div className="p-2 text-dark rounded-[5px] bg-[#f5f5f5] text-end text-lg font-bold">
                 {
                   totalBookingPrice ? <>
-                    ₦{Number(totalBookingPrice).toLocaleString()}
+                    ₦{Number(totalBookingPrice <= 0 ? 0 : totalBookingPrice).toLocaleString()}
                   </> : <h5 className="text-sm">No Room price selected</h5>
                 }
 

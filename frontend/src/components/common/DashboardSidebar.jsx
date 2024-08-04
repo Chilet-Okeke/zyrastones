@@ -79,7 +79,7 @@ const DashboardSidebar = () => {
                   src="https://www.hopper.com/assets/treasure-D-5S8iOp.svg"
                   className="w-14 h-14 rounded-full object-cover"
                 />
-                <h4 className="hidden md:hidden group-hover:flex flex-col text-sm font-booking_font4 text-[#fff]">
+                <h4 className="hidden md:hidden group-hover:flex flex-col text-sm text-[#fff]">
 
                   Zyra&Stones
                   <span className="block text-grey text-xs font-booking_font">
@@ -96,7 +96,7 @@ const DashboardSidebar = () => {
               return (
                 <div
                   key={index}
-                  className="w-[90%] font-booking_font4 font-normal text-sm mx-auto"
+                  className="w-[90%] font-normal text-sm mx-auto"
                 >
                   <NavLink
                     // activeClassName="active"
@@ -123,7 +123,7 @@ const DashboardSidebar = () => {
             <NavLink
               // activeClassName="active"
               end
-              className={`text-sm tab flex justify-center group-hover:justify-start items-center gap-4 p-[12px] px-4 font-booking_font4 text-[#fff] family1`}
+              className={`text-sm tab flex justify-center group-hover:justify-start items-center gap-4 p-[12px] px-4 text-[#fff] family1`}
               to={`/dashboard/profile/${currentUser?.id}`}
             >
               <FiSettings fontSize={"24px"} />
@@ -154,7 +154,7 @@ const DashboardSidebar = () => {
                     className="w-12 lg:w-12 h-12 lg:h-12 rounded-full"
                   />
                 )}
-                <h4 className="text-base group-hover:block hidden text-[#fff] font-booking_font4">
+                <h4 className="text-base group-hover:block hidden text-[#fff] font-semibold">
                   {currentUser?.name}
                   <span className="block font-booking_font text-xs font-normal text-grey">
                     {currentUser?.email}

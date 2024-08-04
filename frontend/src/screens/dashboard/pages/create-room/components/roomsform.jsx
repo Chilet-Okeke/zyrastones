@@ -28,7 +28,9 @@ const RoomForms = ({
   setCity,
   address,
   cautionfee,
-  setCautionFee
+  setCautionFee,
+  setGuests,
+  guests
 }) => {
   const handleFeatureSelection = (data) => {
     if (features.includes(data)) {
@@ -170,6 +172,20 @@ const RoomForms = ({
                 />
               </label>
             </div>
+            <label
+                htmlFor="guests"
+                className="text-sm  flex flex-col gap-2 font-booking_font4"
+              >
+               Maximum Room Guests
+                <input
+                  name="guests"
+                  value={guests}
+                  id="guests"
+                  type="number"
+                  onChange={(e) => setGuests(parseFloat(e.target.value))}
+                  className="text-sm w-full input"
+                />
+              </label>
           </div>
         </div>
       </div>

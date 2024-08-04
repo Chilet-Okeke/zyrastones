@@ -4,8 +4,9 @@ import moment from "moment";
 import { AnimatePresence } from "framer-motion";
 import BookingReservationModal from "@/components/modals/BookingReservationModal";
 import { Scheduler } from "@bitnoi.se/react-scheduler";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";  
 import styled from "styled-components";
+import CreateReservationModal from "@/components/modals/reservationmodal/CreateReservationModal";
 
 const ReservationCalendar = () => {
   const [filterButtonState, setFilterButtonState] = useState(0);
@@ -41,6 +42,7 @@ const ReservationCalendar = () => {
             id: data?.id,
             occupancy: `${duration}`,
             roomprice: `${booking?.price}`,
+            roomcautionprice: `${booking?.cautionfee}`,
             bgColor:`${data?.status === "PENDING" ? "#f9d955":
               data?.status === 'UNAVAILABLE' ? "#CECECE" :
                 data?.status === 'PARTPAYMENT' ? "#B691C1" : "#0e7b10"}`,
@@ -61,14 +63,14 @@ const ReservationCalendar = () => {
     <>
       <AnimatePresence mode="wait">
         {reservationtab?.modal && (
-          <BookingReservationModal
+          <CreateReservationModal
             modal={reservationtab?.modal}
             setModal={setReservationTab}
-            room={reservationtab?.data}
+            reservation={reservationtab?.data}
           />
         )}
       </AnimatePresence>
-      <ReservationCalendarStyle className="relative p4 bg-white overflow-hidden shadow-lg border border-[rgba(0,0,0,.2)] rounded-[10px] min-h-[500px]">
+      <ReservationCalendarStyle className="relative p4 bg-white overflow-hidden shadow-lg border border-[rgba(0,0,0,.2)] rounded-[10px] min-h-[530px]">
 
         <Scheduler
           data={newFormattedData}
