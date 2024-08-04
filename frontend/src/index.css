@@ -90,6 +90,10 @@
   list-style: none;
   scroll-behavior: smooth;
 }
+@font-face {
+  font-family: "playfair";
+  src: url("./assets/fonts/playfair.ttf") format("truetype");
+}
 
 *,
 *::after,

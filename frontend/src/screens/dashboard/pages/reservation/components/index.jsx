@@ -48,8 +48,8 @@ const DashboardIndex = () => {
         )}
       </AnimatePresence>
       <div className="w-full relative flex flex-col gap-8">
-        <div className="w-full grid lg:grid-cols-2 lg:items-center gap-2 justify-between">
-          <h2 className="text-5xl font-booking_font4 font-normal">
+        <div className="w-full grid lg:grid-cols-2 lg:items-center gap-4 justify-between">
+          <h2 className="text-4xl font-booking_font4 font-normal">
             Dashboard
             <span className="text-sm block text-dark font-booking_font_bold font-semibold family1">
               <span className="font-normal font-booking_font text-sm text-dark">
@@ -62,7 +62,7 @@ const DashboardIndex = () => {
             <div
               onClick={() => setCreateReservationModal(true)}
               className="p-4 btn cursor-pointer text-sm
-             bg-[#000] px-8 font-booking_font rounded-[10px] font-normal text-white"
+             bg-[#000] px-4 font-booking_font rounded-[10px] font-normal text-white"
             >
               Add a reservation
             </div>
