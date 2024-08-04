@@ -414,11 +414,14 @@ html.lenis body {
     display: none !important;
   }
   .jMfbsI {
-    min-width: 120px !important;
-    max-width: 120px !important;
+    min-width: 110px !important;
+    max-width: 110px !important;
   }
   .bmRGyN {
-    width: 120px !important;
+    width: 110px !important;
 
+  }
+  .kNACXA, .jNPygj {
+    width:100% !important;
   }
 }

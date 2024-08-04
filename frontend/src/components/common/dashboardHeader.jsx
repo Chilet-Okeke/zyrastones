@@ -84,7 +84,7 @@ const DashboardHeader = () => {
       <NotificationSidebar setNotificationActiveBar={setNotificationActiveBar} notificationactivebar={notificationactivebar} />
       <HeaderStyles className="w-full z-[10] bg-[#151515] border-b flex relative items-center justify-center">
         <div className="Header_wrapper w-[95%] mx-auto flex items-center justify-between">
-          <div className="flex w-full items-center gap-3">
+          <div className="flex items-center gap-3">
             <div
               onClick={() => setBar(!bar)}
               className="flex flex-1 lg:hidden gap-4 items-center justify-start text-dark"
@@ -112,7 +112,7 @@ const DashboardHeader = () => {
             </label>
           </div>
           <div className="flex w-full auto items-center justify-end gap-12">
-            <div onClick={() => setNotificationActiveBar(true)} className="w-12 hover:bg-[#f7f7f7] relative cursor-pointer h-12 rounded-full flex items-center justify-center text-lg">
+            <div onClick={() => setNotificationActiveBar(true)} className="w-10 md:w-12 hover:bg-[#f7f7f7] relative cursor-pointer h-10 md:h-12 rounded-full flex items-center justify-center text-lg">
               <Bell />
             { unReadNotifications?.length !== 0 && <div className="w-6 h-6 rounded-full text-sm flex items-center text-[#fff] justify-center absolute -top-1 -right-2 bg-[#249f26]">
                 {unReadNotifications?.length}
