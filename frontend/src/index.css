@@ -275,21 +275,21 @@ html.lenis body {
 
   overflow: hidden;
   flex-shrink: 0;
+  margin-right: 0 !important;
 }
 
 .biTtqx {
 
   font-size: 14px !important;
 }
-
+/* image */
 .sc-cyZbSi.hlIWFJ {
-  margin-right: 0.6rem;
   width: 4rem !important;
   height: 3rem !important;
   border-radius: 10px !important;
   overflow: hidden;
 }
-
+/* image */
 .sc-lnskGP.jxgfZX {
   margin-right: 0.6rem;
   width: 5rem !important;
@@ -410,4 +410,15 @@ html.lenis body {
   /* .sc-iuOPfm.eiWmqu {
    flex-direction: column !important;
   } */
+  .sc-lnskGP.jxgfZX, .sc-cyZbSi.hlIWFJ, .jwOjdZ {
+    display: none !important;
+  }
+  .jMfbsI {
+    min-width: 120px !important;
+    max-width: 120px !important;
+  }
+  .bmRGyN {
+    width: 120px !important;
+
+  }
 }

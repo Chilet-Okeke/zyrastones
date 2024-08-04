@@ -35,7 +35,7 @@ module.exports = {
         booking_font: ["Work Sans", "sans-serif"],
         booking_font_bold: ["Work Sans", "sans-serif"],
         booking_font_normal: ["Work Sans", "sans-serif"],
-        booking_font4: ["Bebas Neue", "sans-serif"],
+        booking_font4: ["Work Sans", "sans-serif"],
       },
       colors: {
         border: "hsl(var(--border))",
