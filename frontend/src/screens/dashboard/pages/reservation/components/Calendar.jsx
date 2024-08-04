@@ -2,17 +2,16 @@
 import React, { useState, useMemo, useEffect } from "react";
 import moment from "moment";
 import { AnimatePresence } from "framer-motion";
-import BookingReservationModal from "@/components/modals/BookingReservationModal";
 import { Scheduler } from "@bitnoi.se/react-scheduler";
-import { useDispatch, useSelector } from "react-redux";  
+import { useSelector } from "react-redux";
 import styled from "styled-components";
 import CreateReservationModal from "@/components/modals/reservationmodal/CreateReservationModal";
 
 const ReservationCalendar = () => {
   const [filterButtonState, setFilterButtonState] = useState(0);
   const [range, setRange] = useState({
-    startDate:undefined,  
-    endDate:undefined,
+    startDate: undefined,
+    endDate: undefined,
   });
   const { reservations, getsingleReservationisLoading } = useSelector(
     (store) => store.reservation
@@ -43,7 +42,7 @@ const ReservationCalendar = () => {
             occupancy: `${duration}`,
             roomprice: `${booking?.price}`,
             roomcautionprice: `${booking?.cautionfee}`,
-            bgColor:`${data?.status === "PENDING" ? "#f9d955":
+            bgColor: `${data?.status === "PENDING" ? "#f9d955" :
               data?.status === 'UNAVAILABLE' ? "#CECECE" :
                 data?.status === 'PARTPAYMENT' ? "#B691C1" : "#0e7b10"}`,
             subtitle: `${data?.user?.name || "Unknown user"} has booked it`,
@@ -91,7 +90,7 @@ const ReservationCalendar = () => {
             setFilterButtonState(0);
           }}
           config={{
-            zoom:0,
+            zoom: 0,
             filterButtonState,
             initialDate: undefined, // Set the initial date to today's date
           }}

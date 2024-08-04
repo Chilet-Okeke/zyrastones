@@ -25,7 +25,7 @@ export default function CreateReservationModal({ setModal, reservation }) {
   // console.log(reservation)
   const { createReservationisLoading, createReservationisSuccess } =
     useSelector((store) => store.reservation);
-  const [status, setStatus] = useState("PENDING");
+
   const [price, setPrice] = useState(0);
   const [partpaymentprice, setPartPaymentPrice] = useState(0);
   const [discountprice, setDiscountPrice] = useState(0);
@@ -34,7 +34,7 @@ export default function CreateReservationModal({ setModal, reservation }) {
   const [reservationtab, setReservationTab] = useState(1);
   const [user, setUser] = useState(null);
   const [totalreservationprice, setTotalReservationPrice] = useState(0)
-
+  const [status, setStatus] = useState("PENDING");
   // new guests data form
   const [newguest, setNewGuests] = useState({
     newguestname: "",
@@ -86,6 +86,28 @@ export default function CreateReservationModal({ setModal, reservation }) {
   const handleUserSelection = (value) => {
     setUser(value)
   }
+
+
+  useEffect(() => {
+    if (reservation) {
+      setStatus(reservation?.status);
+      setDate({
+        from: new Date(reservation?.startDate),
+        to: new Date(reservation?.endDate),
+      })
+      setTotalReservationPrice(reservation?.totalPrice)
+      setPartPaymentPrice(reservation?.partpaymentPrice)
+      setGuests(reservation?.guests)
+      setNewGuests(reservation?.patchguests)
+      setPrice(reservation?.roomprice)
+    }
+    if (partpaymentprice !== 0) {
+      setStatus('PARTPAYMENT')
+    }
+  }, [setStatus, partpaymentprice, setPrice, setNewGuests, setPartPaymentPrice, reservation, setDate, setTotalReservationPrice, setGuests]);
+
+  // console.log(reservationData)
+  // console.log(new Date(startdate))
 
   const totalPrice = (reservation?.roomprice ? reservation?.roomprice : roomValue?.price - discountprice) < 0 ? 0 : (Number(reservation?.roomprice ? reservation?.roomprice : roomValue?.price) - discountprice)
   const totalBookingPrice = Number(totalPrice * differenceInDays) + Number(reservation?.roomcautionprice ? reservation?.roomcautionprice : room?.cautionfee)
@@ -204,24 +226,6 @@ export default function CreateReservationModal({ setModal, reservation }) {
     }
 
   }
-  useEffect(() => {
-    if (reservation) {
-      setStatus(reservation?.status);
-      setDate({
-        from: new Date(reservation?.startDate),
-        to: new Date(reservation?.endDate),
-      })
-      setTotalReservationPrice(reservation?.totalPrice)
-      setPartPaymentPrice(reservation?.partpaymentPrice)
-      setGuests(reservation?.guests)
-      setNewGuests(reservation?.patchguests)
-      setPrice(reservation?.roomprice)
-    }
-  }, [setStatus, setPrice, setNewGuests, setPartPaymentPrice, reservation, setDate, setTotalReservationPrice, setGuests]);
-
-  // console.log(reservationData)
-  // console.log(new Date(startdate))
-
   return (
     <ReservationModalStyles
       as={motion.div}
