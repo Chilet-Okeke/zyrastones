@@ -101,9 +101,12 @@ export default function CreateReservationModal({ setModal, reservation }) {
       setNewGuests(reservation?.patchguests)
       setPrice(reservation?.roomprice)
     }
-    if (partpaymentprice !== 0) {
-      setStatus('PARTPAYMENT')
+    if (!reservation) {
+      if (partpaymentprice !== 0) {
+        setStatus('PARTPAYMENT')
+      }
     }
+
   }, [setStatus, partpaymentprice, setPrice, setNewGuests, setPartPaymentPrice, reservation, setDate, setTotalReservationPrice, setGuests]);
 
   // console.log(reservationData)
@@ -114,12 +117,12 @@ export default function CreateReservationModal({ setModal, reservation }) {
 
 
   const RegisterNewGuest = () => {
-    if (guests.newguestname && guests.newguestemail && guests.newguestusername) {
+    if (newguest.newguestname && newguest.newguestemail && newguest.newguestusername) {
       dispatch(RegisterUser({
-        name: guests.newguestname,
-        username: guests.newguestusername,
-        email: guests.newguestemail,
-        password: '12345'
+        name: newguest.newguestname,
+        username: newguest.newguestusername,
+        email: newguest.newguestemail,
+        hashedPassword: '12345'
       }))
       // toast.success('Register User')
       // toast.success('Create Reservation for the User')
@@ -155,9 +158,12 @@ export default function CreateReservationModal({ setModal, reservation }) {
           action: reservation ? "Updated the reservation" : "Created a reservation"
         })
       )
-      // toast.success('Register the user the User')
+      // toast.success('Create Reservation')
+      // toast.success('Create Notification')
 
     } else {
+      // toast.success('Create Reservation')
+      // toast.success('Create Notification')
       dispatch(
         CreateReservation({
           roomid: room?.id,

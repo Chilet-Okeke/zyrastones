@@ -28,7 +28,7 @@ export default function CreateGuestTab({
       [e.target.name]: e.target.value,
     });
   };
-  console.log(reservation)
+  console.log(newguest)
   return (
     <div className="p-4 h-[300px] md:h-[450px] overflow-auto  px-4 md:px-8 grid w-full gap-8 lg:grid-cols-custom_5">
       <div className="w-full flex flex-col gap-6 pt-3">
