@@ -92,7 +92,7 @@ const RegisterModal = () => {
       >
         <div className="w-full mx-auto h-[550px] flex flex-col">
           <div className="w-full sticky top-0 left-0 p-8 px-8 border-b flex border-[rgba(0,0,0,.2)] items-center justify-between">
-            <h3 className="text-2xl md:text-3xl font-booking_font4">
+            <h3 className="text-2xl md:text-3xl font-bold font-booking_font4">
               Sign Up
               <span className="block text-sm font-normal font-booking_font">
                 Register to your account and check out your bookings
