@@ -56,7 +56,7 @@ const DeleteNotification = asyncHandler(async (req, res) => {
   res.setHeader("Content-Type", "text/html");
   res.setHeader("Cache-Control", "s-max-age=1, stale-while-revalidate");
 
-  res.status(200).json({ msg: "The notifications has been successfully deleted" });
+  res.status(200).json({ msg: "Notifications cleared" });
 });
 export {
   CreateNotifications,

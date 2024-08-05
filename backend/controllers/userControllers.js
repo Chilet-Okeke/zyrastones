@@ -91,7 +91,7 @@ const DeleteUser = asyncHandler(async (req, res) => {
 
 // PRIVATE/ADMIN
 const GetAllUser = asyncHandler(async (req, res) => {
-  const limit = req.query.limit || 5;
+  const limit = req.query.limit || 8;
   const page = req.query.page || 1;
   const skip = (page - 1) * limit;
 
@@ -100,6 +100,9 @@ const GetAllUser = asyncHandler(async (req, res) => {
   const user = await prisma.user.findMany({
     skip: skip,
     take: limit,
+    orderBy:{
+      createdAt:"desc"
+    }
   });
 
   const noOfPages = Math.ceil(totalUser / limit);
