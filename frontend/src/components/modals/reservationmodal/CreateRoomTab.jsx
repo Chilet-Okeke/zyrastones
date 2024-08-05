@@ -45,7 +45,7 @@ export default function CreateRoomTab({
                     htmlFor="titleprice"
                     className="text-sm w-full p-3 justify-between cursor-pointer border rounded-lg flex items-center gap-2 font-booking_font"
                   >
-                    {moment(date.from).format("DD MMMM YYYY")}
+                    {moment(date?.from).format("DD MMMM YYYY")}
                     <FaCalendarAlt />
                   </label>
                 </div>
@@ -55,7 +55,7 @@ export default function CreateRoomTab({
                     htmlFor="titleprice"
                     className="text-sm w-full p-3 justify-between cursor-pointer border rounded-lg flex items-center gap-2 font-booking_font"
                   >
-                    {moment(date.to).format("DD MMMM YYYY")}
+                    {moment(date?.to).format("DD MMMM YYYY")}
                     <FaCalendarAlt />
                   </label>
                 </div>
@@ -185,7 +185,7 @@ export default function CreateRoomTab({
               </label>
 
             </div>
-            <div className="w-full grid grid-cols-2 gap-4">
+            <div className="w-full grid md:grid-cols-2 gap-4">
               <label
                 htmlFor="titleprice"
                 className="text-sm flex flex-col gap-2 font-booking_font"
@@ -201,7 +201,7 @@ export default function CreateRoomTab({
                 <input type="number" name='partpaymentprice' value={partpaymentprice} onChange={(e) => setPartPaymentPrice(e.target.value)} className="input" placeholder="Input part payment amount" />
               </label>
             </div>
-            <div className="w-full grid grid-cols-2 gap-4">
+            <div className="w-full grid md:grid-cols-2 gap-4">
               <label
                 htmlFor="titleprice"
                 className="text-sm flex flex-col gap-2 font-booking_font"

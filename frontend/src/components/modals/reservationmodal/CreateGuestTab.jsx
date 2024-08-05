@@ -19,8 +19,11 @@ export default function CreateGuestTab({
   handleUserSelection,
   newguest,
   setNewGuests,
-  reservation
+  reservation,
+  user
 }) {
+  // reservation
+  console.log(user)
   const [open, setOpen] = useState(false)
   const handleFormChange = (e) => {
     setNewGuests({
@@ -41,18 +44,18 @@ export default function CreateGuestTab({
             <div className="w-full pt-2 flex flex-col gap-3">
               <div className="w-full flex items-center gap-4">
                 <span className="text-base  font-normal">Name:</span>
-                <span className="text-base  font-semibold">{newguest?.newguestname}</span>
+                <span className="text-base  font-semibold">{newguest?.newguestname? newguest?.newguestname: reservation?.patchguests?.name}</span>
               </div>
               <div className="w-full flex items-center gap-4">
                 <span className="text-base  font-normal">Email:</span>
                 <span className="text-base  font-semibold">
-                  {newguest?.newguestemail}
+                  {newguest?.newguestemail? newguest?.newguestemail: reservation?.patchguests?.email}
                 </span>
               </div>
               <div className="w-full flex items-center gap-4">
                 <span className="text-base  font-normal">Username:</span>
                 <span className="text-base  font-semibold">
-                  {newguest?.newguestusername}
+                  {newguest?.newguestusername? newguest?.newguestusername: reservation?.patchguests?.username}
                 </span>
               </div>
               <div className="w-full flex items-center gap-4">

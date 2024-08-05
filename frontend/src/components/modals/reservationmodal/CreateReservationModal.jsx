@@ -18,12 +18,11 @@ import CreateGuestTab from "./CreateGuestTab";
 import toast from "react-hot-toast";
 import { CreateNotifications } from "@/features/notification/notificationReducer";
 import { RegisterUser } from "@/features/auth/authReducer";
+import { FaTrash } from "react-icons/fa";
 export default function CreateReservationModal({ setModal, reservation }) {
-  const { deleteRoomisLoading, deleteRoomisSuccess } = useSelector(
-    (store) => store.reservation
-  );
+
   // console.log(reservation)
-  const { createReservationisLoading, createReservationisSuccess } =
+  const { createReservationisLoading, deleteReservationisLoading, updateReservationisLoading } =
     useSelector((store) => store.reservation);
 
   const [price, setPrice] = useState(0);
@@ -100,6 +99,7 @@ export default function CreateReservationModal({ setModal, reservation }) {
       setGuests(reservation?.guests)
       setNewGuests(reservation?.patchguests)
       setPrice(reservation?.roomprice)
+      setUser(reservation?.user)
     }
     if (!reservation) {
       if (partpaymentprice !== 0) {
@@ -107,7 +107,7 @@ export default function CreateReservationModal({ setModal, reservation }) {
       }
     }
 
-  }, [setStatus, partpaymentprice, setPrice, setNewGuests, setPartPaymentPrice, reservation, setDate, setTotalReservationPrice, setGuests]);
+  }, [setStatus, setUser, partpaymentprice, setPrice, setNewGuests, setPartPaymentPrice, reservation, setDate, setTotalReservationPrice, setGuests]);
 
   // console.log(reservationData)
   // console.log(new Date(startdate))
@@ -189,18 +189,19 @@ export default function CreateReservationModal({ setModal, reservation }) {
 
   }
   const handleNextTab = () => {
-
+    // console.log('Hello world')
     if ((reservation || roomValue) && status !== undefined) {
       if (reservationtab === 2) {
-        if ((newguest.newguestname && newguest.newguestemail && newguest.newguestusername) || roomValue) {
+        if (((newguest?.newguestname && newguest?.newguestemail && newguest?.newguestusername)
+          || reservation?.user?.name && reservation?.user?.email && reservation?.user?.username) || roomValue) {
           if (reservation) {
             dispatch(
               UpdateReservation({
-                reservationId: reservation?.id,
+                reservationId: { reservationid: reservation?.id, roomid: reservation?.roomid },
                 reservation: {
-                  patchguests: newguest.newguestname && newguest.newguestemail && newguest.newguestusername ? newguest : user,
-                  startDate: new Date(startdate),
-                  endDate: new Date(enddate),
+                  patchguests: newguest?.newguestname && newguest?.newguestemail && newguest?.newguestusername ? newguest : user,
+                  startDate: moment(startdate).toISOString(),
+                  endDate: moment(enddate).toISOString(),
                   guests: guests,
                   totalPrice: status === 'UNAVAILABLE' ? 0 : status === 'PENDING' ? 0 : totalBookingPrice,
                   status: status,
@@ -232,138 +233,149 @@ export default function CreateReservationModal({ setModal, reservation }) {
     }
 
   }
+  console.log(reservation)
   return (
-    <ReservationModalStyles
-      as={motion.div}
-      initial={{ opacity: 0 }}
-      exit={{
-        opacity: 0,
-        transition: { duration: 0.5, ease: [0.76, 0, 0.24, 1] },
-      }}
-      animate={{
-        opacity: 1,
-        transition: { duration: 0.5, ease: [0.76, 0, 0.24, 1] },
-      }}
-    >
+    <>
       {
-        createReservationisLoading && <Loader />
+        createReservationisLoading || deleteReservationisLoading || updateReservationisLoading && <Loader />
       }
-      <motion.div
-        initial={{
-          y: "100vh",
+      <ReservationModalStyles
+        as={motion.div}
+        initial={{ opacity: 0 }}
+        exit={{
+          opacity: 0,
+          transition: { duration: 0.5, ease: [0.76, 0, 0.24, 1] },
         }}
         animate={{
-          y: "0",
-          transition: { duration: 1, ease: [0.76, 0, 0.24, 1] },
+          opacity: 1,
+          transition: { duration: 0.5, ease: [0.76, 0, 0.24, 1] },
         }}
-        exit={{
-          y: "100vh",
-          transition: { duration: 1, ease: [0.76, 0, 0.24, 1] },
-        }}
-        className={"deleteCard gap-2"}
       >
-        <div className="cross" onClick={handleClearAlert}>
-          <RxCross2 />
-        </div>
-        <div className="deleteCardTop w-full sticky top-0 left-0 border-b p-4 pb-0 px-8 flex flex-col gap-2">
-          <h3 className="text-2xl md:text-2xl font-semibold font-booking_font_bold">
-            {
-              reservation ? "  Update Reservation" :
-                "  Add a Reservation"
-            }
-          </h3>
-          <div className="flex items-center justify-between gap-2">
-            <div className="flex items-center gap-2">
-              <span className={`p-2 px-4 capitalize font-booking_font_bold rounded-[4px] 
+
+        <motion.div
+          initial={{
+            y: "100vh",
+          }}
+          animate={{
+            y: "0",
+            transition: { duration: 1, ease: [0.76, 0, 0.24, 1] },
+          }}
+          exit={{
+            y: "100vh",
+            transition: { duration: 1, ease: [0.76, 0, 0.24, 1] },
+          }}
+          className={"deleteCard gap-2"}
+        >
+          <div className="cross" onClick={handleClearAlert}>
+            <RxCross2 />
+          </div>
+          <div className="deleteCardTop w-full sticky top-0 left-0 border-b p-2 pb-0 md:px-8 flex flex-col gap-2">
+            <h3 className="text-2xl md:text-2xl font-semibold font-booking_font_bold">
+              {
+                reservation ? "  Update Reservation" :
+                  "  Add a Reservation"
+              }
+            </h3>
+            <div className="flex w-full items-center justify-between gap-2">
+              <div className="flex items-center gap-2">
+                <span className={`p-2 px-4 capitalize font-booking_font_bold rounded-[4px] 
               text-center ${status === "PENDING" ? "bg-[#f9d955] text-[#000]" :
-                  status === 'UNAVAILABLE' ? "bg-[#CECECE]" :
-                    status === 'PARTPAYMENT' ? "bg-[#B691C1]" : "bg-[#0e7b10] text-[#fff]"}  
+                    status === 'UNAVAILABLE' ? "bg-[#CECECE]" :
+                      status === 'PARTPAYMENT' ? "bg-[#B691C1]" : "bg-[#0e7b10] text-[#fff]"}  
                text-xs font-bold`}>
-                {status === "PENDING" ? "Pending Payment" : status === 'UNAVAILABLE' ? "Unavailable" : status === 'PARTPAYMENT' ? "Part Payment" : "Fully Paid"}
-                {/* Pending Payment */}
-              </span>
+                  {status === "PENDING" ? "Pending Payment" : status === 'UNAVAILABLE' ? "Unavailable" : status === 'PARTPAYMENT' ? "Part Payment" : "Fully Paid"}
+                  {/* Pending Payment */}
+                </span>
+              </div>
+              {reservation && <span
+                // disabled={room === null || user === null || createReservationisLoading}
+                onClick={() => dispatch(DeleteReservation(reservation?.id))}
+                className="w-12 h-12 hover:bg-[#eee] rounded-full flex items-center justify-center text-sm"
+              // onClick={() => dispatch(AdminDeleteUserProfile({ Detailsdata: id }))}
+              >
+                <FaTrash color="var(--red)" />
+              </span>}
             </div>
-
-
-          </div>
-          <div className="grid pt-4 w-full gap-4 grid-cols-2 z-[200000000] bg-[#fff] lg:grid-cols-4">
-            <div onClick={() => setReservationTab(1)} className={`w-full cursor-pointer ${reservationtab === 1 ? "border-b-4 border-[#0e7b10]" : ""} text-[#000]
+            <div className="grid pt-4 w-full gap-4 grid-cols-2 z-[200000000] bg-[#fff] lg:grid-cols-4">
+              <div onClick={() => setReservationTab(1)} className={`w-full cursor-pointer ${reservationtab === 1 ? "border-b-4 border-[#0e7b10]" : ""} text-[#000]
              pb-3 text-base font-booking_font_bold font-bold`}>
-              Booking Details
-            </div>
+                Booking Details
+              </div>
 
-            <div onClick={() => setReservationTab(2)} className={`w-full cursor-pointer ${reservationtab === 2 ? "border-b-4 border-[#0e7b10]" : ""}
+              <div onClick={() => setReservationTab(2)} className={`w-full cursor-pointer ${reservationtab === 2 ? "border-b-4 border-[#0e7b10]" : ""}
             text-[#000] pb-3 text-base font-booking_font_bold font-bold`}>
-              Client Profile
+                Client Profile
+              </div>
             </div>
           </div>
-        </div>
-        {
-          reservationtab === 1 ? <CreateRoomTab
-            handleRoomId={handleRoomId}
-            room={room}
-            setDiscountPrice={setDiscountPrice}
-            totalPrice={totalPrice}
-            totalBookingPrice={totalBookingPrice}
-            setGuests={setGuests}
-            guests={guests}
-            date={date}
-            setDate={setDate}
-            differenceInDays={differenceInDays}
-            status={status}
-            HandleStatus={HandleStatus}
-            setPartPaymentPrice={setPartPaymentPrice}
-            partpaymentprice={partpaymentprice}
-            reservation={reservation}
-            totalreservationprice={totalreservationprice}
-          />
-            : <CreateGuestTab
-              handleUserSelection={handleUserSelection}
-              newguest={newguest}
-              setNewGuests={setNewGuests}
+          {
+            reservationtab === 1 ? <CreateRoomTab
+              handleRoomId={handleRoomId}
+              room={room}
+              setDiscountPrice={setDiscountPrice}
+              totalPrice={totalPrice}
+              totalBookingPrice={totalBookingPrice}
+              setGuests={setGuests}
+              guests={guests}
+              date={date}
+              setDate={setDate}
+              differenceInDays={differenceInDays}
+              status={status}
+              HandleStatus={HandleStatus}
+              setPartPaymentPrice={setPartPaymentPrice}
+              partpaymentprice={partpaymentprice}
               reservation={reservation}
+              totalreservationprice={totalreservationprice}
             />
-        }
+              : <CreateGuestTab
+                handleUserSelection={handleUserSelection}
+                newguest={newguest}
+                setNewGuests={setNewGuests}
+                reservation={reservation}
+                user={user}
+              />
+          }
 
 
 
-        <div className="deleteCardBottom py-2 w-full flex flex-row gap-2 items-center md:justify-end px-4">
-          <button
-            className="family1 font-booking_font font-bold flex items-center justify-center text-sm"
-            onClick={handleClearAlert}
-          >
-            Cancel
-          </button>
-          <button
-            // disabled={room === null || user === null || createReservationisLoading}
-            onClick={handleNextTab}
-            className="btn px-4 text-[#fff] py-2 rounded-[10px] family1 font-booking_font font-bold flex items-center justify-center text-sm"
-          // onClick={() => dispatch(AdminDeleteUserProfile({ Detailsdata: id }))}
-          >
-            {createReservationisLoading ? (
-              <span className="flex text-[#Fff] items-center justify-center gap-2">
-                <Loader type="dots" />
-                Creating in progress
-              </span>
-            ) : (
-              <span className="text-white">
-                {/* <AnimateText children={reservationtab === 2 ?
+          <div className="deleteCardBottom py-2 w-full flex flex-row gap-2 items-center md:justify-end px-4">
+            <button
+              className="family1 font-booking_font font-bold flex items-center justify-center text-sm"
+              onClick={handleClearAlert}
+            >
+              Cancel
+            </button>
+            <button
+              // disabled={room === null || user === null || createReservationisLoading}
+              onClick={handleNextTab}
+              className="btn px-4 text-[#fff] py-2 rounded-[10px] family1 font-booking_font font-bold flex items-center justify-center text-sm"
+            // onClick={() => dispatch(AdminDeleteUserProfile({ Detailsdata: id }))}
+            >
+              {createReservationisLoading ? (
+                <span className="flex text-[#Fff] items-center justify-center gap-2">
+                  <Loader type="dots" />
+                  Creating in progress
+                </span>
+              ) : (
+                <span className="text-white">
+                  {/* <AnimateText children={reservationtab === 2 ?
                   <>  {
                     reservation ? `Update` : `Save`
                   }</>
                   : `Next `} /> */}
-                {reservationtab === 2 ?
-                  <>  {
-                    reservation ? `Update` : `Save`
-                  }</>
-                  : `Next `}
-              </span>
-            )}
-          </button>
+                  {reservationtab === 2 ?
+                    <>  {
+                      reservation ? `Update` : `Save`
+                    }</>
+                    : `Next `}
+                </span>
+              )}
+            </button>
 
-        </div>
-      </motion.div>
-    </ReservationModalStyles>
+          </div>
+        </motion.div>
+      </ReservationModalStyles>
+    </>
   );
 }
 
@@ -392,8 +404,8 @@ const ReservationModalStyles = styled(motion.div)`
     position: relative;
     padding-top: 1rem;
     @media (max-width: 980px) {
-      max-width: 85%;
-      min-width: 85%;
+      max-width: 95%;
+      min-width: 95%;
     }
     .cross {
       position: absolute;

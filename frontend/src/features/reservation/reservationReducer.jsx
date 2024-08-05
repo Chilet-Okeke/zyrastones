@@ -116,7 +116,7 @@ export const DeleteReservation = createAsyncThunk(
         `${import.meta.env.VITE_API_BASE_URLS}/reservation/${reservationId}`,
         config
       );
-      
+
       return reservationId;
     } catch (error) {
       return thunkAPI.rejectWithValue(
@@ -130,7 +130,7 @@ export const DeleteReservation = createAsyncThunk(
 
 export const UpdateReservation = createAsyncThunk(
   "UpdateReservation",
-  async ({reservationId, reservation}, thunkAPI) => {
+  async ({ reservationId, reservation }, thunkAPI) => {
     try {
       const state = thunkAPI.getState();
       const config = {
@@ -139,7 +139,7 @@ export const UpdateReservation = createAsyncThunk(
         },
       };
       const { data } = await axios.put(
-        `${import.meta.env.VITE_API_BASE_URLS}/reservation/${reservationId}`,
+        `${import.meta.env.VITE_API_BASE_URLS}/reservation/${reservationId?.reservationid}?roomid=${reservationId?.roomid}`,
         reservation,
         config
       );
@@ -156,7 +156,7 @@ export const UpdateReservation = createAsyncThunk(
 
 export const CreateReservation = createAsyncThunk(
   "CreateReservation",
-  async ({roomid, reservation}, thunkAPI) => {
+  async ({ roomid, reservation }, thunkAPI) => {
     try {
       const state = thunkAPI.getState();
       const config = {
