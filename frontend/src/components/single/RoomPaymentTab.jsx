@@ -123,7 +123,7 @@ export default function RoomPaymentTab({
                   <div className="flex items-center gap-2">
                     <span
                       style={{ letterSpacing: "4px" }}
-                      className="text-3xl text-[var(--gold-1)] pt-3 md:text-4xl block font-booking_font4 uppercase leading-[1.5] text-center text-dark"
+                      className="text-3xl text-[var(--gold-1)] pt-3 md:text-4xl block font-booking_font4 font-bold uppercase leading-[1.5] text-center text-dark"
                     >
                       {moment(startdate)?.date()}
                     </span>
@@ -143,7 +143,7 @@ export default function RoomPaymentTab({
                   <div className="flex items-center gap-2">
                     <span
                       style={{ letterSpacing: "4px" }}
-                      className="text-3xl text-[var(--gold-1)] pt-3 md:text-4xl block font-booking_font4 uppercase leading-[1.5] text-center text-dark"
+                      className="text-3xl text-[var(--gold-1)] pt-3 md:text-4xl block font-booking_font4 font-bold uppercase leading-[1.5] text-center text-dark"
                     >
                       {moment(enddate)?.date()}
                     </span>
@@ -175,7 +175,7 @@ export default function RoomPaymentTab({
               <div className="flex items-center gap-2">
                 <span
                   style={{ letterSpacing: "4px" }}
-                  className="text-3xl text-[var(--gold-1)] pt-3 md:text-4xl block font-booking_font4 uppercase leading-[1.5] text-center text-dark"
+                  className="text-3xl text-[var(--gold-1)] pt-3 md:text-4xl block font-booking_font4 font-bold uppercase leading-[1.5] text-center text-dark"
                 >
                   {guests}
                 </span>
@@ -206,7 +206,7 @@ export default function RoomPaymentTab({
               <div className="flex items-center gap-2">
                 <span
                   style={{ letterSpacing: "4px" }}
-                  className="text-3xl text-[var(--gold-1)] pt-3 md:text-4xl block font-booking_font4 uppercase leading-[1.5] text-center text-dark"
+                  className="text-3xl text-[var(--gold-1)] pt-3 md:text-4xl block font-booking_font4 font-bold uppercase leading-[1.5] text-center text-dark"
                 >
                   {differenceInDays}
                 </span>
@@ -217,7 +217,7 @@ export default function RoomPaymentTab({
         <div className="w-[90%] p-4 mx-auto flex flex-col gap-4">
           <div className="w-full flex flex-col gap-2">
             {/* price */}
-            <div className="w-full text-base font-light font-booking_font4 text-[var(--gold-1)] flex items-center justify-between">
+            <div className="w-full text-base  font-booking_font4 font-bold text-[var(--gold-1)] flex items-center justify-between">
               <span className="text-white text-lg block font-booking_font font-normal">
                 ₦ {Number(room?.price).toLocaleString()} x {differenceInDays}{" "}
                 nights
@@ -228,7 +228,7 @@ export default function RoomPaymentTab({
               </span>
             </div>
             {/* taxes */}
-            <div className="w-full font-light font-booking_font4 text-[var(--gold-1)] flex items-center justify-between">
+            <div className="w-full  font-booking_font4 font-bold text-[var(--gold-1)] flex items-center justify-between">
               <span className="text-white text-lg block font-booking_font font-normal">
                 Caution Fees
               </span>
@@ -237,7 +237,7 @@ export default function RoomPaymentTab({
               </span>
             </div>
             {/* total */}
-            <div className="w-full font-light font-booking_font4 text-[var(--gold-1)] flex items-center justify-between">
+            <div className="w-full  font-booking_font4 font-bold text-[var(--gold-1)] flex items-center justify-between">
               <span className="text-white text-lg block font-booking_font font-normal">
                 Total
               </span>
@@ -249,7 +249,7 @@ export default function RoomPaymentTab({
           </div>
           {/* summary */}
           <div
-            className="w-full text-xl font-normal text-white font-booking_font4
+            className="w-full text-xl  text-white font-booking_font4 font-bold
                     flex items-center justify-between"
           >
             <span className="text-base font-booking_font font-normal">

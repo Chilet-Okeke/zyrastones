@@ -31,7 +31,7 @@ const Hero = () => {
         className="w-[90%] mx-auto z-40 flex items-center justify-center flex-col
        gap-4"
       >
-        <h1 className="text-white text-center leading-[1.3] text-5xl md:text-6xl font-booking_font4">
+        <h1 className="text-white font-bold  text-center leading-[1.3] text-5xl md:text-6xl font-booking_font4">
           My Reservation
         </h1>
         <div className="w-full absolute bottom-0 left-0 z-[35] flex items-center justify-center py-8">

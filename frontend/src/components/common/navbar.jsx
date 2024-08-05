@@ -52,9 +52,9 @@ const Navbar = () => {
               src="https://www.hopper.com/assets/treasure-D-5S8iOp.svg"
               className="w-14 h-14 rounded-full object-cover"
             />
-            <h4 className="hidden md:flex flex-col text-sm md:text-base font-booking_font4 text-dark">
+            <h4 className="hidden md:flex font-bold flex-col text-sm md:text-base font-booking_font4 text-dark">
               Zyra&Stones{" "}
-              <span className="block text-grey text-xs font-booking_font">
+              <span className="block text-grey text-xs font-normal font-booking_font">
                 {" "}
                 Home of Comfort
               </span>
@@ -66,7 +66,7 @@ const Navbar = () => {
                 <Link
                   to={`/${list.path}`}
                   key={index}
-                  className={`text-sm hover:text-grey font-booking_font4 flex items-center gap-2 p-3 px-3 rounded-[40px]`}
+                  className={`text-sm hover:text-grey font-semibold flex items-center gap-2 p-3 px-3 rounded-[40px]`}
                 >
                   {/* <img src={list?.icon} className="w-4" alt="" /> */}
                   <AnimateText children={list?.title} />
@@ -197,9 +197,9 @@ const Navbar = () => {
                         />
                       )}
                       {currentUser && (
-                        <h4 className="text-sm hidden lg:block font-booking_font4 text-dark family1">
+                        <h4 className="text-sm hidden lg:block font-booking_font4 font-bold text-dark family1">
                           {currentUser?.name}
-                          <span className="block font-normal font-booking_font text-xs text-dark">
+                          <span className="block font-normal font-booking_font font-normal text-xs text-dark">
                             {currentUser?.email}
                           </span>
                         </h4>

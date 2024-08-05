@@ -7,17 +7,18 @@ import { useSelector } from "react-redux";
 
 const OrderList = () => {
   //   const [roommodal, setRoomModal] = useState(false);
-    const { payments } = useSelector((store) => store.payment);
+  const { payments } = useSelector((store) => store.payment);
   return (
     <div className="w-full p-4 px-6 bg-white border rounded-[20px]">
-     
+
       <Table>
         <div className="TableContainer">
           <table className="tableWrapper">
             <thead>
               <tr>
-                {/* <th>ID</th> */}
                 <th>Description</th>
+                <th>Reservation ID</th>
+
                 <th>Amount</th>
                 <th>Currency</th>
                 <th>Status</th>

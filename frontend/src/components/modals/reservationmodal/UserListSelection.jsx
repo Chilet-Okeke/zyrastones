@@ -33,7 +33,7 @@ export default function UserListSelection({ handleUserSelection }) {
         {
           newUser?.map((user, index) => {
             return <SelectGroup>
-              < SelectItem key={index} value={user}>{user?.name}
+              < SelectItem key={index} value={user}>{user?.username}
               </SelectItem>
 
             </SelectGroup>

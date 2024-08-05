@@ -38,7 +38,7 @@ export default function RoomInfo() {
                     </div> */}
                     <h2
                       ref={ctaText_1}
-                      className="text-4xl lg:text-5xl font-normal font-booking_font4 flex flex-wrap gap-x-[8px] gap-y-[8px]  leading-[1] 
+                      className="text-3xl lg:text-5xl font-bold font-booking_font4 flex flex-wrap gap-x-[8px] gap-y-[8px]  leading-[1] 
                       font-booking_font3"
                     >
                       {ctaText1.split(" ").map((x, index) => {
@@ -72,7 +72,7 @@ export default function RoomInfo() {
                 <div className="w-full flex flex-col gap-8">
                   <h2
                     ref={ctaText_2}
-                    className="text-3xl lg:text-4xl font-normal flex font-booking_font4 flex-wrap gap-x-[8px] gap-y-[8px]  leading-[1] font-booking_font3"
+                    className="text-2xl lg:text-3xl font-bold flex font-booking_font4 flex-wrap gap-x-[8px] gap-y-[8px]  leading-[1] font-booking_font3"
                   >
                     {ctaText2.split(" ").map((x, index) => {
                       return (

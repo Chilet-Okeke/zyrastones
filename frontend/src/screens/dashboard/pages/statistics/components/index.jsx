@@ -18,7 +18,7 @@ const DashboardIndex = () => {
   return (
     <div className="w-full">
       <div className="w-full flex flex-col gap-12">
-        <h2 className="text-3xl lg:text-4xl font-booking_font4">
+        <h2 className="text-4xl font-bold font-booking_font4">
         Overview
         </h2>
         <Widget />

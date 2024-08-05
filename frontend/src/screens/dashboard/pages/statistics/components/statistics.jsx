@@ -7,11 +7,11 @@ import { Link } from "react-router-dom";
 
 const Statistics = () => {
   return (
-    <div className="w-full grid md:grid-cols-custom_6 items-start gap-4">
+    <div className="w-full grid md:grid-cols-custom items-start gap-4">
       <div className="flex w-full">
         <GrowthStat />
       </div>
-      <div className="flex w-full">
+      <div className="flex md:w-[400px]">
         <SalesStat />
       </div>
     </div>
@@ -24,8 +24,8 @@ const GrowthStat = () => {
   const [options, setOptions] = useState({
     chart: {
       height: 350,
-      type: "line",
-      fontFamily: "playfair",
+      type: "bar",
+      fontFamily: "Karla",
       foreColor: "#333",
       fontSize: "30px",
       textTransform: "capitalize",
@@ -52,28 +52,28 @@ const GrowthStat = () => {
     },
   ]);
   useEffect(() => {
-     if (Array.isArray(totalMonth) && Array.isArray(totalStatAmount)) {
-       if (totalMonth.length !== 0 || totalStatAmount.length !== 0) {
-         setOptions((prevOptions) => ({
-           ...prevOptions,
-           xaxis: {
-             categories: totalMonth,
-           },
-         }));
-         setSeries([
-           {
-             name: "Transactions",
-             data: totalStatAmount,
-           },
-         ]);
-       }
-     }
+    if (Array.isArray(totalMonth) && Array.isArray(totalStatAmount)) {
+      if (totalMonth.length !== 0 || totalStatAmount.length !== 0) {
+        setOptions((prevOptions) => ({
+          ...prevOptions,
+          xaxis: {
+            categories: totalMonth,
+          },
+        }));
+        setSeries([
+          {
+            name: "Transactions",
+            data: totalStatAmount,
+          },
+        ]);
+      }
+    }
   }, [totalStatAmount, totalMonth, setSeries, setOptions]);
   return (
     <div id="chart" className="w-full">
       <div className="w-full flex flex-col gap-8">
         <div className="p-6 w-full px-6 flex-col rounded-[10px] min-h-[400px] border bg-white flex gap-4">
-          <h3 className="text-2xl font-booking_font4">This Year Growth</h3>
+          <h3 className="text-2xl font-booking_font4 font-bold">This Year Growth</h3>
           <div className="flex w-full flex-col gap-8">
             <Chart
               options={options}
@@ -100,12 +100,12 @@ const SalesStat = () => {
     <div className="w-full py-6 flex flex-col gap-4 bg-white border rounded-[10px]">
       <div className="w-full flex flex-col gap-4">
         <div className="w-full px-6 flex items-center justify-between">
-          <h3 className="text-xl font-booking_font4">Transaction History</h3>
+          <h3 className="text-xl font-booking_font4 font-bold">Transaction History</h3>
           <Link
             style={{ textDecoration: "underline" }}
             className="text-sm text-[var(--dark-1)] font-booking_font_bold"
             to={"/dashboard/orders"}
-          >j    
+          >
             View All
           </Link>
         </div>
@@ -114,7 +114,7 @@ const SalesStat = () => {
             return (
               <li
                 key={index}
-                className="text-base py-2 px-6 cursor-pointer hover:bg-[#fafafa] font-booking_font4 flex items-center justify-between w-full"
+                className="text-base py-2 px-6 cursor-pointer hover:bg-[#fafafa] font-booking_font4 font-bold flex items-center justify-between w-full"
               >
                 <div className="flex items-center gap-2">
                   <div className="w-10 h-10 rounded-full bg-[#000] flex items-center justify-center text-white text-base">
@@ -122,7 +122,7 @@ const SalesStat = () => {
                   </div>
                   <span className="text-base">
                     {data?.user?.name}
-                    <div className="block font-booking_font text-sm text-grey">
+                    <div className="block font-booking_font font-normal text-sm text-grey">
                       {data?.user?.email}
                     </div>
                   </span>

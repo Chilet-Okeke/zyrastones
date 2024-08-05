@@ -49,7 +49,7 @@ const RoomForms = ({
       <div className="w-full bg-[#fff] border p-6 px-2 rounded-[10px]">
         <div className="w-[95%] md:w-[90%] mx-auto flex flex-col gap-8">
           <div className="w-full flex items-center justify-between">
-            <h4 className="text-2xl font-booking_font4">Name & Description</h4>
+            <h4 className="text-2xl font-booking_font4 font-bold">Name & Description</h4>
             <div className="flex items-center justify-end">
               <Link
                 to={"/dashboard/rooms"}
@@ -62,7 +62,7 @@ const RoomForms = ({
           <div className="pt-4 w-full flex flex-col gap-4">
             <label
               htmlFor="title"
-              className="text-sm  flex flex-col gap-2 font-booking_font4"
+              className="text-sm  flex flex-col gap-2 font-booking_font4 font-bold"
             >
               Product Title
               <input
@@ -71,12 +71,12 @@ const RoomForms = ({
                 id="title"
                 type="text"
                 onChange={(e) => setTitle(e.target.value)}
-                className="text-sm w-full input"
+                className="text-sm w-full input font-normal text-grey"
               />
             </label>
             <label
               htmlFor="description"
-              className="text-sm h-[300px] flex flex-col gap-2 font-booking_font4"
+              className="text-sm h-[300px] flex flex-col gap-2 font-booking_font4 font-bold"
             >
               Product Description
               {/* <textarea
@@ -106,7 +106,7 @@ const RoomForms = ({
       <div className="w-full bg-[#fff] border p-6 px-2 rounded-[10px]">
         <div className="w-[95%] md:w-[90%] mx-auto flex flex-col gap-8">
           <div className="w-full flex items-center justify-between">
-            <h4 className="text-2xl font-booking_font4">
+            <h4 className="text-2xl font-booking_font4 font-bold">
               Price & Room Capacity
               <span className="font-normal font-booking_font text-base block">
                 Share what makes your place special.
@@ -116,7 +116,7 @@ const RoomForms = ({
           <div className="pt-2 w-full flex flex-col gap-4">
             <label
               htmlFor="price"
-              className="text-sm  flex flex-col gap-2 font-booking_font4"
+              className="text-sm  flex flex-col gap-2 font-booking_font4 font-bold"
             >
               Room Amount
               <input
@@ -125,12 +125,12 @@ const RoomForms = ({
                 id="price"
                 type="number"
                 onChange={(e) => setPrice(e.target.value)}
-                className="text-sm w-full input"
+                className="text-sm w-full input font-normal text-grey"
               />
             </label>
             <label
               htmlFor="cautionfee"
-              className="text-sm  flex flex-col gap-2 font-booking_font4"
+              className="text-sm  flex flex-col gap-2 font-booking_font4 font-bold"
             >
               Room Caution Fee
               <input
@@ -139,13 +139,13 @@ const RoomForms = ({
                 id="cautionfee"
                 type="number"
                 onChange={(e) => setCautionFee(e.target.value)}
-                className="text-sm w-full input"
+                className="text-sm w-full input font-normal text-grey"
               />
             </label>
             <div className="w-full grid md:grid-cols-2 gap-4">
               <label
                 htmlFor="rooms"
-                className="text-sm  flex flex-col gap-2 font-booking_font4"
+                className="text-sm  flex flex-col gap-2 font-booking_font4 font-bold"
               >
                 Room Count
                 <input
@@ -154,12 +154,12 @@ const RoomForms = ({
                   id="rooms"
                   type="number"
                   onChange={(e) => setRooms(parseFloat(e.target.value))}
-                  className="text-sm w-full input"
+                  className="text-sm w-full input font-normal text-grey"
                 />
               </label>
               <label
                 htmlFor="bathrooms"
-                className="text-sm  flex flex-col gap-2 font-booking_font4"
+                className="text-sm  flex flex-col gap-2 font-booking_font4 font-bold"
               >
                 Bath-Room Count
                 <input
@@ -168,13 +168,13 @@ const RoomForms = ({
                   id="bathrooms"
                   type="number"
                   onChange={(e) => setBathRooms(parseFloat(e.target.value))}
-                  className="text-sm w-full input"
+                  className="text-sm w-full input font-normal text-grey"
                 />
               </label>
             </div>
             <label
                 htmlFor="guests"
-                className="text-sm  flex flex-col gap-2 font-booking_font4"
+                className="text-sm  flex flex-col gap-2 font-booking_font4 font-bold"
               >
                Maximum Room Guests
                 <input
@@ -183,7 +183,7 @@ const RoomForms = ({
                   id="guests"
                   type="number"
                   onChange={(e) => setGuests(parseFloat(e.target.value))}
-                  className="text-sm w-full input"
+                  className="text-sm w-full input font-normal text-grey"
                 />
               </label>
           </div>
@@ -194,7 +194,7 @@ const RoomForms = ({
       <div className="w-full bg-[#fff] border p-6 px-2 rounded-[10px]">
         <div className="w-[95%] md:w-[90%] mx-auto flex flex-col gap-8">
           <div className="w-full flex items-center justify-between">
-            <h4 className="text-2xl font-booking_font4">
+            <h4 className="text-2xl font-booking_font4 font-bold">
               Room Location
               <span className="font-normal font-booking_font text-base block">
                 Share where your room is located.
@@ -205,7 +205,7 @@ const RoomForms = ({
             <div className="w-full grid md:grid-cols-1 gap-4">
               <label
                 htmlFor="city"
-                className="text-sm  flex flex-col gap-2 font-booking_font4"
+                className="text-sm  flex flex-col gap-2 font-booking_font4 font-bold"
               >
                 Room City
                 <input
@@ -214,12 +214,12 @@ const RoomForms = ({
                   id="city"
                   type="text"
                   onChange={(e) => setCity(e.target.value)}
-                  className="text-sm w-full input"
+                  className="text-sm w-full input font-normal text-grey"
                 />
               </label>
               {/* <label
                 htmlFor="bathrooms"
-                className="text-sm  flex flex-col gap-2 font-booking_font4"
+                className="text-sm  flex flex-col gap-2 font-booking_font4 font-bold"
               >
                 Room Address
                 <input
@@ -228,7 +228,7 @@ const RoomForms = ({
                   id="address"
                   type="text"
                   onChange={(e) => setAddress(e.target.value)}
-                  className="text-sm w-full input"
+                  className="text-sm w-full input font-normal text-grey"
                 />
               </label> */}
             </div>

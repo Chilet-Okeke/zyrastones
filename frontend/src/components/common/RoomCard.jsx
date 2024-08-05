@@ -95,7 +95,7 @@ const RoomCard = ({ type, apartment, inView, index }) => {
           >
             for settling in castle
           </h4> */}
-          <h3 className="text-2xl font-booking_font4 font-normal text-text_dark_1 ">
+          <h3 className="text-2xl font-booking_font4 font-bold text-text_dark_1 ">
             {apartment?.rooms?.title}
           </h3>
 
@@ -213,7 +213,7 @@ const RoomCard = ({ type, apartment, inView, index }) => {
           >
             for settling in castle
           </h4> */}
-          <h3 className="text-3xl font-booking_font4 font-normal text-text_dark_1 ">
+          <h3 className="text-3xl font-booking_font4 font-bold text-text_dark_1 ">
             {apartment?.title}
           </h3>
 
@@ -252,7 +252,7 @@ const RoomCard = ({ type, apartment, inView, index }) => {
         <div className="w-full h-[270px] overflow-hidden relative">
           <div className="w-full h-full absolute bg-[rgba(0,0,0,.4)] z-[30]"></div>
           <div className="w-full absolute justify-end h-full flex-col gap-1 flex items-start p-6 pb-8 px-8 z-[40]">
-            <h3 className="text-2xl font-normal text-white font-booking_font4">
+            <h3 className="text-2xl font-bold text-white font-booking_font4">
               {apartment?.title}
             </h3>
             <span className="flex items-center gap-4">

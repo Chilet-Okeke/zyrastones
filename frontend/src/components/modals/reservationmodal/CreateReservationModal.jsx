@@ -117,11 +117,11 @@ export default function CreateReservationModal({ setModal, reservation }) {
 
 
   const RegisterNewGuest = () => {
-    if (newguest.newguestname && newguest.newguestemail && newguest.newguestusername) {
+    if (newguest?.newguestname && newguest?.newguestemail && newguest?.newguestusername) {
       dispatch(RegisterUser({
-        name: newguest.newguestname,
-        username: newguest.newguestusername,
-        email: newguest.newguestemail,
+        name: newguest?.newguestname,
+        username: newguest?.newguestusername,
+        email: newguest?.newguestemail,
         hashedPassword: '12345'
       }))
       // toast.success('Register User')
@@ -133,7 +133,7 @@ export default function CreateReservationModal({ setModal, reservation }) {
 
   }
   const reservationData = {
-    patchguests: newguest.newguestname && newguest.newguestemail && newguest.newguestusername ? newguest : user,
+    patchguests: newguest?.newguestname && newguest?.newguestemail && newguest?.newguestusername ? newguest : user,
     startDate: moment(startdate).format("MMMM Do YYYY"),
     endDate: moment(enddate).format("MMMM Do YYYY"),
     guests: guests,

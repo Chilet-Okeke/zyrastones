@@ -19,6 +19,7 @@ const TableCard = ({ x, type }) => {
       <>
         {/* <Delete /> */}
         <tr key={x?.id}>
+          
           <td>
             <span className="flex items-center gap-2">
               Payment Received from{" "}
@@ -26,6 +27,9 @@ const TableCard = ({ x, type }) => {
                 {x?.user?.name}
               </span>
             </span>
+          </td>
+          <td>
+           {x?.reservation?.id}
           </td>
           <td>₦{Number(x?.amount).toLocaleString()}</td>
           <td>{x?.currency}</td>

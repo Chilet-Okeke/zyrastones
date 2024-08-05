@@ -29,7 +29,7 @@ const Hero = () => {
         className="w-[90%] mx-auto z-40 flex items-center justify-center flex-col
        gap-4"
       >
-        <h1 className="text-white text-center leading-[1.3] text-5xl md:text-6xl font-booking_font4">
+        <h1 className="text-white font-bold  text-center leading-[1.3] text-5xl md:text-6xl font-booking_font4">
           Saved Rooms
         </h1>
         <div className="w-full absolute bottom-0 left-0 z-[35] flex items-center justify-center py-8">
@@ -95,13 +95,13 @@ const RoomLists = () => {
        gap-12"
       >
         <div className="w-full">
-          {savedRooms?.length === 0 ? (
-            <h1 className="text-dark text-start leading-[1.3] text-4xl font-booking_font4">
+          {savedRooms?.length !== 0 ? (
+            <h1 className="text-dark text-start leading-[1.3] text-3xl font-booking_font4 font-bold">
               You have an empty Saved Rooms
               <Link
                 to={"/search"}
                 style={{ letterSpacing: "4px" }}
-                className="text-[9px] md:text-xs font-normal pb-1 pt-3 w-[300px] border-b border-[rgba(0,0,0,.5)] uppercase flex items-center gap-4 font-booking_font"
+                className="text-[9px] md:text-xs font-normal pb-1 pt-3 w-[400px] border-b border-[rgba(0,0,0,.5)] uppercase flex items-center gap-4 font-booking_font"
               >
                 Visit our rooms collections
               </Link>

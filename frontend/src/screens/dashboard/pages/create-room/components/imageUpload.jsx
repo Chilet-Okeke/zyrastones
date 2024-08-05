@@ -53,7 +53,7 @@ const ImageUpload = ({ images, setImages }) => {
       {uploading && <Loader />}
       <div className="w-[95%] md:w-[90%] mx-auto flex flex-col gap-8">
         <div className="w-full flex items-center justify-between">
-          <h4 className="text-2xl font-booking_font4">
+          <h4 className="text-2xl font-booking_font4 font-bold">
             Room Images
             <span className="font-normal font-booking_font text-base block">
               Share what makes your rooms images special.
@@ -61,7 +61,7 @@ const ImageUpload = ({ images, setImages }) => {
           </h4>
         </div>
         <div className="w-full flex flex-col gap-4">
-          <div className="w-full flex flex-col gap-4 text-sm font-booking_font4">
+          <div className="w-full flex flex-col gap-4 text-sm font-booking_font4 font-bold">
             <span>Photos</span>
             {images?.length > 0 ? (
               <div className="w-full flex flex-col justify-center items-center gap-8">

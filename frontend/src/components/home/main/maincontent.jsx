@@ -59,10 +59,10 @@ const Hero = () => {
         className="w-[95%] md:w-full z-40 flex items-center justify-center flex-col
        gap-4"
       >
-        <h1 className="text-white text-center leading-[1.1] md:leading-[1.3] text-5xl md:text-7xl font-booking_font4">
+        <h1 className="text-white text-center leading-[1.1] md:leading-[1.3] text-5xl md:text-7xl font-booking_font4 font-bold font-bold">
           <span
             style={{ letterSpacing: "3px" }}
-            className="text-[10px] md:text-xs pb-12 font-normal uppercase block font-booking_font"
+            className="text-[10px] md:text-xs pb-12 font-semibold uppercase block font-booking_font"
           >
             Luxury Home & Best Resort
           </span>
@@ -94,7 +94,7 @@ const Hero = () => {
                     <div className="flex items-center gap-2">
                       <span
                         style={{ letterSpacing: "4px" }}
-                        className="text-3xl pt-3 md:text-6xl block font-booking_font4 uppercase leading-[1.5] text-center text-dark"
+                        className="text-3xl pt-3 md:text-6xl block font-booking_font4 font-bold uppercase leading-[1.5] text-center text-dark"
                       >
                         {moment(startdate)?.date()}
                       </span>
@@ -118,7 +118,7 @@ const Hero = () => {
                     <div className="flex items-center gap-2">
                       <span
                         style={{ letterSpacing: "4px" }}
-                        className="text-3xl pt-3 md:text-6xl block font-booking_font4 uppercase leading-[1.5] text-center text-dark"
+                        className="text-3xl pt-3 md:text-6xl block font-booking_font4 font-bold uppercase leading-[1.5] text-center text-dark"
                       >
                         {moment(enddate)?.date()}
                       </span>
@@ -155,7 +155,7 @@ const Hero = () => {
               <div className="flex pt-1 items-center gap-2">
                 <span
                   style={{ letterSpacing: "4px" }}
-                  className="text-3xl pt-3 md:text-6xl block font-booking_font4 uppercase leading-[1.5] text-center text-dark"
+                  className="text-3xl pt-3 md:text-6xl block font-booking_font4 font-bold uppercase leading-[1.5] text-center text-dark"
                 >
                   {guests}
                 </span>
@@ -243,7 +243,7 @@ const RoomFlex = () => {
       <div className="w-[90%] mx-auto gap-24 md:gap-24 md:items-center max-w-custom_1 flex md:justify-center">
         <h1
           ref={RoomFlex_text_ref_1}
-          className="text-dark md:text-center leading-[1.6] text-5xl md:text-7xl font-booking_font4"
+          className="text-dark md:text-center leading-[1.6] text-5xl md:text-7xl font-booking_font4 font-bold"
         >
           <span
             style={{ letterSpacing: "4px" }}
@@ -251,7 +251,7 @@ const RoomFlex = () => {
           >
             Luxury Home & Best Resort
           </span>
-          <span className=" md:w-[550px] mx-auto leading-[1] gap-x-[5px] flex md:items-center md:justify-center flex-wrap ">
+          <span className=" md:w-[550px] mx-auto leading-[1.2] gap-x-[5px] flex md:items-center md:justify-center flex-wrap ">
             {RoomFlex_text_1.map((x, index) => {
               return (
                 <span
@@ -271,7 +271,7 @@ const RoomFlex = () => {
             })}
           </span>
           <span
-            className="text-base md:text-lg w-full md:w-[650px] md:mx-auto font-normal pt-6
+            className="text-sm md:text-base w-full md:w-[650px] md:mx-auto font-normal pt-6
              flex md:items-center md:justify-center gap-x-[4px] leading-[1.5] flex-wrap  font-booking_font"
           >
             {RoomFlex_text_2.map((x, index) => {
@@ -309,7 +309,7 @@ const RoomFlex = () => {
             className="w-full absolute h-full object-cover"
           ></motion.img>
           <div className="absolute -bottom-[6%] bg-[var(--gold-1)] -left-[1%] lg:-left-[10%] min-h-[190px] w-[180px] flex items-center justify-center">
-            <div className="text-5xl text-center flex flex-col gap-1 uppercase text-white font-booking_font4">
+            <div className="text-5xl text-center flex flex-col gap-1 uppercase text-white font-booking_font4 font-bold">
               + 8
               <br />{" "}
               <span
@@ -328,7 +328,7 @@ const RoomFlex = () => {
           >
             enjoy your life
           </span>
-          <h2 className="text-5xl md:text-7xl leading-[1.1] font-booking_font4 gap-x-[5px] flex flex-wrap ">
+          <h2 className="text-5xl md:text-7xl leading-[1.1] font-booking_font4 font-bold gap-x-[5px] flex flex-wrap ">
             {RoomFlex_text_3.map((x, index) => {
               return (
                 <span
@@ -348,7 +348,7 @@ const RoomFlex = () => {
             })}
           </h2>
           <span
-            className="text-base md:text-lg w-full md:w-[650px] font-normal
+            className="text-sm md:text-base w-full md:w-[650px] font-normal
              flex gap-x-[4px] leading-[1.5] flex-wrap  font-booking_font"
           >
             {RoomFlex_text_4.map((x, index) => {
@@ -372,7 +372,7 @@ const RoomFlex = () => {
           </span>
           <span
             ref={RoomFlex_text_ref_5}
-            className="text-base md:text-lg w-full font-normal
+            className="text-sm md:text-base w-full font-normal
              flex gap-x-[4px] leading-[1.5] flex-wrap  font-booking_font"
           >
             {RoomFlex_text_5.map((x, index) => {
@@ -489,7 +489,7 @@ const Collections = () => {
           </span>
           <h2
             ref={collection_ref_2}
-            className="text-5xl md:text-7xl leading-[1.1] font-booking_font4"
+            className="text-5xl md:text-7xl leading-[1.1] font-booking_font4 font-bold"
           >
             <span className="w-full gap-x-[5px] flex flex-wrap ">
               {text_1.map((x, index) => {
@@ -513,7 +513,7 @@ const Collections = () => {
           </h2>
           <span
             ref={text_ref_4}
-            className="text-base md:text-lg w-full md:w-[650px] font-normal
+            className="text-sm md:text-base w-full md:w-[650px] font-normal
              flex gap-x-[4px] leading-[1.5] flex-wrap  font-booking_font"
           >
             {text_4.map((x, index) => {
@@ -537,7 +537,7 @@ const Collections = () => {
           </span>
           <span
             ref={text_ref_5}
-            className="text-base md:text-lg w-full md:w-[650px] font-normal
+            className="text-sm md:text-base w-full md:w-[650px] font-normal
              flex gap-x-[4px] leading-[1.5] flex-wrap  font-booking_font"
           >
             {text_5.map((x, index) => {
@@ -573,7 +573,7 @@ const Collections = () => {
             className="w-full absolute h-full object-cover"
           ></motion.img>
           <div className="absolute -bottom-[6%] bg-[var(--gold-1)] -left-[1%] lg:-left-[10%] min-h-[190px] w-[180px] flex items-center justify-center">
-            <div className="text-5xl text-center flex flex-col gap-1 uppercase text-white font-booking_font4">
+            <div className="text-5xl text-center flex flex-col gap-1 uppercase text-white font-booking_font4 font-bold">
               + 8
               <br />{" "}
               <span
@@ -609,9 +609,9 @@ const Collections = () => {
                 className="w-[130px]  md:-ml-24 h-[130px] rounded-full object-cover"
               />
               <div className=" flex items-center flex-col justify-center">
-                <h4 className="text-3xl text-dark font-booking_font4">
+                <h4 className="text-3xl text-dark font-booking_font4 font-bold">
                   {data?.title}
-                  <span className="block text-lg pt-2 font-booking_font text-start text-grey">
+                  <span className="block text-base pt-2 font-normal font-booking_font text-start text-grey">
                     {data?.desc}
                   </span>
                 </h4>
@@ -704,7 +704,7 @@ const RoomStructure = () => {
               className="object-cover md:min-h-[550px]"
             />
             <div className="min-h-[240px] shadow-2xl md:absolute px-8 left-[40%] top-[30%] bg-white flex flex-col gap-4 items-center justify-center">
-              <div className="text-3xl font-bold text-center flex flex-col gap-1 uppercase text-dark font-booking_font4">
+              <div className="text-3xl text-center flex flex-col gap-1 uppercase text-dark font-booking_font4 font-bold">
                 8+
                 <br />{" "}
                 <span
@@ -714,7 +714,7 @@ const RoomStructure = () => {
                   ROOMS
                 </span>
               </div>
-              <div className="text-3xl font-bold text-center flex flex-col gap-1 uppercase text-dark font-booking_font4">
+              <div className="text-3xl text-center flex flex-col gap-1 uppercase text-dark font-booking_font4 font-bold">
                 12
                 <br />{" "}
                 <span
@@ -724,7 +724,7 @@ const RoomStructure = () => {
                   suites
                 </span>
               </div>
-              <div className="text-3xl font-bold text-center flex flex-col gap-1 uppercase text-dark font-booking_font4">
+              <div className="text-3xl font-bold text-center flex flex-col gap-1 uppercase text-dark font-booking_font4 font-bold">
                 24
                 <br />{" "}
                 <span
@@ -751,7 +751,7 @@ const RoomStructure = () => {
           </span>
           <h2
             ref={collection_ref_1}
-            className="text-5xl md:text-7xl leading-[1.2] font-booking_font4"
+            className="text-5xl md:text-7xl leading-[1.2] font-booking_font4 font-bold"
           >
             {/* The Structure */}
             <span className="w-full gap-x-[5px] flex flex-wrap ">
@@ -776,7 +776,7 @@ const RoomStructure = () => {
           </h2>
           <span
             ref={collection_ref_3}
-            className="text-base md:text-lg w-full font-normal
+            className="text-sm md:text-base w-full font-normal
              flex gap-x-[4px] leading-[1.5] flex-wrap  font-booking_font"
           >
             {text_4.map((x, index) => {
@@ -840,7 +840,7 @@ const RoomStructure = () => {
                 alt="room_images_icon"
                 className="w-12 md:w-20"
               />
-              <span className="text-xl font-booking_font4">
+              <span className="text-xl font-booking_font4 font-bold">
                 {room.title}
                 <span className="block text-sm text-grey font-normal font-booking_font">
                   {room?.ddsc}
@@ -929,7 +929,7 @@ const RoomsPrice = () => {
       >
         <h1
           ref={price_ref_1}
-          className="text-white text-center leading-[1.3] text-6xl md:text-7xl font-booking_font4"
+          className="text-white text-center leading-[1.3] text-6xl md:text-7xl font-booking_font4 font-bold"
         >
           <span
             style={{ letterSpacing: "4px" }}
@@ -998,7 +998,7 @@ const RoomsPrice = () => {
                   >
                     {room?.title}
                   </h3>
-                  <h3 className="text-4xl md:text-5xl font-booking_font4">
+                  <h3 className="text-4xl md:text-5xl font-booking_font4 font-bold">
                     <span className="text-xl">₦</span>
                     {room?.price}
                     <span className="pl-3 text-xl font-booking_font">
@@ -1088,7 +1088,7 @@ const RoomsBanner = () => {
         <div className="flex flex-col gap-6">
           <h1
             ref={banner_ref_1}
-            className="text-white text-start leading-[1.3] text-6xl md:text-7xl font-booking_font4"
+            className="text-white text-start leading-[1.3] text-6xl md:text-7xl font-booking_font4 font-bold"
           >
             <span
               style={{ letterSpacing: "4px" }}
