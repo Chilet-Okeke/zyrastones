@@ -145,24 +145,24 @@ const UpdateReservations = asyncHandler(async (req, res) => {
     throw new Error("The reservation does not exist");
   }
 
-  // Find the reservation whose end date will be used to adjust the start date
-  const previousReservation = await prisma.reservations.findFirst({
+  // Find the next reservation whose start date will be used to adjust the end date
+  const nextReservation = await prisma.reservations.findFirst({
     where: {
       roomid: roomid,
-      endDate: {
-        lte: reservation.startDate, // End date before or equal to the current start date
+      startDate: {
+        gte: reservation.endDate, // Start date after or equal to the current start date
       },
     },
     orderBy: {
-      endDate: 'desc', // Get the latest end date
+      startDate: 'asc', // Get the earliest start date
     },
   });
 
-  if (previousReservation) {
-    // Adjust the start date to the end date of the previous reservation
-    startDate = new Date(previousReservation.endDate).toISOString();
+  if (nextReservation && new Date(nextReservation.startDate) > new Date(endDate)) {
+    // Adjust the end date to the start date of the next reservation
+    endDate = new Date(nextReservation.startDate).toISOString();
   }
-
+  console.log(endDate)
   // Check for overlapping reservations
   const overlappingReservations = await prisma.reservations.findMany({
     where: {
@@ -178,55 +178,38 @@ const UpdateReservations = asyncHandler(async (req, res) => {
               ],
             },
             {
-              AND: [
-                { startDate: { lte: endDate } },
-                { endDate: { gte: endDate } },
-              ],
+              AND: [{ startDate: { lte: endDate } }, { endDate: { gte: endDate } }],
             },
-            {
-              AND: [
-                { startDate: { gte: startDate } },
-                { startDate: { lte: endDate } },
-              ],
-            },
-            {
-              AND: [
-                { endDate: { gte: startDate } },
-                { endDate: { lte: endDate } },
-              ],
-            },
-          ],
+          ]
         },
       ],
     },
   });
-  console.log(previousReservation)
-  // If there are any overlapping reservations, throw an error
-  // if (overlappingReservations.length > 0) {
-  //   res.status(400);
-  //   throw new Error("This room is already booked for one or more days in the selected period!");
-  // }
+  // console.log(overlappingReservations.length > 1)
+  if (overlappingReservations.length > 1) {
+    res.status(400);
+    throw new Error("This room is already booked for one or more days in your selected period.");
+  }
 
-  // // Update the reservation
-  // let updatedReservation = await prisma.reservations.update({
-  //   where: { id: req.params.id },
-  //   data: {
-  //     startDate,
-  //     endDate,
-  //     status,
-  //     totalPrice,
-  //     guests,
-  //     patchguests,
-  //     partpaymentPrice,
-  //   },
-  // });
+  // // Proceed with the update
+  const updatedReservation = await prisma.reservations.update({
+    where: {
+      id: req.params.id,
+    },
+    data: {
+      startDate,
+      endDate,
+      status,
+      totalPrice,
+      guests,
+      patchguests,
+      partpaymentPrice,
+    },
+  });
 
-  // res.status(200).json({
-  //   msg: "The reservation has been successfully updated",
-  //   reservation: updatedReservation,
-  // });
-});
+  res.json(updatedReservation);
 
+})
 export {
   GetUserReservation,
   GetAllReservation,

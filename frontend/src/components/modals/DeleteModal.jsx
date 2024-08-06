@@ -10,11 +10,16 @@ import { DeleteSingleUser } from "@/features/auth/authReducer";
 import { handleClearUserAlert } from "@/features/auth/authSlice";
 import { handleClearRoomAlert } from "@/features/room/roomSlice";
 import { DeleteRoom } from "@/features/room/roomReducer";
-export default function DeleteModal({ type, modal, setModal, room, id }) {
+import { DeleteReservation } from "@/features/reservation/reservationReducer";
+import { handleClearReservationAlert } from "@/features/reservation/reservationSlice";
+export default function DeleteModal({ type, modal,
+  reservation,
+  setModal, room, id }) {
   const { deleteRoomisLoading, deleteRoomisSuccess } = useSelector(
     (store) => store.room
   );
-
+  const { deleteReservationisLoading, deleteReservationisSuccess } =
+    useSelector((store) => store.reservation);
   const { deleteUserisLoading, deleteUserisSuccess } = useSelector(
     (store) => store.auth
   );
@@ -25,6 +30,10 @@ export default function DeleteModal({ type, modal, setModal, room, id }) {
   const handleDeleteRoom = useCallback(() => {
     dispatch(DeleteRoom(room?.id));
   }, []);
+  // onClick={() => dispatch(DeleteReservation(reservation?.id))}
+  const handleDeleteReservation = useCallback(() => {
+    dispatch(DeleteReservation(reservation?.id))
+  }, []);
   const handleDeleteUser = useCallback(() => {
     // console.log(id)
     dispatch(DeleteSingleUser(id));
@@ -33,13 +42,80 @@ export default function DeleteModal({ type, modal, setModal, room, id }) {
   useEffect(() => {
     dispatch(handleClearRoomAlert());
     dispatch(handleClearUserAlert());
-    if (deleteRoomisSuccess || deleteUserisSuccess) {
+    if (deleteRoomisSuccess || deleteUserisSuccess || deleteReservationisSuccess) {
       setModal(false);
       dispatch(handleClearRoomAlert());
       dispatch(handleClearUserAlert());
+      dispatch(handleClearReservationAlert())
     }
-  }, [setModal, deleteRoomisSuccess, deleteUserisSuccess]);
+  }, [setModal, deleteRoomisSuccess, deleteUserisSuccess, deleteReservationisSuccess]);
 
+
+  if (type === "reservation") {
+    return (
+      <DeleteContainer
+        as={motion.div}
+        initial={{ opacity: 0 }}
+        exit={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+      >
+        <motion.div
+          initial={{
+            y: "100vh",
+          }}
+          animate={{
+            y: "0",
+            transition: { duration: 1, ease: [0.76, 0, 0.24, 1] },
+          }}
+          exit={{
+            y: "100vh",
+            transition: { duration: 1, ease: [0.76, 0, 0.24, 1] },
+          }}
+          className={"deleteCard gap-2"}
+        >
+          <div className="cross" onClick={handleClearAlert}>
+            <RxCross2 />
+          </div>
+          <div className="deleteCardTop p-8 px-4 flex items-center justify-center flex-col gap-2">
+            <span className="w-full flex items-center justify-center">
+              <CiWarning fontSize={"60px"} color={"var(--red)"} />
+            </span>
+            <h3 className="text-lg text-center font-bold font-booking_font_bold family1">
+              Delete this Reservation?
+              <span className="block text-sm w-[80%] mx-auto text-center font-booking_font font-normal text-dark">
+                By deleting this reservation,It cannot be retrieved back
+                if this action you carry has been taken.
+              </span>
+            </h3>
+          </div>
+
+          <div className="deleteCardBottom py-3 w-full flex items-center justify-end px-4 border-t">
+            <button
+              className="family1 font-booking_font_bold flex items-center justify-center text-sm"
+              onClick={handleClearAlert}
+            >
+              Cancel
+            </button>
+            <button
+              disabled={deleteReservationisLoading}
+              onClick={handleDeleteReservation}
+              className="deleteBtn family1 font-booking_font_bold flex items-center justify-center text-sm"
+            // onClick={() => dispatch(AdminDeleteUserProfile({ Detailsdata: id }))}
+            >
+              {deleteReservationisLoading ? (
+                <span className="flex items-center justify-center gap-2">
+                  <Loader type="dots" />
+                  Deleting in progress
+                </span>
+              ) : (
+                " Delete Reservation"
+              )}
+            </button>
+          </div>
+        </motion.div>
+      </DeleteContainer>
+    );
+  }
   if (type === "rooms") {
     return (
       <DeleteContainer
@@ -90,7 +166,7 @@ export default function DeleteModal({ type, modal, setModal, room, id }) {
               disabled={deleteRoomisLoading}
               onClick={handleDeleteRoom}
               className="deleteBtn family1 font-booking_font_bold flex items-center justify-center text-sm"
-              // onClick={() => dispatch(AdminDeleteUserProfile({ Detailsdata: id }))}
+            // onClick={() => dispatch(AdminDeleteUserProfile({ Detailsdata: id }))}
             >
               {deleteRoomisLoading ? (
                 <span className="flex items-center justify-center gap-2">
@@ -155,7 +231,7 @@ export default function DeleteModal({ type, modal, setModal, room, id }) {
             disabled={deleteUserisLoading}
             onClick={handleDeleteUser}
             className="deleteBtn family1 font-booking_font_bold flex items-center justify-center text-sm"
-            // onClick={() => dispatch(AdminDeleteUserProfile({ Detailsdata: id }))}
+          // onClick={() => dispatch(AdminDeleteUserProfile({ Detailsdata: id }))}
           >
             {deleteUserisLoading ? (
               <span className="flex items-center justify-center gap-2">
@@ -195,8 +271,8 @@ const DeleteContainer = styled(motion.div)`
     box-shadow: 0 2rem 3rem rgba(0, 0, 0, 0.4);
     position: relative;
     @media (max-width: 780px) {
-      max-width: 90%;
-      min-width: 90%;
+      max-width: 95%;
+      min-width: 95%;
     }
     .cross {
       position: absolute;

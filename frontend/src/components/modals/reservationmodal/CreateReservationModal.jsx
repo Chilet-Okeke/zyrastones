@@ -1,5 +1,5 @@
 import React, { useState, useCallback, useEffect } from "react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import moment from "moment";
 import { addDays, format } from "date-fns";
 import styled from "styled-components";
@@ -19,6 +19,7 @@ import toast from "react-hot-toast";
 import { CreateNotifications } from "@/features/notification/notificationReducer";
 import { RegisterUser } from "@/features/auth/authReducer";
 import { FaTrash } from "react-icons/fa";
+import DeleteModal from "../DeleteModal";
 export default function CreateReservationModal({ setModal, reservation }) {
 
   // console.log(reservation)
@@ -26,6 +27,7 @@ export default function CreateReservationModal({ setModal, reservation }) {
     useSelector((store) => store.reservation);
 
   const [price, setPrice] = useState(0);
+  const [deletemodal, setDeleteModal] = useState(false);
   const [partpaymentprice, setPartPaymentPrice] = useState(0);
   const [discountprice, setDiscountPrice] = useState(0);
   const [room, setRoom] = useState(null);
@@ -233,12 +235,23 @@ export default function CreateReservationModal({ setModal, reservation }) {
     }
 
   }
-  console.log(reservation)
+  // console.log(reservation)
   return (
     <>
       {
-        createReservationisLoading || deleteReservationisLoading || updateReservationisLoading && <Loader />
+        createReservationisLoading && <Loader />
       }
+      {
+        updateReservationisLoading && <Loader />
+      }
+      {
+        deleteReservationisLoading && <Loader />
+      }
+      <AnimatePresence mode="wait">
+        {
+          deletemodal && <DeleteModal reservation={reservation} setModal={setDeleteModal} modal={deletemodal} type={'reservation'} />
+        }
+      </AnimatePresence>
       <ReservationModalStyles
         as={motion.div}
         initial={{ opacity: 0 }}
@@ -289,7 +302,7 @@ export default function CreateReservationModal({ setModal, reservation }) {
               </div>
               {reservation && <span
                 // disabled={room === null || user === null || createReservationisLoading}
-                onClick={() => dispatch(DeleteReservation(reservation?.id))}
+                onClick={() => setDeleteModal(true)}
                 className="w-12 h-12 hover:bg-[#eee] rounded-full flex items-center justify-center text-sm"
               // onClick={() => dispatch(AdminDeleteUserProfile({ Detailsdata: id }))}
               >

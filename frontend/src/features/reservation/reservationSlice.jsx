@@ -39,6 +39,11 @@ const initialState = {
 export const reservationSlice = createSlice({
   name: "reservation",
   initialState,
+  reducers: {
+    handleClearReservationAlert: (state, action) => {
+      state.deleteReservationisSuccess = false;
+    },
+  },
   extraReducers: (builder) => {
     builder.addCase(GetSingleReservation.pending, (state, action) => {
       state.getsingleReservationisLoading = true;
@@ -145,5 +150,7 @@ export const reservationSlice = createSlice({
     });
   },
 });
+// handleClearReservationAlert
+export const { handleClearReservationAlert } = reservationSlice.actions;
 
 export default reservationSlice.reducer;
