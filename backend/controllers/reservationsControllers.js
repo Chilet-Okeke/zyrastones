@@ -162,7 +162,7 @@ const UpdateReservations = asyncHandler(async (req, res) => {
     // Adjust the end date to the start date of the next reservation
     endDate = new Date(nextReservation.startDate).toISOString();
   }
-  console.log(endDate)
+  // console.log(endDate)
   // Check for overlapping reservations
   const overlappingReservations = await prisma.reservations.findMany({
     where: {
