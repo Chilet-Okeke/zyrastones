@@ -79,10 +79,10 @@ const DashboardSidebar = () => {
                   src="https://www.hopper.com/assets/treasure-D-5S8iOp.svg"
                   className="w-14 h-14 rounded-full object-cover"
                 />
-                <h4 className="hidden md:hidden group-hover:flex flex-col text-sm text-[#fff]">
+                <h4 className="hidden md:hidden group-hover:flex flex-col font-semibold text-sm text-[#fff]">
 
                   Zyra&Stones
-                  <span className="block text-grey text-xs font-booking_font">
+                  <span className="block text-grey text-xs font-normal font-booking_font">
                     {" "}
                     Home of Comfort
                   </span>
@@ -96,7 +96,7 @@ const DashboardSidebar = () => {
               return (
                 <div
                   key={index}
-                  className="w-[90%] font-normal text-sm mx-auto"
+                  className="w-[90%] font-semibold family1 text-sm mx-auto"
                 >
                   <NavLink
                     // activeClassName="active"
@@ -123,7 +123,7 @@ const DashboardSidebar = () => {
             <NavLink
               // activeClassName="active"
               end
-              className={`text-sm tab flex justify-center group-hover:justify-start items-center gap-4 p-[12px] px-4 text-[#fff] family1`}
+              className={`text-sm tab flex justify-center group-hover:justify-start font-semibold items-center gap-4 p-[12px] px-4 text-[#fff] family1`}
               to={`/dashboard/profile/${currentUser?.id}`}
             >
               <FiSettings fontSize={"24px"} />

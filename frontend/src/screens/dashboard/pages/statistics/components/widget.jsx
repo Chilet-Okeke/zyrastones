@@ -10,40 +10,41 @@ const Widget = () => {
   const [widgettab, setWidgetTab] = useState(1);
   const { totalOrderAmount, totalOrder, totalReservations, totalRooms } =
     useSelector((store) => store.stat);
+  const { users } =
+    useSelector((store) => store.auth);
 
-    
-const widgetData = [
-  {
-    title: "New Booking",
-    icon: <MdHotel />,
-    color: "#5B5DB4",
-    subtitle: `${totalOrder}`,
-  },
-  {
-    title: "Total Rooms",
-    icon: <MdHotel />,
-    color: "#FF7F5C",
-    subtitle: `${totalRooms}`,
-  },
-  // {
-  //   title: " Total Revenue",
-  //   icon: <GiCash />,
-  //   color: "#FF7F5C",
-  //   subtitle: `$${totalOrderAmount}`,
-  // },
-  {
-    title: "Total Reserved",
-    icon: <LuBedDouble />,
-    color: "#489BC5",
-    subtitle: `${totalReservations}`,
-  },
-  {
-    title: "Total Clients",
-    icon: <FaRegUser />,
-    color: "#101f26",
-    subtitle: "90",
-  },
-];
+  const widgetData = [
+    {
+      title: "New Booking",
+      icon: <MdHotel />,
+      color: "#5B5DB4",
+      subtitle: `${totalOrder}`,
+    },
+    {
+      title: "Total Rooms",
+      icon: <MdHotel />,
+      color: "#FF7F5C",
+      subtitle: `${totalRooms}`,
+    },
+    // {
+    //   title: " Total Revenue",
+    //   icon: <GiCash />,
+    //   color: "#FF7F5C",
+    //   subtitle: `$${totalOrderAmount}`,
+    // },
+    {
+      title: "Total Reserved",
+      icon: <LuBedDouble />,
+      color: "#489BC5",
+      subtitle: `${totalReservations}`,
+    },
+    {
+      title: "Total Clients",
+      icon: <FaRegUser />,
+      color: "#101f26",
+      subtitle: `${users?.length}`,
+    },
+  ];
   return (
     <div className="w-full grid grid-cols-2 lg:grid-cols-4 gap-2">
       {widgetData?.map((widget, index) => {

@@ -120,14 +120,14 @@ const SalesStat = () => {
                   <div className="w-10 h-10 rounded-full bg-[#000] flex items-center justify-center text-white text-base">
                     {data?.user?.name[0]}
                   </div>
-                  <span className="text-base">
-                    {data?.user?.name}
-                    <div className="block font-booking_font font-normal text-sm text-grey">
+                  <span className="text-sm">
+                    {data?.user?.username}
+                    <div className="block font-booking_font font-normal text-xs text-grey">
                       {data?.user?.email}
                     </div>
                   </span>
                 </div>
-                <span>+₦{Number(data?.amount).toLocaleString()}</span>
+                <span>₦{Number(data?.amount).toLocaleString()}</span>
               </li>
             );
           })}

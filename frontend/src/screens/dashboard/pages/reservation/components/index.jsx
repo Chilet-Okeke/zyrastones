@@ -62,7 +62,7 @@ const DashboardIndex = () => {
             <div
               onClick={() => setCreateReservationModal(true)}
               className="p-4 btn cursor-pointer text-sm
-             bg-[#000] px-4 font-booking_font rounded-[10px] font-normal text-white"
+             bg-[#000] px-6 font-booking_font rounded-[10px] font-semibold text-white"
             >
               Add a reservation
             </div>

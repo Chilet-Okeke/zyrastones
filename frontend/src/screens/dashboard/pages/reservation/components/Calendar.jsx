@@ -1,4 +1,4 @@
-"use client";
+
 import React, { useState, useMemo, useEffect } from "react";
 import moment from "moment";
 import { AnimatePresence } from "framer-motion";
